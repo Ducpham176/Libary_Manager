@@ -28,7 +28,7 @@ namespace Libary_Manager.Libary_DAO
             };
             try
             {
-                Database.insert("Tv_ChiNhanh", data); return true;
+                Database.insert("TV_ChiNhanh", data); return true;
             } 
             catch (Exception ex)
             {

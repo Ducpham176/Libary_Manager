@@ -1,11 +1,13 @@
 ﻿using Guna.UI2.AnimatorNS;
 using Libary_Manager.Libary_DAO;
+using Libary_Manager.Libary_DTO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,18 +28,59 @@ namespace Libary_Manager.Libary_BUS
 
         public DataTable getInfoPhieuSach()
         {
-            string condition = null;
-            bool isFirstCondition = true; 
-            foreach (var book in dictioLoanSlip)
+            string condition = " (";
+            bool first = true; 
+            foreach (var item in dictioLoanSlip)
             {
-                if (!isFirstCondition)
+                if (!first)
                 {
-                    condition += " OR ";
+                    condition += ", "; 
                 }
-                condition += "maSach = '" + book.Key + "' ";
-                isFirstCondition = false;
+                else
+                {
+                    first = false;
+                }
+
+                condition += "'" + item.Key + "'"; 
             }
-            return phieuMuonDAO.getInfoPhieuSach(condition);
+            condition += ") ";
+
+            string orderby = "";
+            int index = 1;
+            foreach (var item in dictioLoanSlip)
+            {
+                orderby += " WHEN '" + item.Key + "' THEN " + index + " ";
+                ++index;
+            }
+
+            return phieuMuonDAO.getInfoPhieuSach(condition, orderby);
+        }
+
+        private bool checkEmptyPhieuMuon(DTO_PhieuMuon phieuMuonDTO)
+        {
+            return (Controller.isAllEmpty(phieuMuonDTO.idNguoiMuon.ToString(), phieuMuonDTO.idNhanVien.ToString(),
+                phieuMuonDTO.maSach, phieuMuonDTO.tinhTrang));
+        }
+
+        public bool insertPhieuMuon(DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                if (checkEmptyPhieuMuon(phieuMuonDTO))
+                {
+                    if (!phieuMuonDAO.insertPhieuMuon(phieuMuonDTO)) { return false; };
+                    return true;
+                }    
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Controller.isAlert("Không thể gửi yêu cầu phiếu mượn: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                return false;
+            };
         }
     }
 }

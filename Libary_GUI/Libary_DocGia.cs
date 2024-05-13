@@ -70,6 +70,8 @@ namespace Libary_Manager
         {
             if (BUS_PhieuMuon.dictioLoanSlip.Count > 0)
             {
+                LbAlertNoData.Visible = false;
+                DgvPhieuMuon.Visible = true;
                 BtnGuiPhieuMuon.Visible = true;
 
                 this.phieuMuonBUS = new BUS_PhieuMuon();
@@ -77,7 +79,26 @@ namespace Libary_Manager
 
                 DataTable data = phieuMuonBUS.getInfoPhieuSach();
                 Controller.isLoadDataPhoto(data, DgvPhieuMuon, "pmPhoto");
-            }    
+
+                int rowIndex = 0;
+                foreach (var item in BUS_PhieuMuon.dictioLoanSlip)
+                {
+                    if (rowIndex < DgvPhieuMuon.Rows.Count)
+                    {
+                        DgvPhieuMuon.Rows[rowIndex].Cells["pmSoLuong"].Value = item.Value;
+                    }
+                    rowIndex++;
+                }
+
+                int desiredHeight = (BUS_PhieuMuon.dictioLoanSlip.Count + 1) * 100;
+                DgvPhieuMuon.Height = desiredHeight;
+            }
+            else
+            {
+                LbAlertNoData.Visible = true;
+                DgvPhieuMuon.Visible = false;
+                BtnGuiPhieuMuon.Visible = false;
+            }
         }
 
         // ................................................
@@ -215,9 +236,39 @@ namespace Libary_Manager
             objectSavedTabName.Clear();
         }
 
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvPhieuMuon_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow row = DgvSachThuVien.Rows[e.RowIndex];
+                object editValue = DgvPhieuMuon.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
+        }
 
+        private string strConcatInfo(string type = "value")
+        {
+            string maSach = "";
+            foreach (var item in BUS_PhieuMuon.dictioLoanSlip)
+            {
+                if (type == "key")
+                {
+                    maSach += (item.Key + "|");
+                } else
+                {
+                    maSach += (item.Value + "|");
+                }
+            }
+            return maSach;
+        }    
+
+        private void BtnGuiPhieuMuon_Click(object sender, EventArgs e)
+        {
+            phieuMuonDTO.idNguoiMuon = 1;
+            // nối các mã sách lại
+            phieuMuonDTO.maSach = strConcatInfo("key");
+            // nối các số lượng lại 
+            phieuMuonDTO.soLuong = strConcatInfo();
+            phieuMuonBUS.insertPhieuMuon(phieuMuonDTO);
         }
 
         // ................................................

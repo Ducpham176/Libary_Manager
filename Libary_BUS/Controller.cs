@@ -20,6 +20,8 @@ using Libary_Manager.Libary_GUI.DoGia;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Libary_Manager.Libary_DTO;
 using System.Reflection;
+using System.Net.Mail;
+using System.Net;
 
 namespace Libary_Manager.Libary_BUS
 {
@@ -196,6 +198,37 @@ namespace Libary_Manager.Libary_BUS
             int Offset;
             Offset = (page - 1) * total;
             return " OFFSET " + Offset + " ROWS FETCH NEXT " + total + " ROWS ONLY" ?? "";
+        }
+
+
+        public static void isSendToEmails(string[] toEmails, string Title, string Content)
+        {
+            string fromEmail = "kothanhcong050@gmail.com";
+            string subject = Title;
+            string body = Content;
+            try
+            {
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("kothanhcong050@gmail.com", "qzpy mhln rhgf gpwu");
+                    smtp.EnableSsl = true;
+
+                    foreach (string toEmail in toEmails)
+                    {
+                        using (MailMessage mail = new MailMessage(fromEmail, toEmail))
+                        {
+                            mail.Subject = subject;
+                            mail.Body = body;
+                            mail.IsBodyHtml = true;
+                            smtp.Send(mail);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi gửi mail: " + ex.Message);
+            }
         }
     }
 }

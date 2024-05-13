@@ -181,7 +181,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
                 {
                     BUS_PhieuMuon.dictioLoanSlip[maSach] = currentValue + total;
                 }
-            } 
+            }
             else
             {
                 BUS_PhieuMuon.dictioLoanSlip.Add(maSach, total);
@@ -214,7 +214,6 @@ namespace Libary_Manager.Libary_GUI.DoGia
             }
             LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
         }
-
 
     }
 }
