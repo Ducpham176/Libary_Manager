@@ -63,6 +63,13 @@ namespace Libary_Manager.Libary_GUI
 
         // ................................................
 
+        // Chọn quản lý nhân viên 
+
+        void TabQuanLyNhanVienAction()
+        {
+
+        }
+
         // Load form tương thích
         private void TcLibaryQuanLy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -280,6 +287,21 @@ namespace Libary_Manager.Libary_GUI
             // Load toàn bộ danh sách Sách
             DataTable data = sachBUS.dataPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+        }
+
+        private void guna2ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -27,6 +27,8 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         private BUS_PhieuMuon phieuMuonBUS;
 
+        private DTO_PhieuMuon phieuMuonDTO;
+
         // Đánh giá sách
 
         private int starSelected = 0;
@@ -158,7 +160,13 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         private void BtnMuonNgay_Click(object sender, EventArgs e)
         {
+            this.phieuMuonDTO = new DTO_PhieuMuon();
+            phieuMuonDTO.idNguoiMuon = 1;
+            phieuMuonDTO.idNhanVien = 1;
+            phieuMuonDTO.maSach = "SDTA0";
+            phieuMuonDTO.tinhTrang = "Phê duyệt";
 
+            phieuMuonBUS.insertPhieuMuon(phieuMuonDTO);
         }
 
         private void loadTabPhieuMuon()

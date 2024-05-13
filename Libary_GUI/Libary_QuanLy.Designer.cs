@@ -382,7 +382,7 @@
             this.TcLibaryQuanLy.Controls.Add(this.TabChiNhanh);
             this.TcLibaryQuanLy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TcLibaryQuanLy.Font = new System.Drawing.Font("Cascadia Mono", 10F);
-            this.TcLibaryQuanLy.ItemSize = new System.Drawing.Size(210, 45);
+            this.TcLibaryQuanLy.ItemSize = new System.Drawing.Size(210, 50);
             this.TcLibaryQuanLy.Location = new System.Drawing.Point(0, 0);
             this.TcLibaryQuanLy.Margin = new System.Windows.Forms.Padding(0);
             this.TcLibaryQuanLy.Name = "TcLibaryQuanLy";
@@ -403,7 +403,7 @@
             this.TcLibaryQuanLy.TabButtonSelectedState.Font = new System.Drawing.Font("Cascadia Mono", 10F);
             this.TcLibaryQuanLy.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
             this.TcLibaryQuanLy.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
-            this.TcLibaryQuanLy.TabButtonSize = new System.Drawing.Size(210, 45);
+            this.TcLibaryQuanLy.TabButtonSize = new System.Drawing.Size(210, 50);
             this.TcLibaryQuanLy.TabButtonTextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TcLibaryQuanLy.TabIndex = 1;
             this.TcLibaryQuanLy.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));

@@ -17,7 +17,7 @@ namespace Libary_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Libary_DocGia());
+            Application.Run(new Libary_NhanVien());
         }
     }
 }
