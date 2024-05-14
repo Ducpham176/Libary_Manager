@@ -83,17 +83,6 @@
             this.BtnChinhSuaSach = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2GradientButton6 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.TabQuanLyNhanVien = new System.Windows.Forms.TabPage();
-            this.TbHoTen = new Guna.UI2.WinForms.Guna2TextBox();
-            this.TbEmail = new Guna.UI2.WinForms.Guna2TextBox();
-            this.TbMaSinhVien = new Guna.UI2.WinForms.Guna2TextBox();
-            this.TbTaiKhoan = new Guna.UI2.WinForms.Guna2TextBox();
-            this.CbTinh = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.CbHuyen = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.CbXa = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.DtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.CbQuyen = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.BtnThemDocGia = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.BtnChinhSua = new Guna.UI2.WinForms.Guna2GradientButton();
             this.DgvDocGia = new Guna.UI2.WinForms.Guna2DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,6 +92,17 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnChinhSua = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.BtnThemDocGia = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.CbQuyen = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.DtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.CbXa = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.CbHuyen = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.CbTinh = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.TbMaSinhVien = new Guna.UI2.WinForms.Guna2TextBox();
+            this.TbEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            this.TbTaiKhoan = new Guna.UI2.WinForms.Guna2TextBox();
+            this.TbHoTen = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvSachThuVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PtXemAnhTruoc)).BeginInit();
             this.TabDoiMatKhau.SuspendLayout();
@@ -923,251 +923,6 @@
             this.TabQuanLyNhanVien.TabIndex = 5;
             this.TabQuanLyNhanVien.Text = "Quản lý nhân viên";
             // 
-            // TbHoTen
-            // 
-            this.TbHoTen.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TbHoTen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbHoTen.BorderRadius = 4;
-            this.TbHoTen.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbHoTen.DefaultText = "";
-            this.TbHoTen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbHoTen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbHoTen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbHoTen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbHoTen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbHoTen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbHoTen.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.TbHoTen.ForeColor = System.Drawing.Color.White;
-            this.TbHoTen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbHoTen.Location = new System.Drawing.Point(27, 21);
-            this.TbHoTen.Margin = new System.Windows.Forms.Padding(4);
-            this.TbHoTen.Name = "TbHoTen";
-            this.TbHoTen.PasswordChar = '\0';
-            this.TbHoTen.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TbHoTen.PlaceholderText = "Họ tên";
-            this.TbHoTen.SelectedText = "";
-            this.TbHoTen.Size = new System.Drawing.Size(361, 64);
-            this.TbHoTen.TabIndex = 31;
-            // 
-            // TbEmail
-            // 
-            this.TbEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TbEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbEmail.BorderRadius = 4;
-            this.TbEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbEmail.DefaultText = "";
-            this.TbEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbEmail.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbEmail.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.TbEmail.ForeColor = System.Drawing.Color.White;
-            this.TbEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbEmail.Location = new System.Drawing.Point(808, 21);
-            this.TbEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.TbEmail.Name = "TbEmail";
-            this.TbEmail.PasswordChar = '\0';
-            this.TbEmail.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TbEmail.PlaceholderText = "Email";
-            this.TbEmail.SelectedText = "";
-            this.TbEmail.Size = new System.Drawing.Size(361, 64);
-            this.TbEmail.TabIndex = 33;
-            // 
-            // TbMaSinhVien
-            // 
-            this.TbMaSinhVien.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TbMaSinhVien.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbMaSinhVien.BorderRadius = 4;
-            this.TbMaSinhVien.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbMaSinhVien.DefaultText = "";
-            this.TbMaSinhVien.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbMaSinhVien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbMaSinhVien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbMaSinhVien.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbMaSinhVien.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbMaSinhVien.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbMaSinhVien.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.TbMaSinhVien.ForeColor = System.Drawing.Color.White;
-            this.TbMaSinhVien.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbMaSinhVien.Location = new System.Drawing.Point(1199, 21);
-            this.TbMaSinhVien.Margin = new System.Windows.Forms.Padding(4);
-            this.TbMaSinhVien.Name = "TbMaSinhVien";
-            this.TbMaSinhVien.PasswordChar = '\0';
-            this.TbMaSinhVien.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TbMaSinhVien.PlaceholderText = "Mã sinh viên";
-            this.TbMaSinhVien.SelectedText = "";
-            this.TbMaSinhVien.Size = new System.Drawing.Size(361, 64);
-            this.TbMaSinhVien.TabIndex = 34;
-            // 
-            // TbTaiKhoan
-            // 
-            this.TbTaiKhoan.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TbTaiKhoan.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbTaiKhoan.BorderRadius = 4;
-            this.TbTaiKhoan.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbTaiKhoan.DefaultText = "";
-            this.TbTaiKhoan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbTaiKhoan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbTaiKhoan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbTaiKhoan.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbTaiKhoan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbTaiKhoan.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbTaiKhoan.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.TbTaiKhoan.ForeColor = System.Drawing.Color.White;
-            this.TbTaiKhoan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbTaiKhoan.Location = new System.Drawing.Point(417, 21);
-            this.TbTaiKhoan.Margin = new System.Windows.Forms.Padding(4);
-            this.TbTaiKhoan.Name = "TbTaiKhoan";
-            this.TbTaiKhoan.PasswordChar = '\0';
-            this.TbTaiKhoan.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TbTaiKhoan.PlaceholderText = "Tài khoản";
-            this.TbTaiKhoan.SelectedText = "";
-            this.TbTaiKhoan.Size = new System.Drawing.Size(361, 64);
-            this.TbTaiKhoan.TabIndex = 32;
-            // 
-            // CbTinh
-            // 
-            this.CbTinh.BackColor = System.Drawing.Color.Transparent;
-            this.CbTinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbTinh.BorderRadius = 4;
-            this.CbTinh.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbTinh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbTinh.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.CbTinh.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CbTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbTinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbTinh.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbTinh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbTinh.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.CbTinh.ForeColor = System.Drawing.Color.White;
-            this.CbTinh.ItemHeight = 30;
-            this.CbTinh.Location = new System.Drawing.Point(29, 114);
-            this.CbTinh.Name = "CbTinh";
-            this.CbTinh.Size = new System.Drawing.Size(361, 36);
-            this.CbTinh.TabIndex = 35;
-            this.CbTinh.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox1_SelectedIndexChanged);
-            // 
-            // CbHuyen
-            // 
-            this.CbHuyen.BackColor = System.Drawing.Color.Transparent;
-            this.CbHuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbHuyen.BorderRadius = 4;
-            this.CbHuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbHuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbHuyen.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.CbHuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CbHuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbHuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbHuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbHuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbHuyen.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.CbHuyen.ForeColor = System.Drawing.Color.White;
-            this.CbHuyen.ItemHeight = 30;
-            this.CbHuyen.Location = new System.Drawing.Point(419, 114);
-            this.CbHuyen.Name = "CbHuyen";
-            this.CbHuyen.Size = new System.Drawing.Size(361, 36);
-            this.CbHuyen.TabIndex = 36;
-            this.CbHuyen.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox2_SelectedIndexChanged);
-            // 
-            // CbXa
-            // 
-            this.CbXa.BackColor = System.Drawing.Color.Transparent;
-            this.CbXa.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbXa.BorderRadius = 4;
-            this.CbXa.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbXa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbXa.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.CbXa.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CbXa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbXa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbXa.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbXa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbXa.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.CbXa.ForeColor = System.Drawing.Color.White;
-            this.CbXa.ItemHeight = 30;
-            this.CbXa.Location = new System.Drawing.Point(810, 114);
-            this.CbXa.Name = "CbXa";
-            this.CbXa.Size = new System.Drawing.Size(361, 36);
-            this.CbXa.TabIndex = 37;
-            this.CbXa.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox3_SelectedIndexChanged);
-            // 
-            // DtpNgaySinh
-            // 
-            this.DtpNgaySinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.DtpNgaySinh.BorderRadius = 4;
-            this.DtpNgaySinh.Checked = true;
-            this.DtpNgaySinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.DtpNgaySinh.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.DtpNgaySinh.ForeColor = System.Drawing.Color.White;
-            this.DtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.DtpNgaySinh.Location = new System.Drawing.Point(1201, 114);
-            this.DtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.DtpNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.DtpNgaySinh.Name = "DtpNgaySinh";
-            this.DtpNgaySinh.Size = new System.Drawing.Size(361, 55);
-            this.DtpNgaySinh.TabIndex = 38;
-            this.DtpNgaySinh.Value = new System.DateTime(2024, 5, 13, 22, 23, 23, 752);
-            // 
-            // CbQuyen
-            // 
-            this.CbQuyen.BackColor = System.Drawing.Color.Transparent;
-            this.CbQuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbQuyen.BorderRadius = 4;
-            this.CbQuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbQuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbQuyen.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
-            this.CbQuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CbQuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbQuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.CbQuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbQuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.CbQuyen.Font = new System.Drawing.Font("UTM Avo", 10F);
-            this.CbQuyen.ForeColor = System.Drawing.Color.White;
-            this.CbQuyen.ItemHeight = 30;
-            this.CbQuyen.Location = new System.Drawing.Point(29, 200);
-            this.CbQuyen.Name = "CbQuyen";
-            this.CbQuyen.Size = new System.Drawing.Size(361, 36);
-            this.CbQuyen.TabIndex = 39;
-            // 
-            // BtnThemDocGia
-            // 
-            this.BtnThemDocGia.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BtnThemDocGia.BorderRadius = 4;
-            this.BtnThemDocGia.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.BtnThemDocGia.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.BtnThemDocGia.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.BtnThemDocGia.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.BtnThemDocGia.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.BtnThemDocGia.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
-            this.BtnThemDocGia.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
-            this.BtnThemDocGia.ForeColor = System.Drawing.Color.White;
-            this.BtnThemDocGia.Location = new System.Drawing.Point(417, 200);
-            this.BtnThemDocGia.Name = "BtnThemDocGia";
-            this.BtnThemDocGia.Size = new System.Drawing.Size(361, 63);
-            this.BtnThemDocGia.TabIndex = 40;
-            this.BtnThemDocGia.Text = "THÊM ĐỘC GIẢ";
-            // 
-            // BtnChinhSua
-            // 
-            this.BtnChinhSua.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BtnChinhSua.BorderRadius = 4;
-            this.BtnChinhSua.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.BtnChinhSua.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.BtnChinhSua.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.BtnChinhSua.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.BtnChinhSua.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.BtnChinhSua.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.BtnChinhSua.FillColor2 = System.Drawing.Color.CornflowerBlue;
-            this.BtnChinhSua.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
-            this.BtnChinhSua.ForeColor = System.Drawing.Color.White;
-            this.BtnChinhSua.Location = new System.Drawing.Point(808, 200);
-            this.BtnChinhSua.Name = "BtnChinhSua";
-            this.BtnChinhSua.Size = new System.Drawing.Size(361, 63);
-            this.BtnChinhSua.TabIndex = 41;
-            this.BtnChinhSua.Text = "LƯU CHỈNH SỬA";
-            // 
             // DgvDocGia
             // 
             this.DgvDocGia.AllowUserToAddRows = false;
@@ -1357,6 +1112,252 @@
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn9.Width = 140;
+            // 
+            // BtnChinhSua
+            // 
+            this.BtnChinhSua.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnChinhSua.BorderRadius = 4;
+            this.BtnChinhSua.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnChinhSua.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.BtnChinhSua.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnChinhSua.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnChinhSua.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.BtnChinhSua.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.BtnChinhSua.FillColor2 = System.Drawing.Color.CornflowerBlue;
+            this.BtnChinhSua.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.BtnChinhSua.ForeColor = System.Drawing.Color.White;
+            this.BtnChinhSua.Location = new System.Drawing.Point(808, 200);
+            this.BtnChinhSua.Name = "BtnChinhSua";
+            this.BtnChinhSua.Size = new System.Drawing.Size(361, 63);
+            this.BtnChinhSua.TabIndex = 41;
+            this.BtnChinhSua.Text = "LƯU CHỈNH SỬA";
+            // 
+            // BtnThemDocGia
+            // 
+            this.BtnThemDocGia.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnThemDocGia.BorderRadius = 4;
+            this.BtnThemDocGia.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnThemDocGia.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.BtnThemDocGia.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnThemDocGia.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnThemDocGia.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.BtnThemDocGia.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
+            this.BtnThemDocGia.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.BtnThemDocGia.ForeColor = System.Drawing.Color.White;
+            this.BtnThemDocGia.Location = new System.Drawing.Point(417, 200);
+            this.BtnThemDocGia.Name = "BtnThemDocGia";
+            this.BtnThemDocGia.Size = new System.Drawing.Size(361, 63);
+            this.BtnThemDocGia.TabIndex = 40;
+            this.BtnThemDocGia.Text = "THÊM ĐỘC GIẢ";
+            this.BtnThemDocGia.Click += new System.EventHandler(this.BtnThemDocGia_Click);
+            // 
+            // CbQuyen
+            // 
+            this.CbQuyen.BackColor = System.Drawing.Color.Transparent;
+            this.CbQuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbQuyen.BorderRadius = 4;
+            this.CbQuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbQuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbQuyen.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
+            this.CbQuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.CbQuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbQuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbQuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbQuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbQuyen.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.CbQuyen.ForeColor = System.Drawing.Color.White;
+            this.CbQuyen.ItemHeight = 30;
+            this.CbQuyen.Location = new System.Drawing.Point(29, 200);
+            this.CbQuyen.Name = "CbQuyen";
+            this.CbQuyen.Size = new System.Drawing.Size(361, 36);
+            this.CbQuyen.TabIndex = 39;
+            // 
+            // DtpNgaySinh
+            // 
+            this.DtpNgaySinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.DtpNgaySinh.BorderRadius = 4;
+            this.DtpNgaySinh.Checked = true;
+            this.DtpNgaySinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.DtpNgaySinh.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.DtpNgaySinh.ForeColor = System.Drawing.Color.White;
+            this.DtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.DtpNgaySinh.Location = new System.Drawing.Point(1201, 114);
+            this.DtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.DtpNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.DtpNgaySinh.Name = "DtpNgaySinh";
+            this.DtpNgaySinh.Size = new System.Drawing.Size(361, 55);
+            this.DtpNgaySinh.TabIndex = 38;
+            this.DtpNgaySinh.Value = new System.DateTime(2024, 5, 13, 22, 23, 23, 752);
+            // 
+            // CbXa
+            // 
+            this.CbXa.BackColor = System.Drawing.Color.Transparent;
+            this.CbXa.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbXa.BorderRadius = 4;
+            this.CbXa.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbXa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbXa.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
+            this.CbXa.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.CbXa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbXa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbXa.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbXa.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbXa.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.CbXa.ForeColor = System.Drawing.Color.White;
+            this.CbXa.ItemHeight = 30;
+            this.CbXa.Location = new System.Drawing.Point(810, 114);
+            this.CbXa.Name = "CbXa";
+            this.CbXa.Size = new System.Drawing.Size(361, 36);
+            this.CbXa.TabIndex = 37;
+            this.CbXa.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox3_SelectedIndexChanged);
+            // 
+            // CbHuyen
+            // 
+            this.CbHuyen.BackColor = System.Drawing.Color.Transparent;
+            this.CbHuyen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbHuyen.BorderRadius = 4;
+            this.CbHuyen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbHuyen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbHuyen.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
+            this.CbHuyen.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.CbHuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbHuyen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbHuyen.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbHuyen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbHuyen.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.CbHuyen.ForeColor = System.Drawing.Color.White;
+            this.CbHuyen.ItemHeight = 30;
+            this.CbHuyen.Location = new System.Drawing.Point(419, 114);
+            this.CbHuyen.Name = "CbHuyen";
+            this.CbHuyen.Size = new System.Drawing.Size(361, 36);
+            this.CbHuyen.TabIndex = 36;
+            this.CbHuyen.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox2_SelectedIndexChanged);
+            // 
+            // CbTinh
+            // 
+            this.CbTinh.BackColor = System.Drawing.Color.Transparent;
+            this.CbTinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbTinh.BorderRadius = 4;
+            this.CbTinh.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbTinh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbTinh.DisabledState.ForeColor = System.Drawing.Color.DarkGray;
+            this.CbTinh.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.CbTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbTinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.CbTinh.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbTinh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CbTinh.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.CbTinh.ForeColor = System.Drawing.Color.White;
+            this.CbTinh.ItemHeight = 30;
+            this.CbTinh.Location = new System.Drawing.Point(29, 114);
+            this.CbTinh.Name = "CbTinh";
+            this.CbTinh.Size = new System.Drawing.Size(361, 36);
+            this.CbTinh.TabIndex = 35;
+            this.CbTinh.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox1_SelectedIndexChanged);
+            // 
+            // TbMaSinhVien
+            // 
+            this.TbMaSinhVien.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbMaSinhVien.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbMaSinhVien.BorderRadius = 4;
+            this.TbMaSinhVien.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbMaSinhVien.DefaultText = "";
+            this.TbMaSinhVien.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbMaSinhVien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbMaSinhVien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbMaSinhVien.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbMaSinhVien.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbMaSinhVien.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbMaSinhVien.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.TbMaSinhVien.ForeColor = System.Drawing.Color.White;
+            this.TbMaSinhVien.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbMaSinhVien.Location = new System.Drawing.Point(1199, 21);
+            this.TbMaSinhVien.Margin = new System.Windows.Forms.Padding(4);
+            this.TbMaSinhVien.Name = "TbMaSinhVien";
+            this.TbMaSinhVien.PasswordChar = '\0';
+            this.TbMaSinhVien.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TbMaSinhVien.PlaceholderText = "Mã sinh viên";
+            this.TbMaSinhVien.SelectedText = "";
+            this.TbMaSinhVien.Size = new System.Drawing.Size(361, 64);
+            this.TbMaSinhVien.TabIndex = 34;
+            // 
+            // TbEmail
+            // 
+            this.TbEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbEmail.BorderRadius = 4;
+            this.TbEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbEmail.DefaultText = "";
+            this.TbEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbEmail.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbEmail.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.TbEmail.ForeColor = System.Drawing.Color.White;
+            this.TbEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbEmail.Location = new System.Drawing.Point(808, 21);
+            this.TbEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.TbEmail.Name = "TbEmail";
+            this.TbEmail.PasswordChar = '\0';
+            this.TbEmail.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TbEmail.PlaceholderText = "Email";
+            this.TbEmail.SelectedText = "";
+            this.TbEmail.Size = new System.Drawing.Size(361, 64);
+            this.TbEmail.TabIndex = 33;
+            // 
+            // TbTaiKhoan
+            // 
+            this.TbTaiKhoan.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbTaiKhoan.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbTaiKhoan.BorderRadius = 4;
+            this.TbTaiKhoan.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbTaiKhoan.DefaultText = "";
+            this.TbTaiKhoan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbTaiKhoan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbTaiKhoan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbTaiKhoan.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbTaiKhoan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbTaiKhoan.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbTaiKhoan.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.TbTaiKhoan.ForeColor = System.Drawing.Color.White;
+            this.TbTaiKhoan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbTaiKhoan.Location = new System.Drawing.Point(417, 21);
+            this.TbTaiKhoan.Margin = new System.Windows.Forms.Padding(4);
+            this.TbTaiKhoan.Name = "TbTaiKhoan";
+            this.TbTaiKhoan.PasswordChar = '\0';
+            this.TbTaiKhoan.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TbTaiKhoan.PlaceholderText = "Tài khoản";
+            this.TbTaiKhoan.SelectedText = "";
+            this.TbTaiKhoan.Size = new System.Drawing.Size(361, 64);
+            this.TbTaiKhoan.TabIndex = 32;
+            // 
+            // TbHoTen
+            // 
+            this.TbHoTen.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbHoTen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbHoTen.BorderRadius = 4;
+            this.TbHoTen.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbHoTen.DefaultText = "";
+            this.TbHoTen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbHoTen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbHoTen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbHoTen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbHoTen.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbHoTen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbHoTen.Font = new System.Drawing.Font("UTM Avo", 10F);
+            this.TbHoTen.ForeColor = System.Drawing.Color.White;
+            this.TbHoTen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbHoTen.Location = new System.Drawing.Point(27, 21);
+            this.TbHoTen.Margin = new System.Windows.Forms.Padding(4);
+            this.TbHoTen.Name = "TbHoTen";
+            this.TbHoTen.PasswordChar = '\0';
+            this.TbHoTen.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TbHoTen.PlaceholderText = "Họ tên";
+            this.TbHoTen.SelectedText = "";
+            this.TbHoTen.Size = new System.Drawing.Size(361, 64);
+            this.TbHoTen.TabIndex = 31;
             // 
             // Libary_NhanVien
             // 

@@ -57,8 +57,8 @@ namespace Libary_Manager.Libary_GUI
 
             // Load toàn bộ Chi nhánh vào thêm sách
             CbbChiNhanh.DataSource = chiNhanhBUS.getToanBoSach();
-            CbbChiNhanh.DisplayMember = "chiNhanh";
-            CbbChiNhanh.ValueMember = "chiNhanh";
+            CbbChiNhanh.DisplayMember = "HoTen";
+            CbbChiNhanh.ValueMember = "HoTen";
         }
 
         // ................................................
@@ -300,6 +300,11 @@ namespace Libary_Manager.Libary_GUI
         }
 
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnThemDocGia_Click(object sender, EventArgs e)
         {
 
         }
