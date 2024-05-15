@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.AnimatorNS;
+using Guna.UI2.WinForms;
 using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
 using System;
@@ -78,7 +79,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể gửi yêu cầu phiếu mượn: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể gửi yêu cầu phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             };
         }

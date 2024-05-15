@@ -1,4 +1,5 @@
-﻿using Libary_Manager.Libary_DAO;
+﻿using Guna.UI2.WinForms;
+using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex) 
             {
-                Controller.isAlert("Không thể thêm chi nhánh: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể thêm chi nhánh: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             };
         }
@@ -45,7 +46,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể xóa chi nhánh: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể xóa chi nhánh: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             };
         }
@@ -61,7 +62,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể thêm mới sách: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể thêm mới sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             };
 

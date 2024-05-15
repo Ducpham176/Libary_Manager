@@ -171,12 +171,12 @@ namespace Libary_Manager.Libary_GUI
                 }
                 catch (Exception)
                 {
-                    Controller.isAlert("Vui lòng nhập thông tin hợp lệ!", "Lỗi xảy ra", MessageBoxIcon.Error); return;
+                    Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập thông tin hợp lệ!", MessageDialogIcon.Error); return;
                 }
             } 
             else
             {
-                Controller.isAlert("Vui lòng nhập đầy đủ thông tin!", "Lỗi xảy ra", MessageBoxIcon.Error);
+                Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin!", MessageDialogIcon.Error);
             }
         }
 
@@ -227,14 +227,14 @@ namespace Libary_Manager.Libary_GUI
                     DataTable data = sachBUS.getToanBoSach();
                     Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Controller.isAlert("Vui lòng nhập thông tin hợp lệ!" + ex.Message, "Lỗi xảy ra", MessageBoxIcon.Error); return;
+                    Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập thông tin hợp lệ!", MessageDialogIcon.Error); return;
                 }
             }
             else
             {
-                Controller.isAlert("Vui lòng chọn 1 hàng thông tin!", "Lỗi xảy ra", MessageBoxIcon.Error);
+                Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng chọn 1 hàng thông tin!", MessageDialogIcon.Error);
             }
         }
 
@@ -287,26 +287,6 @@ namespace Libary_Manager.Libary_GUI
             // Load toàn bộ danh sách Sách
             DataTable data = sachBUS.dataPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
-        }
-
-        private void guna2ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnThemDocGia_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

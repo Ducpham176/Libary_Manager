@@ -1,4 +1,5 @@
-﻿using Libary_Manager.Libary_BUS;
+﻿using Guna.UI2.WinForms;
+using Libary_Manager.Libary_BUS;
 using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
 using System;
@@ -75,7 +76,7 @@ namespace Libary_Manager.Libary_GUI
             }
             else
             {
-                Controller.isAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin!", MessageBoxIcon.Error);
+                Controller.isAlert(MdChiNhanh, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin!", MessageDialogIcon.Error);
             }
         }
 

@@ -36,20 +36,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Libary_QuanLy));
             this.OfdAnhSach = new System.Windows.Forms.OpenFileDialog();
             this.TabChiNhanh = new System.Windows.Forms.TabPage();
-            this.TbDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
-            this.BtnChiNhanh = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.TbChiNhanh = new Guna.UI2.WinForms.Guna2TextBox();
             this.DgvChiNhanh = new Guna.UI2.WinForms.Guna2DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TbDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
+            this.BtnChiNhanh = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.TbChiNhanh = new Guna.UI2.WinForms.Guna2TextBox();
             this.TabDoiMatKhau = new System.Windows.Forms.TabPage();
             this.guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TcLibaryQuanLy = new Guna.UI2.WinForms.Guna2TabControl();
+            this.MdChiNhanh = new Guna.UI2.WinForms.Guna2MessageDialog();
             this.TabChiNhanh.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvChiNhanh)).BeginInit();
             this.TabDoiMatKhau.SuspendLayout();
@@ -63,91 +64,16 @@
             // TabChiNhanh
             // 
             this.TabChiNhanh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            this.TabChiNhanh.Controls.Add(this.DgvChiNhanh);
             this.TabChiNhanh.Controls.Add(this.TbDiaChi);
             this.TabChiNhanh.Controls.Add(this.BtnChiNhanh);
             this.TabChiNhanh.Controls.Add(this.TbChiNhanh);
-            this.TabChiNhanh.Controls.Add(this.DgvChiNhanh);
             this.TabChiNhanh.Location = new System.Drawing.Point(214, 4);
             this.TabChiNhanh.Name = "TabChiNhanh";
             this.TabChiNhanh.Padding = new System.Windows.Forms.Padding(3);
             this.TabChiNhanh.Size = new System.Drawing.Size(1589, 986);
             this.TabChiNhanh.TabIndex = 3;
             this.TabChiNhanh.Text = "Quản lý chi nhánh";
-            // 
-            // TbDiaChi
-            // 
-            this.TbDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TbDiaChi.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbDiaChi.BorderRadius = 6;
-            this.TbDiaChi.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbDiaChi.DefaultText = "";
-            this.TbDiaChi.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbDiaChi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbDiaChi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbDiaChi.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbDiaChi.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbDiaChi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbDiaChi.Font = new System.Drawing.Font("UTM Avo", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbDiaChi.ForeColor = System.Drawing.Color.White;
-            this.TbDiaChi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbDiaChi.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.TbDiaChi.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.TbDiaChi.Location = new System.Drawing.Point(683, 35);
-            this.TbDiaChi.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.TbDiaChi.Name = "TbDiaChi";
-            this.TbDiaChi.PasswordChar = '\0';
-            this.TbDiaChi.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TbDiaChi.PlaceholderText = "Nhập địa chỉ";
-            this.TbDiaChi.SelectedText = "";
-            this.TbDiaChi.Size = new System.Drawing.Size(608, 80);
-            this.TbDiaChi.TabIndex = 15;
-            // 
-            // BtnChiNhanh
-            // 
-            this.BtnChiNhanh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnChiNhanh.BorderRadius = 4;
-            this.BtnChiNhanh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.BtnChiNhanh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.BtnChiNhanh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.BtnChiNhanh.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.BtnChiNhanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.BtnChiNhanh.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
-            this.BtnChiNhanh.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Bold);
-            this.BtnChiNhanh.ForeColor = System.Drawing.Color.White;
-            this.BtnChiNhanh.Location = new System.Drawing.Point(1333, 44);
-            this.BtnChiNhanh.Name = "BtnChiNhanh";
-            this.BtnChiNhanh.Size = new System.Drawing.Size(215, 63);
-            this.BtnChiNhanh.TabIndex = 14;
-            this.BtnChiNhanh.Text = "THÊM";
-            this.BtnChiNhanh.Click += new System.EventHandler(this.BtnChiNhanh_Click);
-            // 
-            // TbChiNhanh
-            // 
-            this.TbChiNhanh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TbChiNhanh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbChiNhanh.BorderRadius = 6;
-            this.TbChiNhanh.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbChiNhanh.DefaultText = "";
-            this.TbChiNhanh.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbChiNhanh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbChiNhanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbChiNhanh.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbChiNhanh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.TbChiNhanh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbChiNhanh.Font = new System.Drawing.Font("UTM Avo", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbChiNhanh.ForeColor = System.Drawing.Color.White;
-            this.TbChiNhanh.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.TbChiNhanh.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.TbChiNhanh.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.TbChiNhanh.Location = new System.Drawing.Point(34, 35);
-            this.TbChiNhanh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.TbChiNhanh.Name = "TbChiNhanh";
-            this.TbChiNhanh.PasswordChar = '\0';
-            this.TbChiNhanh.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.TbChiNhanh.PlaceholderText = "Nhập chi nhánh";
-            this.TbChiNhanh.SelectedText = "";
-            this.TbChiNhanh.Size = new System.Drawing.Size(608, 80);
-            this.TbChiNhanh.TabIndex = 13;
             // 
             // DgvChiNhanh
             // 
@@ -161,10 +87,10 @@
             this.DgvChiNhanh.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvChiNhanh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Cascadia Mono", 10F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DgvChiNhanh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -178,9 +104,9 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Cascadia Mono", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DgvChiNhanh.DefaultCellStyle = dataGridViewCellStyle3;
             this.DgvChiNhanh.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
@@ -216,7 +142,7 @@
             this.DgvChiNhanh.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.DgvChiNhanh.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
             this.DgvChiNhanh.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.DgvChiNhanh.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.DgvChiNhanh.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.DgvChiNhanh.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DgvChiNhanh.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Cascadia Mono", 10F);
             this.DgvChiNhanh.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
@@ -271,6 +197,85 @@
             this.ngayTao.Name = "ngayTao";
             this.ngayTao.ReadOnly = true;
             // 
+            // TbDiaChi
+            // 
+            this.TbDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbDiaChi.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbDiaChi.BorderRadius = 6;
+            this.TbDiaChi.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbDiaChi.DefaultText = "";
+            this.TbDiaChi.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbDiaChi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbDiaChi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbDiaChi.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbDiaChi.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbDiaChi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbDiaChi.Font = new System.Drawing.Font("UTM Avo", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbDiaChi.ForeColor = System.Drawing.Color.White;
+            this.TbDiaChi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbDiaChi.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.TbDiaChi.IconLeftSize = new System.Drawing.Size(25, 25);
+            this.TbDiaChi.Location = new System.Drawing.Point(683, 35);
+            this.TbDiaChi.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TbDiaChi.Name = "TbDiaChi";
+            this.TbDiaChi.PasswordChar = '\0';
+            this.TbDiaChi.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TbDiaChi.PlaceholderText = "Nhập địa chỉ";
+            this.TbDiaChi.SelectedText = "";
+            this.TbDiaChi.Size = new System.Drawing.Size(608, 80);
+            this.TbDiaChi.TabIndex = 15;
+            // 
+            // BtnChiNhanh
+            // 
+            this.BtnChiNhanh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnChiNhanh.Animated = true;
+            this.BtnChiNhanh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.BtnChiNhanh.BorderRadius = 4;
+            this.BtnChiNhanh.BorderThickness = 1;
+            this.BtnChiNhanh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnChiNhanh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.BtnChiNhanh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnChiNhanh.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnChiNhanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.BtnChiNhanh.FillColor = System.Drawing.Color.Transparent;
+            this.BtnChiNhanh.FillColor2 = System.Drawing.Color.Transparent;
+            this.BtnChiNhanh.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Bold);
+            this.BtnChiNhanh.ForeColor = System.Drawing.Color.White;
+            this.BtnChiNhanh.Location = new System.Drawing.Point(1334, 44);
+            this.BtnChiNhanh.Name = "BtnChiNhanh";
+            this.BtnChiNhanh.Size = new System.Drawing.Size(214, 63);
+            this.BtnChiNhanh.TabIndex = 14;
+            this.BtnChiNhanh.Text = "Thêm";
+            this.BtnChiNhanh.Click += new System.EventHandler(this.BtnChiNhanh_Click);
+            // 
+            // TbChiNhanh
+            // 
+            this.TbChiNhanh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbChiNhanh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbChiNhanh.BorderRadius = 6;
+            this.TbChiNhanh.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbChiNhanh.DefaultText = "";
+            this.TbChiNhanh.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbChiNhanh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbChiNhanh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbChiNhanh.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbChiNhanh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
+            this.TbChiNhanh.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbChiNhanh.Font = new System.Drawing.Font("UTM Avo", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbChiNhanh.ForeColor = System.Drawing.Color.White;
+            this.TbChiNhanh.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.TbChiNhanh.IconLeftOffset = new System.Drawing.Point(10, 0);
+            this.TbChiNhanh.IconLeftSize = new System.Drawing.Size(25, 25);
+            this.TbChiNhanh.Location = new System.Drawing.Point(34, 35);
+            this.TbChiNhanh.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TbChiNhanh.Name = "TbChiNhanh";
+            this.TbChiNhanh.PasswordChar = '\0';
+            this.TbChiNhanh.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.TbChiNhanh.PlaceholderText = "Nhập chi nhánh";
+            this.TbChiNhanh.SelectedText = "";
+            this.TbChiNhanh.Size = new System.Drawing.Size(608, 80);
+            this.TbChiNhanh.TabIndex = 13;
+            // 
             // TabDoiMatKhau
             // 
             this.TabDoiMatKhau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
@@ -288,7 +293,9 @@
             // guna2GradientButton1
             // 
             this.guna2GradientButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2GradientButton1.BorderRadius = 6;
+            this.guna2GradientButton1.Animated = true;
+            this.guna2GradientButton1.AutoRoundedCorners = true;
+            this.guna2GradientButton1.BorderRadius = 35;
             this.guna2GradientButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2GradientButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2GradientButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -297,17 +304,18 @@
             this.guna2GradientButton1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.guna2GradientButton1.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Bold);
             this.guna2GradientButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2GradientButton1.Location = new System.Drawing.Point(389, 560);
+            this.guna2GradientButton1.Location = new System.Drawing.Point(465, 560);
             this.guna2GradientButton1.Name = "guna2GradientButton1";
-            this.guna2GradientButton1.Size = new System.Drawing.Size(831, 72);
+            this.guna2GradientButton1.Size = new System.Drawing.Size(628, 72);
             this.guna2GradientButton1.TabIndex = 2;
-            this.guna2GradientButton1.Text = "ĐỔI MẬT KHẨU";
+            this.guna2GradientButton1.Text = "Đổi mật khẩu";
             // 
             // guna2TextBox2
             // 
             this.guna2TextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2TextBox2.AutoRoundedCorners = true;
             this.guna2TextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.guna2TextBox2.BorderRadius = 6;
+            this.guna2TextBox2.BorderRadius = 39;
             this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2TextBox2.DefaultText = "";
             this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -316,28 +324,28 @@
             this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.guna2TextBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.Font = new System.Drawing.Font("UTM Avo", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox2.Font = new System.Drawing.Font("UTM Avo", 10F);
             this.guna2TextBox2.ForeColor = System.Drawing.Color.White;
             this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.IconLeft = ((System.Drawing.Image)(resources.GetObject("guna2TextBox2.IconLeft")));
             this.guna2TextBox2.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.guna2TextBox2.IconLeftSize = new System.Drawing.Size(25, 25);
             this.guna2TextBox2.IconRightOffset = new System.Drawing.Point(10, 0);
-            this.guna2TextBox2.Location = new System.Drawing.Point(389, 431);
+            this.guna2TextBox2.Location = new System.Drawing.Point(465, 431);
             this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.guna2TextBox2.Name = "guna2TextBox2";
             this.guna2TextBox2.PasswordChar = '●';
             this.guna2TextBox2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
             this.guna2TextBox2.PlaceholderText = "Nhập lại mật khẩu";
             this.guna2TextBox2.SelectedText = "";
-            this.guna2TextBox2.Size = new System.Drawing.Size(831, 80);
+            this.guna2TextBox2.Size = new System.Drawing.Size(628, 80);
             this.guna2TextBox2.TabIndex = 1;
             // 
             // guna2TextBox1
             // 
             this.guna2TextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2TextBox1.AutoRoundedCorners = true;
             this.guna2TextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.guna2TextBox1.BorderRadius = 6;
+            this.guna2TextBox1.BorderRadius = 39;
             this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2TextBox1.DefaultText = "";
             this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -346,20 +354,19 @@
             this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.guna2TextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("UTM Avo", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox1.Font = new System.Drawing.Font("UTM Avo", 10F);
             this.guna2TextBox1.ForeColor = System.Drawing.Color.White;
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.IconLeft = ((System.Drawing.Image)(resources.GetObject("guna2TextBox1.IconLeft")));
             this.guna2TextBox1.IconLeftOffset = new System.Drawing.Point(10, 0);
             this.guna2TextBox1.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.guna2TextBox1.Location = new System.Drawing.Point(389, 311);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.guna2TextBox1.Location = new System.Drawing.Point(465, 311);
+            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PasswordChar = '\0';
             this.guna2TextBox1.PlaceholderForeColor = System.Drawing.Color.DarkGray;
             this.guna2TextBox1.PlaceholderText = "Nhập mật khẩu";
             this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(831, 80);
+            this.guna2TextBox1.Size = new System.Drawing.Size(628, 80);
             this.guna2TextBox1.TabIndex = 0;
             // 
             // tabPage1
@@ -409,6 +416,15 @@
             this.TcLibaryQuanLy.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TcLibaryQuanLy.SelectedIndexChanged += new System.EventHandler(this.TcLibaryQuanLy_SelectedIndexChanged);
             // 
+            // MdChiNhanh
+            // 
+            this.MdChiNhanh.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.MdChiNhanh.Caption = null;
+            this.MdChiNhanh.Icon = Guna.UI2.WinForms.MessageDialogIcon.None;
+            this.MdChiNhanh.Parent = this;
+            this.MdChiNhanh.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
+            this.MdChiNhanh.Text = null;
+            // 
             // Libary_QuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -445,5 +461,6 @@
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private System.Windows.Forms.TabPage tabPage1;
         private Guna.UI2.WinForms.Guna2TabControl TcLibaryQuanLy;
+        private Guna.UI2.WinForms.Guna2MessageDialog MdChiNhanh;
     }
 }

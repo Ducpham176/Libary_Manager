@@ -178,5 +178,25 @@ namespace Libary_Manager.Libary_DAO
                 return null;
             }
         }    
+
+        public DataTable dataSearchBooks(string keyWord)
+        {
+            try
+            {
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter
+                    {
+                        ParameterName = "@TuKhoa",
+                    }
+                };
+                return Database.adapter("TimKiemSach", parameters);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
     }
 }

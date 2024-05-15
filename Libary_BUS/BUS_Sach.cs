@@ -78,7 +78,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể lấy dữ liệu sách: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể lấy dữ liệu sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             };
         }
@@ -100,7 +100,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể tạo mới sách: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể tạo mới sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return "SDTA0";
             };
         }
@@ -113,7 +113,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể xóa sách: " + ex.Message, "Lỗi", System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể xóa sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             };
         }
@@ -127,7 +127,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể thêm sách!", ex.Message, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể thêm sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             };
         }
@@ -141,7 +141,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể chỉnh sửa sách!", ex.Message, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể chỉnh sửa sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             };
         }
@@ -156,7 +156,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể chỉnh sửa sách!", ex.Message, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể chỉnh sửa sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             };
         }
@@ -175,7 +175,20 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                Controller.isAlert("Không thể tải sách!", ex.Message, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Không thể tải sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            };
+        }    
+
+        public DataTable dataSearchBooks(string keyWord)
+        {
+            try
+            {
+                return sachDAO.dataSearchBooks(keyWord);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xảy ra trong tìm kiếm sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             };
         }    

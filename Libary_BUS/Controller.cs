@@ -53,10 +53,14 @@ namespace Libary_Manager.Libary_BUS
 
 
         // Alert thông báo 
-        public static void isAlert(string title, string content, MessageBoxIcon name)
+        public static void isAlert(Guna2MessageDialog alert, string caption, string text, MessageDialogIcon icon)
         {
-            MessageBox.Show(title, content,
-            MessageBoxButtons.OK, name);
+            alert.Text = text;
+            alert.Caption = caption;
+            alert.Buttons = MessageDialogButtons.OK;
+            alert.Icon = icon;
+            alert.Style = MessageDialogStyle.Dark;
+            alert.Show();
         }
 
 
@@ -126,7 +130,7 @@ namespace Libary_Manager.Libary_BUS
             }
             catch (Exception ex)
             {
-                isAlert("Lỗi không thể lưu!", ex.Message, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi xảy ra: " + ex.Message, "Lỗi không thể lưu!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -201,6 +205,7 @@ namespace Libary_Manager.Libary_BUS
         }
 
 
+        // Gửi nhiều email 1 lúc 
         public static void isSendToEmails(string[] toEmails, string Title, string Content)
         {
             string fromEmail = "kothanhcong050@gmail.com";
@@ -230,5 +235,7 @@ namespace Libary_Manager.Libary_BUS
                 MessageBox.Show("Đã xảy ra lỗi gửi mail: " + ex.Message);
             }
         }
+
+
     }
 }

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E10C09AB-9B31-43E5-90A4-5305ACB8F111}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Libary_Manager</RootNamespace>
+    <AssemblyName>Libary_Manager</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Guna.Charts.WinForms, Version=1.0.9.0, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.Charts.WinForms.1.0.9\lib\net472\Guna.Charts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="QuickPickOneCLR, Version=4.0.18234.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\QuickPickOneCLR.4.0.18234\lib\net471\QuickPickOneCLR.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=25.2462.3.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.25.2.3\lib\net462\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Libary_BUS\BUS_ChiNhanh.cs" />
+    <Compile Include="Libary_BUS\BUS_DangNhap.cs" />
+    <Compile Include="Libary_BUS\BUS_PhieuMuon.cs" />
+    <Compile Include="Libary_BUS\BUS_Sach.cs" />
+    <Compile Include="Libary_BUS\Controller.cs" />
+    <Compile Include="Libary_DAO\Connect.cs" />
+    <Compile Include="Libary_DAO\DAO_ChiNhanh.cs" />
+    <Compile Include="Libary_DAO\DAO_DangNhap.cs" />
+    <Compile Include="Libary_DAO\DAO_PhieuMuon.cs" />
+    <Compile Include="Libary_DAO\DAO_Sach.cs" />
+    <Compile Include="Libary_DAO\Database.cs" />
+    <Compile Include="Libary_DTO\DTO_ChiNhanh.cs" />
+    <Compile Include="Libary_DTO\DTO_DangNhap.cs" />
+    <Compile Include="Libary_DTO\DTO_PhieuMuon.cs" />
+    <Compile Include="Libary_DTO\DTO_Sach.cs" />
+    <Compile Include="Libary_GUI\DocGia\Libary_ChiTietSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libary_GUI\DocGia\Libary_ChiTietSach.Designer.cs">
+      <DependentUpon>Libary_ChiTietSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_DangNhap.Designer.cs">
+      <DependentUpon>Libary_DangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_NhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_NhanVien.Designer.cs">
+      <DependentUpon>Libary_NhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_QuanLy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_QuanLy.Designer.cs">
+      <DependentUpon>Libary_QuanLy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_DocGia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_DocGia.Designer.cs">
+      <DependentUpon>Libary_DocGia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Libary_GUI\DocGia\Libary_ChiTietSach.resx">
+      <DependentUpon>Libary_ChiTietSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libary_GUI\Libary_DangNhap.resx">
+      <DependentUpon>Libary_DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libary_GUI\Libary_NhanVien.resx">
+      <DependentUpon>Libary_NhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libary_GUI\Libary_QuanLy.resx">
+      <DependentUpon>Libary_QuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libary_GUI\Libary_DocGia.resx">
+      <DependentUpon>Libary_DocGia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="master.dacpac">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="msdb.dacpac">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="QPDB.dacpac" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

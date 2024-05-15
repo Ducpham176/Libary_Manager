@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpo.DB.Helpers;
 using DevExpress.XtraBars.Navigation;
+using Guna.UI2.WinForms;
 using Libary_Manager.Libary_BUS;
 using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
@@ -271,6 +272,20 @@ namespace Libary_Manager
             phieuMuonBUS.insertPhieuMuon(phieuMuonDTO);
         }
 
+        private void BtnTim_Click(object sender, EventArgs e)
+        { 
+            if (Controller.isEmpty(TbTuKhoa.Text))
+            {
+                string keyWord = TbTuKhoa.Text;
+
+                DataTable data = sachBUS.dataSearchBooks(keyWord);
+                Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+            } 
+            else
+            {
+                Controller.isAlert(MdDocGia, "Không hợp lệ", "Vui lòng nhập từ khóa!", MessageDialogIcon.Error);
+            }
+        }
 
         // ................................................
 

@@ -144,7 +144,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
         {
             if (starSelected == 0)
             {
-                Controller.isAlert("Vui lòng chọn số sao", "Lỗi xảy ra", MessageBoxIcon.Error);
+                Controller.isAlert(MdChiTietSach, "Không hợp lệ", "Vui lòng chọn số sao", MessageDialogIcon.Error);
             } else
             {
                 if (Controller.isLength(TbNoiDung.Text, 6))
@@ -153,7 +153,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
                 }
                 else
                 {
-                    Controller.isAlert("Nội dung phải lớn hơn 4 kí tự!", "Lỗi xảy ra", MessageBoxIcon.Error);
+                    Controller.isAlert(MdChiTietSach, "Không hợp lệ", "Nội dung phải lớn hơn 4 kí tự!", MessageDialogIcon.Error);
                 }
             } 
         }
@@ -210,7 +210,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
             else if (BUS_PhieuMuon.totalPresent > 3)
             {
                 BUS_PhieuMuon.totalPresent -= totalSach;
-                Controller.isAlert("Số sách mượn trong 1 lần không được vượt quá 3 quyển", "Chú ý", MessageBoxIcon.Warning);
+                Controller.isAlert(MdChiTietSach, "Chú ý", "Số sách mượn trong 1 lần không được vượt quá 3 quyển", MessageDialogIcon.Warning);
             }    
             else
             {

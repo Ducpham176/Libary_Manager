@@ -80,6 +80,7 @@
             this.BtnThemVaoPhieu = new Guna.UI2.WinForms.Guna2GradientButton();
             this.NeSoLuong = new Guna.UI2.WinForms.Guna2NumericUpDown();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.MdChiTietSach = new Guna.UI2.WinForms.Guna2MessageDialog();
             ((System.ComponentModel.ISupportInitialize)(this.PtAnhSach)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
@@ -788,6 +789,15 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // MdChiTietSach
+            // 
+            this.MdChiTietSach.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            this.MdChiTietSach.Caption = null;
+            this.MdChiTietSach.Icon = Guna.UI2.WinForms.MessageDialogIcon.None;
+            this.MdChiTietSach.Parent = null;
+            this.MdChiTietSach.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
+            this.MdChiTietSach.Text = null;
+            // 
             // Libary_ChiTietSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -796,6 +806,7 @@
             this.ClientSize = new System.Drawing.Size(1205, 762);
             this.Controls.Add(this.guna2GroupBox1);
             this.Controls.Add(this.guna2Panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Libary_ChiTietSach";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Libary_ChiTietSach";
@@ -857,5 +868,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn thoiGian;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LbTotalSach;
+        private Guna.UI2.WinForms.Guna2MessageDialog MdChiTietSach;
     }
 }

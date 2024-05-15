@@ -81,15 +81,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Libary_BUS\BUS_ChiNhanh.cs" />
+    <Compile Include="Libary_BUS\BUS_DangNhap.cs" />
     <Compile Include="Libary_BUS\BUS_PhieuMuon.cs" />
     <Compile Include="Libary_BUS\BUS_Sach.cs" />
     <Compile Include="Libary_BUS\Controller.cs" />
     <Compile Include="Libary_DAO\Connect.cs" />
     <Compile Include="Libary_DAO\DAO_ChiNhanh.cs" />
+    <Compile Include="Libary_DAO\DAO_DangNhap.cs" />
     <Compile Include="Libary_DAO\DAO_PhieuMuon.cs" />
     <Compile Include="Libary_DAO\DAO_Sach.cs" />
     <Compile Include="Libary_DAO\Database.cs" />
+    <Compile Include="Libary_DAO\Core.cs" />
     <Compile Include="Libary_DTO\DTO_ChiNhanh.cs" />
+    <Compile Include="Libary_DTO\DTO_DangNhap.cs" />
     <Compile Include="Libary_DTO\DTO_PhieuMuon.cs" />
     <Compile Include="Libary_DTO\DTO_Sach.cs" />
     <Compile Include="Libary_GUI\DocGia\Libary_ChiTietSach.cs">
@@ -97,6 +101,12 @@
     </Compile>
     <Compile Include="Libary_GUI\DocGia\Libary_ChiTietSach.Designer.cs">
       <DependentUpon>Libary_ChiTietSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libary_GUI\Libary_DangNhap.designer.cs">
+      <DependentUpon>Libary_DangNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="Libary_GUI\Libary_NhanVien.cs">
       <SubType>Form</SubType>
@@ -120,6 +130,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Libary_GUI\DocGia\Libary_ChiTietSach.resx">
       <DependentUpon>Libary_ChiTietSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libary_GUI\Libary_DangNhap.resx">
+      <DependentUpon>Libary_DangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Libary_GUI\Libary_NhanVien.resx">
       <DependentUpon>Libary_NhanVien.cs</DependentUpon>
