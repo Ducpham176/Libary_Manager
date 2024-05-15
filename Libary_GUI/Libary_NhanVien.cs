@@ -57,8 +57,8 @@ namespace Libary_Manager.Libary_GUI
 
             // Load toàn bộ Chi nhánh vào thêm sách
             CbbChiNhanh.DataSource = chiNhanhBUS.getToanBoSach();
-            CbbChiNhanh.DisplayMember = "HoTen";
-            CbbChiNhanh.ValueMember = "HoTen";
+            CbbChiNhanh.DisplayMember = "chiNhanh";
+            CbbChiNhanh.ValueMember = "chiNhanh";
         }
 
         // ................................................
@@ -86,7 +86,6 @@ namespace Libary_Manager.Libary_GUI
         {
             if (e.KeyCode == Keys.Delete)
             {
-                MessageBox.Show(sachDTO.maSach);
                 if (sachBUS.deleteSach(sachDTO)) { };
             }
         }
@@ -287,6 +286,11 @@ namespace Libary_Manager.Libary_GUI
             // Load toàn bộ danh sách Sách
             DataTable data = sachBUS.dataPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+        }
+
+        private void BtnThemDocGia_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -34,34 +34,6 @@ namespace Libary_Manager.Libary_DAO
             }
         }
 
-        public static DataTable adapter(string storedProcedureName, SqlParameter[] parameters = null)
-        {
-            DataTable table = new DataTable();
-            try
-            {
-                using (SqlConnection connection = Connect.Instance.GetConnection())
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(storedProcedureName, connection);
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    if (parameters != null)
-                    {
-                        command.Parameters.AddRange(parameters);
-                    }
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(table);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-            return table;
-        }
-
-
         public static bool insert(string table, Dictionary<string, object> data)
         {
             try

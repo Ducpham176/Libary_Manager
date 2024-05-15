@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Libary_Manager.Libary_DTO
 {
-    internal class DTO_DangNhap
+    class DTO_QuanLyNguoiDung
     {
         public int id { get; set; }
         public string taiKhoan { get; set; }
         public string matKhau { get; set; }
         public string hoTen { get; set; }
+        public int trangThaiLamViec { get; set; }
         public int quyen { get; set; }
         public string email { get; set; }
         public string mssv { get; set; }

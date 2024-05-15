@@ -180,7 +180,7 @@ namespace Libary_Manager.Libary_BUS
             };
         }    
 
-        public DataTable dataSearchBooks(string keyWord)
+      /*  public DataTable dataSearchBooks(string keyWord)
         {
             try
             {
@@ -191,6 +191,6 @@ namespace Libary_Manager.Libary_BUS
                 MessageBox.Show("Lỗi xảy ra trong tìm kiếm sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             };
-        }    
+        }    */
     }
 }

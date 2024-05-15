@@ -32,11 +32,16 @@ namespace Libary_Manager.Libary_GUI
             this.Close();
         }
 
+        private void Libary_DangNhap_Load(object sender, EventArgs e)
+        {
+            TbTaiKhoan.Focus();
+        }
+
         private void setInfomation(DataTable data)
         {
             dangNhapDTO.id = int.Parse(data.Rows[0]["id"].ToString());
             dangNhapDTO.hoTen = data.Rows[0]["hoTen"].ToString();
-            dangNhapDTO.quyen = data.Rows[0]["quyen"].ToString();
+            dangNhapDTO.quyen = int.Parse(data.Rows[0]["quyen"].ToString());
             dangNhapDTO.email = data.Rows[0]["email"].ToString();
             if (data.Rows[0]["mssv"].ToString() != null)
             {
@@ -51,17 +56,17 @@ namespace Libary_Manager.Libary_GUI
 
             switch (dangNhapDTO.quyen)
             {
-                case "0":
+                case 0:
                     Libary_QuanLy formQL = new Libary_QuanLy();
                     formQL.Show();
                     break;
 
-                case "1":
+                case 1:
                     Libary_NhanVien formNV = new Libary_NhanVien();
                     formNV.Show();
                     break;
 
-                case "2":
+                case 2:
                     Libary_DocGia formDG = new Libary_DocGia();
                     formDG.Show();
                     break;
@@ -76,13 +81,22 @@ namespace Libary_Manager.Libary_GUI
         {
             PtLoadDing.Visible = true;
             dangNhapDTO.taiKhoan = TbTaiKhoan.Text;
-            dangNhapDTO.matKhau = TbMatKhau.Text;
+            dangNhapDTO.matKhau = Controller.MD5Hash(TbMatKhau.Text);
 
             DataTable data = dangNhapBUS.checkDangNhap(dangNhapDTO);
 
             if (data.Rows.Count > 0)
             {
-                setInfomation(data);
+                int quyen = int.Parse(data.Rows[0]["quyen"].ToString());
+                if (quyen == 1)
+                {
+        /*            dangNhapBUS.checkTrangThaiNhanVien();*/
+                    setInfomation(data);
+                }    
+                else
+                {
+                    setInfomation(data);
+                }
             }
             else
             {
@@ -108,5 +122,7 @@ namespace Libary_Manager.Libary_GUI
                 Controller.isAlert(MdDangNhap, "Không hợp lệ", "Không được nhập dấu '='", MessageDialogIcon.Warning);
             }
         }
+
+
     }
 }

@@ -32,5 +32,18 @@ namespace Libary_Manager.Libary_BUS
                 return null;
             }
         }
+
+        public bool checkTrangThaiNhanVien(DTO_DangNhap dangNhapDTO)
+        {
+            try
+            {
+                return dangNhapDAO.checkDangNhap(dangNhapDTO).Rows.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể đăng nhập: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
     }
 }

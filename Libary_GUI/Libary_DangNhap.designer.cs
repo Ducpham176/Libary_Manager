@@ -95,7 +95,7 @@
             this.TbMatKhau.Location = new System.Drawing.Point(514, 350);
             this.TbMatKhau.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TbMatKhau.Name = "TbMatKhau";
-            this.TbMatKhau.PasswordChar = '\0';
+            this.TbMatKhau.PasswordChar = '•';
             this.TbMatKhau.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.TbMatKhau.PlaceholderText = "Mật Khẩu";
             this.TbMatKhau.SelectedText = "";
@@ -223,6 +223,7 @@
             this.Name = "Libary_DangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DangNhap";
+            this.Load += new System.EventHandler(this.Libary_DangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PtLoadDing)).EndInit();

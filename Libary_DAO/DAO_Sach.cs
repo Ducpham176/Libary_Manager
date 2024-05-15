@@ -179,7 +179,7 @@ namespace Libary_Manager.Libary_DAO
             }
         }    
 
-        public DataTable dataSearchBooks(string keyWord)
+        /*public DataTable dataSearchBooks(string keyWord)
         {
             try
             {
@@ -197,6 +197,6 @@ namespace Libary_Manager.Libary_DAO
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }
+        }*/
     }
 }

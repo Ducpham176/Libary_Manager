@@ -274,7 +274,7 @@ namespace Libary_Manager
 
         private void BtnTim_Click(object sender, EventArgs e)
         { 
-            if (Controller.isEmpty(TbTuKhoa.Text))
+       /*     if (Controller.isEmpty(TbTuKhoa.Text))
             {
                 string keyWord = TbTuKhoa.Text;
 
@@ -284,7 +284,7 @@ namespace Libary_Manager
             else
             {
                 Controller.isAlert(MdDocGia, "Không hợp lệ", "Vui lòng nhập từ khóa!", MessageDialogIcon.Error);
-            }
+            }*/
         }
 
         // ................................................
