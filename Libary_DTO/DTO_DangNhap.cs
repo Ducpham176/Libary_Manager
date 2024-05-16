@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Libary_Manager.Libary_DTO
 {
-    internal class DTO_DangNhap
+    class DTO_DangNhap
     {
         public int id { get; set; }
         public string taiKhoan { get; set; }

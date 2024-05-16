@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 
 namespace Libary_Manager.Libary_DAO
 {
@@ -177,26 +178,41 @@ namespace Libary_Manager.Libary_DAO
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }    
+        }
 
-        /*public DataTable dataSearchBooks(string keyWord)
+        public DataTable dataFullPagination(string offset)
         {
             try
             {
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-                    new SqlParameter
-                    {
-                        ParameterName = "@TuKhoa",
-                    }
-                };
-                return Database.adapter("TimKiemSach", parameters);
+                string sql = "SELECT maSach, tuaSach, photo, tacGia, nhaXuatBan, namXuatBan, " +
+                    "TRIM(cn.chiNhanh) as chiNhanh, loiGioiThieu, soLuong, TV_Sach.ngayThem " +
+                    "FROM TV_ChiNhanh cn " +
+                    "RIGHT JOIN TV_Sach ON TV_Sach.maChiNhanh = cn.id ORDER BY TV_Sach.id DESC " + offset;
+                return Database.read(sql);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }*/
+        }
+
+        public DataTable dataSearchBooks(string keyWord)
+        {
+            try
+            {
+                string sql = "SELECT maSach, tuaSach, photo, tacGia, nhaXuatBan, namXuatBan, " +
+                    "TRIM(cn.chiNhanh) as chiNhanh, loiGioiThieu, soLuong, TV_Sach.ngayThem " +
+                    "FROM TV_ChiNhanh cn " +
+                    "RIGHT JOIN TV_Sach ON TV_Sach.maChiNhanh = cn.id WHERE tuaSach LIKE N'%" + keyWord + "%' " +
+                    "ORDER BY TV_Sach.id DESC ";
+                return Database.read(sql);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }    
     }
 }

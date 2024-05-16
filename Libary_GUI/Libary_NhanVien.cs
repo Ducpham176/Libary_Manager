@@ -1,5 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Libary_Manager.Libary_BUS;
+using Libary_Manager.Libary_BUS.BUS_NhanVien;
+using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
 using System;
 using System.Collections;
@@ -9,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,10 +31,14 @@ namespace Libary_Manager.Libary_GUI
 
         private BUS_Sach sachBUS;
         private BUS_ChiNhanh chiNhanhBUS;
+        private BUS_DoiMatKhau doiMatKhauBUS;
+        private BUS_ChamCong chamCongBUS;
 
         // ................................................
 
         private DTO_Sach sachDTO;
+        private DTO_QuanLyNguoiDung quanLyNguoiDungDTO;
+        private DTO_ChamCong chamCongDTO;
 
         // ................................................
 
@@ -42,8 +49,16 @@ namespace Libary_Manager.Libary_GUI
 
         // ................................................
 
+        private void Libary_NhanVien_Load(object sender, EventArgs e)
+        {
+            this.chamCongDTO = new DTO_ChamCong();
+
+            chamCongBUS.checkChamCongBuoiHomNay(chamCongDTO);
+        }
+
+
         // Chọn quản lý sách sách
-        void TabSachThuVienAction()
+        private void TabSachThuVienAction()
         {
             // Sách 
             this.sachBUS = new BUS_Sach();
@@ -52,11 +67,11 @@ namespace Libary_Manager.Libary_GUI
             this.chiNhanhBUS = new BUS_ChiNhanh();
 
             // Load toàn bộ danh sách Sách
-            DataTable data = sachBUS.dataPagination(_PAGE);
+            DataTable data = sachBUS.dataFullPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
 
             // Load toàn bộ Chi nhánh vào thêm sách
-            CbbChiNhanh.DataSource = chiNhanhBUS.getToanBoSach();
+            CbbChiNhanh.DataSource = chiNhanhBUS.getChiNhanh();
             CbbChiNhanh.DisplayMember = "chiNhanh";
             CbbChiNhanh.ValueMember = "chiNhanh";
         }
@@ -64,11 +79,17 @@ namespace Libary_Manager.Libary_GUI
         // ................................................
 
         // Chọn quản lý nhân viên 
-
-        void TabQuanLyNhanVienAction()
+        private void TabQuanLyNhanVienAction()
         {
 
         }
+
+        // Chọn đổi mật khẩu 
+        private void TabDoiMatKhauAction()
+        {
+            this.doiMatKhauBUS = new BUS_DoiMatKhau();
+            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
+        }    
 
         // Load form tương thích
         private void TcLibaryQuanLy_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,6 +101,11 @@ namespace Libary_Manager.Libary_GUI
             {
                 TabSachThuVienAction();
             }
+
+            if (selectedTabPage == TabDoiMatKhau)
+            {
+                TabDoiMatKhauAction();
+            }    
         }
 
         private void DgvSachThuVien_KeyDown(object sender, KeyEventArgs e)
@@ -223,7 +249,7 @@ namespace Libary_Manager.Libary_GUI
                     sachBUS.updateSach(sachDTO);
 
                     // Load sách mới chỉnh
-                    DataTable data = sachBUS.getToanBoSach();
+                    DataTable data = sachBUS.dataFullPagination(_PAGE);
                     Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
                 }
                 catch (Exception)
@@ -253,7 +279,7 @@ namespace Libary_Manager.Libary_GUI
                 _PAGE = 1;
             }
             // Load toàn bộ danh sách Sách
-            DataTable data = sachBUS.dataPagination(_PAGE);
+            DataTable data = sachBUS.dataFullPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
         }
 
@@ -268,7 +294,7 @@ namespace Libary_Manager.Libary_GUI
                 _PAGE = BUS_Sach._TOTAL_BOOK;
             }
             // Load toàn bộ danh sách Sách
-            DataTable data = sachBUS.dataPagination(_PAGE);
+            DataTable data = sachBUS.dataFullPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
         }
 
@@ -276,7 +302,7 @@ namespace Libary_Manager.Libary_GUI
         {
             _PAGE = 1;
             // Load toàn bộ danh sách Sách
-            DataTable data = sachBUS.dataPagination(_PAGE);
+            DataTable data = sachBUS.dataFullPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
         }
 
@@ -284,14 +310,93 @@ namespace Libary_Manager.Libary_GUI
         {
             _PAGE = Convert.ToInt32(Math.Ceiling((double)BUS_Sach._TOTAL_BOOK / Controller._MAX_PAGE));
             // Load toàn bộ danh sách Sách
-            DataTable data = sachBUS.dataPagination(_PAGE);
+            DataTable data = sachBUS.dataFullPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
         }
 
-        private void BtnThemDocGia_Click(object sender, EventArgs e)
+        private void BtnHuyChon_Click(object sender, EventArgs e)
         {
-            
+            Controller.isResetTb(TbTuaSach, TbTacGia, TbNhaXuatBan, TbNamXuatBan, TbLoiGioiThieu, TbSoLuong);
+            CbbChiNhanh.SelectedIndex = 0;
+            PtXemAnhTruoc.Image = null;
         }
+
+        private void BtnDoiMatKhau_Click(object sender, EventArgs e)
+        {
+            if (Controller.isAllEmpty(TbMatKhauMoi.Text, TbNhapLaiMatKhau.Text))
+            {
+                if (TbMatKhauMoi.Text != TbNhapLaiMatKhau.Text)
+                {
+                    Controller.isAlert(MdNhanVien, "Không hợp lệ", "Mật khẩu không khớp", MessageDialogIcon.Warning);
+                }
+                else
+                {
+                    quanLyNguoiDungDTO.matKhau = Controller.MD5Hash(TbMatKhauMoi.Text);
+                    if (doiMatKhauBUS.updateMatKhau(quanLyNguoiDungDTO))
+                    {
+                        Controller.isAlert(MdNhanVien, "Thành công", "Đổi mật khẩu thành công", MessageDialogIcon.None);
+                    }    
+                }
+            }
+            else
+            {
+                Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
+            }
+        }
+
+        private void DgvSachThuVien_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow row in DgvSachThuVien.Rows)
+            {
+                if (!row.IsNewRow && row.Cells["chiNhanh"].Value != null)
+                {
+                    if (row.Cells["chiNhanh"].Value.ToString() == "")
+                    {
+                        row.Cells["chiNhanh"].Style.SelectionBackColor = Color.Crimson;
+                        row.Cells["chiNhanh"].Style.BackColor = Color.Crimson;
+                    }
+                }
+            }
+        }
+
+        // Ẩn phân trang 
+        private void identifyPagination(string type = "off")
+        {
+            bool identify = (type == "on") ? true : false;
+            BtnQuayLai.Visible = identify; BtnTiepTuc.Visible = identify;
+            BtnTrangDau.Visible = identify; BtnTrangCuoi.Visible = identify;
+        }    
+
+        // Tìm kiếm sách
+        private void TbTimKiem_Click(object sender, EventArgs e)
+        {
+            if (Controller.isEmpty(TbTuKhoa.Text))
+            {
+                // Load toàn bộ danh sách Sách
+                DataTable data = sachBUS.dataSearchBooks(TbTuKhoa.Text);
+                if (data != null)
+                {
+                    identifyPagination();
+                    BtnResetSearch.Visible = true;
+                    Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+                }    
+            }
+            else
+            {
+                Controller.isAlert(MdNhanVien, "Sự cố xảy ra", "Nhập vào ít nhất 1 tựa sách", MessageDialogIcon.Error);
+            }
+        }
+
+        private void BtnResetSearch_Click(object sender, EventArgs e)
+        {
+            identifyPagination("on");
+            BtnResetSearch.Visible = false;
+            // Load toàn bộ danh sách Sách
+            DataTable data = sachBUS.dataFullPagination(_PAGE);
+            Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+        }
+
+
     }
 }
 

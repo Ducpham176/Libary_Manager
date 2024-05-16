@@ -192,7 +192,8 @@ namespace Libary_Manager.Libary_BUS
                 string imagePath = image.ToString();
                 if (File.Exists(imagePath))
                 {
-                    File.Delete(imagePath);
+                        MessageBox.Show(imagePath);
+                    // File.Delete(imagePath);
                 }
             }
         }

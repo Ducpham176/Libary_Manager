@@ -39,7 +39,7 @@ namespace Libary_Manager.Libary_GUI
 
         private void setInfomation(DataTable data)
         {
-            dangNhapDTO.id = int.Parse(data.Rows[0]["id"].ToString());
+            DTO_QuanLyNguoiDung.id = int.Parse(data.Rows[0]["id"].ToString());
             dangNhapDTO.hoTen = data.Rows[0]["hoTen"].ToString();
             dangNhapDTO.quyen = int.Parse(data.Rows[0]["quyen"].ToString());
             dangNhapDTO.email = data.Rows[0]["email"].ToString();
@@ -90,13 +90,13 @@ namespace Libary_Manager.Libary_GUI
                 int quyen = int.Parse(data.Rows[0]["quyen"].ToString());
                 if (quyen == 1)
                 {
-        /*            dangNhapBUS.checkTrangThaiNhanVien();*/
-                    setInfomation(data);
-                }    
-                else
-                {
-                    setInfomation(data);
+                    if (!dangNhapBUS.checkTrangThaiNhanVien(dangNhapDTO))
+                    {
+                        Controller.isAlert(MdDangNhap, "Không hợp lệ", "Phiên hết hạn, tài khoàn đã bị loại bỏ!", MessageDialogIcon.Error);
+                        return;
+                    } 
                 }
+                setInfomation(data);
             }
             else
             {

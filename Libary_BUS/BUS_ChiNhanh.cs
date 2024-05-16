@@ -20,7 +20,7 @@ namespace Libary_Manager.Libary_BUS
             this.chiNhanhDAO = new DAO_ChiNhanh();
         }
 
-        public DataTable getToanBoSach()
+        public DataTable getChiNhanh()
         {
             return chiNhanhDAO.readChiNhanh();
         }
@@ -65,7 +65,20 @@ namespace Libary_Manager.Libary_BUS
                 MessageBox.Show("Không thể thêm mới sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             };
+        }
 
+        public bool updateChiNhanh(DTO_ChiNhanh chiNhanhDTO)
+        {
+            try
+            {
+                chiNhanhDAO.updateChiNhanh(chiNhanhDTO);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể thêm mới sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            };
         }
     }
 }

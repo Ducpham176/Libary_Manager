@@ -178,9 +178,28 @@ namespace Libary_Manager.Libary_BUS
                 MessageBox.Show("Không thể tải sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             };
-        }    
+        }
 
-      /*  public DataTable dataSearchBooks(string keyWord)
+        public DataTable dataFullPagination(int page)
+        {
+            try
+            {
+                if (_TOTAL_BOOK == -1)
+                {
+                    _TOTAL_BOOK = sachDAO.getRows();
+                }
+                string offset = Controller.isHandlePagination(page, Controller._MAX_PAGE);
+
+                return sachDAO.dataFullPagination(offset);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể tải sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            };
+        }
+
+        public DataTable dataSearchBooks(string keyWord)
         {
             try
             {
@@ -191,6 +210,6 @@ namespace Libary_Manager.Libary_BUS
                 MessageBox.Show("Lỗi xảy ra trong tìm kiếm sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             };
-        }    */
+        }
     }
 }

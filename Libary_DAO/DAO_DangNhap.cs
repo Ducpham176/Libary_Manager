@@ -32,7 +32,7 @@ namespace Libary_Manager.Libary_DAO
             try
             {
                 string sql = "SELECT * FROM TV_NguoiDung " +
-                    "WHERE taiKhoan ='" + dangNhapDTO.taiKhoan + "' AND trangThaiLamViec != -1";
+                    "WHERE taiKhoan ='" + dangNhapDTO.taiKhoan + "' AND trangThai != -1";
                 return Database.read(sql).Rows.Count > 0;
             }
             catch (Exception ex)

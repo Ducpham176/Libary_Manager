@@ -37,7 +37,7 @@ namespace Libary_Manager.Libary_BUS
         {
             try
             {
-                return dangNhapDAO.checkDangNhap(dangNhapDTO).Rows.Count > 0;
+                return dangNhapDAO.checkTrangThaiNhanVien(dangNhapDTO);
             }
             catch (Exception ex)
             {

@@ -10,9 +10,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace Libary_Manager.Libary_GUI
 {
@@ -22,16 +24,16 @@ namespace Libary_Manager.Libary_GUI
 
         // ................................................
 
-        private BUS_Sach sachBUS;
         private BUS_ChiNhanh chiNhanhBUS;
         private BUS_QuanLyNguoiDung quanLyNguoiDungBUS;
         private BUS_QuanLyNhanVien quanLyNhanVienBUS;
+        private BUS_PhanCongNhanVien phanCongNhanVienBUS;
 
         // ................................................
 
-        private DTO_Sach sachDTO;
         private DTO_ChiNhanh chiNhanhDTO;
         private DTO_QuanLyNguoiDung quanLyNguoiDungDTO;
+        private DTO_PhanCongNhanVien phanCongNhanVienDTO;
 
         // ................................................
 
@@ -53,7 +55,7 @@ namespace Libary_Manager.Libary_GUI
             // Chí nhánh 
             this.chiNhanhBUS = new BUS_ChiNhanh();
             this.chiNhanhDTO = new DTO_ChiNhanh();
-            DgvChiNhanh.DataSource = chiNhanhBUS.getToanBoSach();
+            DgvChiNhanh.DataSource = chiNhanhBUS.getChiNhanh();
 
         }
 
@@ -83,6 +85,68 @@ namespace Libary_Manager.Libary_GUI
             DgvNhanVien.DataSource = quanLyNhanVienBUS.getDsNhanVien();
         }
 
+        private void setValueCombobox(Guna2ComboBox Cbbox)
+        {
+            DataTable dtNhanVien = quanLyNhanVienBUS.getDsNhanVien();
+
+            DataRow drNoData = dtNhanVien.NewRow();
+            drNoData["id"] = -1;
+            drNoData["hoTen"] = "- Chọn nhân viên";
+            dtNhanVien.Rows.InsertAt(drNoData, 0);
+
+            Cbbox.DataSource = dtNhanVien;
+            Cbbox.DisplayMember = "hoTen";
+            Cbbox.ValueMember = "id";
+        }
+
+        private void TabPhanCongNVAction()
+        {
+            this.quanLyNhanVienBUS = new BUS_QuanLyNhanVien();
+            this.phanCongNhanVienBUS = new BUS_PhanCongNhanVien();
+            this.phanCongNhanVienDTO = new DTO_PhanCongNhanVien();
+
+            setValueCombobox(CbSTThu2);
+            setValueCombobox(CbTCThu2);
+
+            setValueCombobox(CbSTThu3);
+            setValueCombobox(CbTCThu3);
+
+            setValueCombobox(CbSTThu4);
+            setValueCombobox(CbTCThu4);
+
+            setValueCombobox(CbSTThu5);
+            setValueCombobox(CbTCThu5);
+
+            setValueCombobox(CbSTThu6);
+            setValueCombobox(CbTCThu6);
+
+            setValueCombobox(CbSTThu7);
+            setValueCombobox(CbTCThu7);
+
+            setValueCombobox(CbSTThuCN);
+            setValueCombobox(CbTCThuCN);
+
+            DateTime today = DateTime.Now;
+
+            DateTime startOfWeek;
+            if (today.DayOfWeek == DayOfWeek.Sunday)
+            {
+                startOfWeek = today.AddDays(-6);
+            }
+            else
+            {
+                startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            }
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            LbValueThu2.Text = "Thứ 2: " + startOfWeek.ToString("dd/MM/yyyy");
+            LbValueCn.Text = "Chủ nhật: " + endOfWeek.ToString("dd/MM/yyyy");
+
+            CbChiNhanh.DataSource = chiNhanhBUS.getChiNhanh();
+            CbChiNhanh.DisplayMember = "chiNhanh";
+            CbChiNhanh.ValueMember = "id";
+        }    
+
         // ................................................
 
         private void BtnChiNhanh_Click(object sender, EventArgs e)
@@ -96,7 +160,7 @@ namespace Libary_Manager.Libary_GUI
                 // Thêm chi nhánh
                 if (chiNhanhBUS.insertChiNhanh(chiNhanhDTO))
                 {
-                    DgvChiNhanh.DataSource = chiNhanhBUS.getToanBoSach();
+                    DgvChiNhanh.DataSource = chiNhanhBUS.getChiNhanh();
                     Controller.isResetTb(TbChiNhanh, TbDiaChi);
                 }
             }
@@ -128,6 +192,11 @@ namespace Libary_Manager.Libary_GUI
             {
                 TabQuanLyNhanVienAction();
             }    
+
+            if (selectedTabPage == TabPhanCongNV)
+            {
+                TabPhanCongNVAction();
+            }    
         }
 
         // ................................................
@@ -145,6 +214,21 @@ namespace Libary_Manager.Libary_GUI
                 if (value != null)
                 {
                     chiNhanhDTO.id = int.Parse(value.ToString());
+                }
+            }
+        }
+
+        private void DgvChiNhanh_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewRow row = DgvChiNhanh.Rows[e.RowIndex];
+                chiNhanhDTO.chiNhanh = row.Cells["chiNhanh"].Value.ToString();
+                chiNhanhDTO.diaChi = row.Cells["diaChi"].Value.ToString();
+
+                if (Controller.isAllEmpty(chiNhanhDTO.chiNhanh, chiNhanhDTO.diaChi))
+                {
+                    chiNhanhBUS.updateChiNhanh(chiNhanhDTO);
                 }
             }
         }
@@ -190,23 +274,60 @@ namespace Libary_Manager.Libary_GUI
                 CbHuyen.Text, CbXa.Text, DtpNgaySinh.Text);
         }
 
+        private bool checkTaiKhoanTonTai()
+        {
+            if (Controller.isEmpty(TbTaiKhoan.Text))
+            {
+                if (quanLyNguoiDungBUS.checkAccountExists(TbTaiKhoan.Text))
+                {
+                    Controller.isAlert(MdQuanLy, "Xảy ra lỗi", "Tài khoản đã tồn tại trên hệ thống", MessageDialogIcon.Error);
+                    TbTaiKhoan.Text = ""; return false;
+                }
+                return true;
+            }
+            return false;
+        }    
+
+        private bool checkEmailTonTai()
+        {
+            if (Controller.isEmpty(TbEmail.Text))
+            {
+                if (!TbEmail.Text.Contains("@gmail.com") || TbEmail.Text.Length < "@gmail.com".Length)
+                {
+                    Controller.isAlert(MdQuanLy, "Không hợp lệ", "Email phải chứa '@gmail.com' và có từ 11 kí tự", MessageDialogIcon.Error);
+                    TbEmail.Text = ""; return false;
+                }
+                else
+                {
+                    if (quanLyNguoiDungBUS.checkEmailExists(TbEmail.Text))
+                    {
+                        Controller.isAlert(MdQuanLy, "Xảy ra lỗi", "Email đã tồn tại trên hệ thống", MessageDialogIcon.Error);
+                        TbEmail.Text = ""; return false;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         private void BtnThemNhanVien_Click(object sender, EventArgs e)
         {
             string[] toEmail = { TbEmail.Text };
             string randomMatKhau = quanLyNguoiDungBUS.GenerateRandomPassword(13);
             string hashMatKhau = Controller.MD5Hash(randomMatKhau);
 
-            if (isEmptys() && Controller.isEmpty(hashMatKhau))
+            if (isEmptys() && Controller.isEmpty(hashMatKhau) && checkEmailTonTai() && checkTaiKhoanTonTai())
             {
                 Controller.isSendToEmails(toEmail, "eBook Gửi thông tin tài khoản nhân viên của bạn\U0001f970", ContentEmail.ctCreateNhanVien(TbHoTen.Text, TbTaiKhoan.Text, randomMatKhau));
-                Controller.isAlert(MdQuanLy, "Vui lòng kiểm tra email", "Thông tin tài khoản đã gưi tới bạn✓", MessageDialogIcon.None);
+                Controller.isAlert(MdQuanLy, "Vui lòng kiểm tra email", "Thông tin tài khoản đã gưi tới bạn\U0001f970", MessageDialogIcon.None);
                 string diaChi = CbTinh.Text + "|" + CbHuyen.Text + "|" + CbXa.Text;
                 int trangThai = (CbTrangThai.SelectedIndex == 0) ? 1 : -1;
                 quanLyNguoiDungDTO.taiKhoan = TbTaiKhoan.Text;
                 quanLyNguoiDungDTO.matKhau = hashMatKhau;
                 quanLyNguoiDungDTO.hoTen = TbHoTen.Text;
                 quanLyNguoiDungDTO.quyen = 1;
-                quanLyNguoiDungDTO.trangThaiLamViec = trangThai;
+                quanLyNguoiDungDTO.trangThai = trangThai;
                 quanLyNguoiDungDTO.email = TbEmail.Text;
                 quanLyNguoiDungDTO.gioiTinh = CbGioiTinh.Text;
                 quanLyNguoiDungDTO.diaChi = diaChi;
@@ -225,22 +346,20 @@ namespace Libary_Manager.Libary_GUI
 
         private void BtnChinhSua_Click(object sender, EventArgs e)
         {
-            if (isEmptys())
+            if (Controller.isEmpty(TbHoTen.Text))
             {
                 string diaChi = CbTinh.Text + "|" + CbHuyen.Text + "|" + CbXa.Text;
                 int trangThai = (CbTrangThai.SelectedIndex == 0) ? 1 : -1;
                 quanLyNguoiDungDTO.taiKhoan = TbTaiKhoan.Text;
                 quanLyNguoiDungDTO.hoTen = TbHoTen.Text;
                 quanLyNguoiDungDTO.quyen = 1;
-                quanLyNguoiDungDTO.trangThaiLamViec = trangThai;
-                quanLyNguoiDungDTO.email = TbEmail.Text;
+                quanLyNguoiDungDTO.trangThai = trangThai;
                 quanLyNguoiDungDTO.gioiTinh = CbGioiTinh.Text;
                 quanLyNguoiDungDTO.diaChi = diaChi;
                 quanLyNguoiDungDTO.ngaySinh = DtpNgaySinh.Value;
 
                 // Chỉnh sửa nhân viên
                 quanLyNhanVienBUS.updateNhanVien(quanLyNguoiDungDTO);
-
                 DgvNhanVien.DataSource = quanLyNhanVienBUS.getDsNhanVien();
             }
             else
@@ -251,14 +370,12 @@ namespace Libary_Manager.Libary_GUI
 
         private void TbTaiKhoan_Leave(object sender, EventArgs e)
         {
-            if (Controller.isEmpty(TbTaiKhoan.Text))
-            {
-                if (quanLyNguoiDungBUS.checkAccountExists(TbTaiKhoan.Text))
-                {
-                    Controller.isAlert(MdQuanLy, "Xảy ra lỗi", "Tài khoản đã tồn tại trên hệ thống", MessageDialogIcon.Error);
-                    TbTaiKhoan.Text = "";
-                }
-            }    
+            checkTaiKhoanTonTai();
+        }
+
+        private void TbEmail_Leave(object sender, EventArgs e)
+        {
+            checkEmailTonTai();
         }
 
         private void DgvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -269,18 +386,19 @@ namespace Libary_Manager.Libary_GUI
 
                 string hoTen = row.Cells["hoTen"].Value.ToString();
                 string taiKhoan = row.Cells["taiKhoan"].Value.ToString();
-                string email = row.Cells["email"].Value.ToString();
                 string diaChi = row.Cells["nvDiaChi"].Value.ToString();
                 string ngaySinh = row.Cells["ngaySinh"].Value.ToString();
                 string gioiTinh = row.Cells["gioiTinh"].Value.ToString();
                 string trangThai = row.Cells["trangThai"].Value.ToString();
                 string ngayTao = row.Cells["nvNgayTao"].Value.ToString();
 
-                TbHoTen.Text = hoTen; TbTaiKhoan.Text = taiKhoan; TbEmail.Text = email;
+                TbHoTen.Text = hoTen; 
                 string[] arrayDiaChi = diaChi.Split('|');
                 CbTinh.Text = arrayDiaChi[0];
                 CbHuyen.Text = arrayDiaChi[1];
                 CbXa.Text = arrayDiaChi[2];
+
+                quanLyNguoiDungDTO.taiKhoan = taiKhoan;
 
                 DateTime ngaySinhRevert;
                 if (DateTime.TryParse(ngaySinh, out ngaySinhRevert))
@@ -320,24 +438,55 @@ namespace Libary_Manager.Libary_GUI
             }
         }
 
-        private void TbEmail_Leave(object sender, EventArgs e)
+        private string handlePhanCong(ComboBox St, ComboBox Tc)
         {
-            if (Controller.isEmpty(TbEmail.Text))
+            if (Controller.isEmpty(St.Text) || Controller.isEmpty(Tc.Text))
             {
-                if (!TbEmail.Text.Contains("@gmail.com") || TbEmail.Text.Length < "@gmail.com".Length)
+                string idNhanVienThu = St.SelectedValue + "|" + Tc.SelectedValue;
+                return idNhanVienThu;
+            }
+            return "";
+        }    
+
+        private void luuPhanCong()
+        {
+            phanCongNhanVienBUS.insertPhanCongNhanVien(phanCongNhanVienDTO);
+        }    
+
+        private void BtnLuuPhanCong_Click(object sender, EventArgs e)
+        {
+            phanCongNhanVienDTO.idThu2 = this.handlePhanCong(CbSTThu2, CbTCThu2);
+
+            phanCongNhanVienDTO.idThu3 = this.handlePhanCong(CbSTThu3, CbTCThu3);
+
+            phanCongNhanVienDTO.idThu4 = this.handlePhanCong(CbSTThu4, CbTCThu4);
+
+            phanCongNhanVienDTO.idThu5 = this.handlePhanCong(CbSTThu5, CbTCThu5);
+
+            phanCongNhanVienDTO.idThu6 = this.handlePhanCong(CbSTThu6, CbTCThu6);
+
+            phanCongNhanVienDTO.idThu7 = this.handlePhanCong(CbSTThu7, CbTCThu7);
+
+            phanCongNhanVienDTO.idChuNhat = this.handlePhanCong(CbTCThuCN, CbTCThuCN);
+
+            phanCongNhanVienDTO.maChiNhanh = int.Parse(CbChiNhanh.SelectedValue.ToString());
+
+            luuPhanCong();
+        }
+
+        private void BtnDoiMatKhau_Click(object sender, EventArgs e)
+        {
+            if (Controller.isAllEmpty(TbMatKhauMoi.Text, TbNhapLaiMatKhau.Text))
+            {
+                if (TbMatKhauMoi.Text != TbNhapLaiMatKhau.Text)
                 {
-                    Controller.isAlert(MdQuanLy, "Không hợp lệ", "Email phải chứa '@gmail.com' và có từ 11 kí tự", MessageDialogIcon.Error);
-                    TbEmail.Text = "";
+                    Controller.isAlert(MdQuanLy, "Không hợp lệ", "Mật khẩu không khớp", MessageDialogIcon.Warning);
                 }
-                else
-                {
-                    if (quanLyNguoiDungBUS.checkEmailExists(TbEmail.Text))
-                    {
-                        Controller.isAlert(MdQuanLy, "Xảy ra lỗi", "Email đã tồn tại trên hệ thống", MessageDialogIcon.Error);
-                        TbEmail.Text = "";
-                    }
-                }
-            }    
+            }
+            else
+            {
+                Controller.isAlert(MdQuanLy, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
+            }
         }
 
         // ................................................

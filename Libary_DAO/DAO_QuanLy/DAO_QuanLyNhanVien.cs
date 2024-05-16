@@ -16,7 +16,7 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
         {
             try
             {
-                string sql = "SELECT TRIM(hoTen) as hoTen, TRIM(taiKhoan) as taiKhoan, TRIM(email) as email, " +
+                string sql = "SELECT id, TRIM(hoTen) as hoTen, TRIM(taiKhoan) as taiKhoan, TRIM(email) as email, " +
                     "gioiTinh, CASE WHEN trangThai != -1 THEN N'Đang làm việc' ELSE N'Đã nghỉ làm' END as trangThai, " +
                     "TRIM(diaChi) as diaChi, ngaySinh, ngayTao FROM TV_NguoiDung WHERE quyen = 1 ORDER BY id DESC;";
                 return Database.read(sql);
@@ -38,7 +38,7 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
                     { "matKhau", quanLyNhanVienDTO.matKhau },
                     { "hoTen", quanLyNhanVienDTO.hoTen },
                     { "quyen", quanLyNhanVienDTO.quyen },
-                    { "trangThaiLamViec", quanLyNhanVienDTO.trangThaiLamViec },
+                    { "trangThai", quanLyNhanVienDTO.trangThai },
                     { "email", quanLyNhanVienDTO.email },
                     { "gioiTinh", quanLyNhanVienDTO.gioiTinh },
                     { "diaChi", quanLyNhanVienDTO.diaChi },
@@ -60,11 +60,9 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
             {
                 var data = new Dictionary<string, object>()
                 {
-                    { "taiKhoan", quanLyNhanVienDTO.taiKhoan },
                     { "hoTen", quanLyNhanVienDTO.hoTen },
                     { "quyen", quanLyNhanVienDTO.quyen },
-                    { "trangThaiLamViec", quanLyNhanVienDTO.trangThaiLamViec },
-                    { "email", quanLyNhanVienDTO.email },
+                    { "trangThai", quanLyNhanVienDTO.trangThai },
                     { "gioiTinh", quanLyNhanVienDTO.gioiTinh },
                     { "diaChi", quanLyNhanVienDTO.diaChi },
                     { "ngaySinh", quanLyNhanVienDTO.ngaySinh },

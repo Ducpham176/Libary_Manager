@@ -63,6 +63,27 @@ namespace Libary_Manager.Libary_DAO
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }    
+        }
+
+        public bool updateChiNhanh(DTO_ChiNhanh chiNhanhDTO)
+        {
+            try
+            {
+                var data = new Dictionary<string, object>()
+                {
+                    { "chiNhanh", chiNhanhDTO.chiNhanh },
+                    { "diaChi", chiNhanhDTO.diaChi },
+                };
+
+                string condition = " id = '" + chiNhanhDTO.id +"'";
+                Database.update("TV_ChiNhanh", data, condition);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể thêm mới sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            };
+        }
     }
 }
