@@ -15,5 +15,8 @@ namespace Libary_Manager.Libary_DTO
         public int maChiNhanh { get; set; }
         public string moTaSuco { get; set; }
         public string viPham { get; set; }
+
+        // more 
+        public static int thuMay { get; set; }
     }
 }

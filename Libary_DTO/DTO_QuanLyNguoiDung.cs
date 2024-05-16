@@ -14,6 +14,7 @@ namespace Libary_Manager.Libary_DTO
         public string hoTen { get; set; }
         public int trangThai { get; set; }
         public int quyen { get; set; }
+        public int maChiNhanh { get; set; }
         public string email { get; set; }
         public string mssv { get; set; }
         public string gioiTinh { get; set; }

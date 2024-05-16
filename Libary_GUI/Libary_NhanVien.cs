@@ -51,9 +51,22 @@ namespace Libary_Manager.Libary_GUI
 
         private void Libary_NhanVien_Load(object sender, EventArgs e)
         {
+            this.chamCongBUS = new BUS_ChamCong();
             this.chamCongDTO = new DTO_ChamCong();
 
-            chamCongBUS.checkChamCongBuoiHomNay(chamCongDTO);
+            int hourRealTime = DateTime.Now.Hour;
+            string caTruc = (hourRealTime < 11) ? "Sáng" : "Chiều";
+            chamCongDTO.idNhanVien = DTO_DangNhap.id;
+            chamCongDTO.tgBatDau = DateTime.Now;
+            chamCongDTO.caTruc = caTruc;
+            chamCongDTO.maChiNhanh = DTO_DangNhap.maChiNhanh;
+            chamCongDTO.moTaSuco = "Không có";
+            chamCongDTO.viPham = "Không";
+
+            if (chamCongBUS.checkChamCongBuoiHomNay(chamCongDTO))
+            {
+
+            }    
         }
 
 
@@ -335,6 +348,7 @@ namespace Libary_Manager.Libary_GUI
                     if (doiMatKhauBUS.updateMatKhau(quanLyNguoiDungDTO))
                     {
                         Controller.isAlert(MdNhanVien, "Thành công", "Đổi mật khẩu thành công", MessageDialogIcon.None);
+                        Controller.isResetTb(TbMatKhauMoi, TbNhapLaiMatKhau);
                     }    
                 }
             }
@@ -396,7 +410,10 @@ namespace Libary_Manager.Libary_GUI
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
         }
 
+        private void BtnThemDocGia_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

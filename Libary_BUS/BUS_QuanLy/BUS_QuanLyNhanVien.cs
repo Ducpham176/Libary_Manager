@@ -43,7 +43,20 @@ namespace Libary_Manager.Libary_BUS.BUS_QuanLy
                 MessageBox.Show("Không thể thêm nhân viên: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }    
+        }
+
+        public DataTable getDsNhanVienTheoChiNhanh(DTO_QuanLyNguoiDung quanLyNguoiDungDTO)
+        {
+            try
+            {
+                return quanLyNhanVienDAO.getDsNhanVienTheoChiNhanh(quanLyNguoiDungDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể thêm nhân viên: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
 
         public bool updateNhanVien(DTO_QuanLyNguoiDung quanLyNguoiDungDTO)
         {

@@ -8,11 +8,13 @@ namespace Libary_Manager.Libary_DTO
 {
     class DTO_DangNhap
     {
-        public int id { get; set; }
+        public static int id { get; set; }
         public string taiKhoan { get; set; }
         public string matKhau { get; set; }
         public string hoTen { get; set; }
+        public int trangThai { get; set; }
         public int quyen { get; set; }
+        public static int maChiNhanh { get; set; }
         public string email { get; set; }
         public string mssv { get; set; }
         public string gioiTinh { get; set; }

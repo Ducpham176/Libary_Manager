@@ -287,6 +287,11 @@ namespace Libary_Manager
             }*/
         }
 
+        private void guna2GradientButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // ................................................
 
         // Sách thư viện

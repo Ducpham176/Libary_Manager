@@ -40,12 +40,17 @@ namespace Libary_Manager.Libary_GUI
         private void setInfomation(DataTable data)
         {
             DTO_QuanLyNguoiDung.id = int.Parse(data.Rows[0]["id"].ToString());
+            DTO_DangNhap.id = DTO_QuanLyNguoiDung.id;
             dangNhapDTO.hoTen = data.Rows[0]["hoTen"].ToString();
             dangNhapDTO.quyen = int.Parse(data.Rows[0]["quyen"].ToString());
             dangNhapDTO.email = data.Rows[0]["email"].ToString();
-            if (data.Rows[0]["mssv"].ToString() != null)
+            if (data.Rows[0]["mssv"].ToString() != "")
             {
                 dangNhapDTO.mssv = data.Rows[0]["mssv"].ToString();
+            }
+            if (data.Rows[0]["maChiNhanh"].ToString() != "")
+            {
+                DTO_DangNhap.maChiNhanh = int.Parse(data.Rows[0]["maChiNhanh"].ToString());
             }
             dangNhapDTO.gioiTinh = data.Rows[0]["gioiTinh"].ToString();
             dangNhapDTO.diaChi = data.Rows[0]["diaChi"].ToString();
@@ -88,13 +93,20 @@ namespace Libary_Manager.Libary_GUI
             if (data.Rows.Count > 0)
             {
                 int quyen = int.Parse(data.Rows[0]["quyen"].ToString());
+      
                 if (quyen == 1)
                 {
                     if (!dangNhapBUS.checkTrangThaiNhanVien(dangNhapDTO))
                     {
                         Controller.isAlert(MdDangNhap, "Không hợp lệ", "Phiên hết hạn, tài khoàn đã bị loại bỏ!", MessageDialogIcon.Error);
                         return;
-                    } 
+                    }
+                    else
+                    {
+                        DateTime today = DateTime.Today;
+                        DayOfWeek dayOfWeek = today.DayOfWeek;
+                        DTO_ChamCong.thuMay = (int)(dayOfWeek + 1);
+                    }
                 }
                 setInfomation(data);
             }

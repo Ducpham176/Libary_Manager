@@ -16,9 +16,24 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
         {
             try
             {
-                string sql = "SELECT id, TRIM(hoTen) as hoTen, TRIM(taiKhoan) as taiKhoan, TRIM(email) as email, " +
-                    "gioiTinh, CASE WHEN trangThai != -1 THEN N'Đang làm việc' ELSE N'Đã nghỉ làm' END as trangThai, " +
-                    "TRIM(diaChi) as diaChi, ngaySinh, ngayTao FROM TV_NguoiDung WHERE quyen = 1 ORDER BY id DESC;";
+                string sql = "SELECT nd.id, TRIM(nd.hoTen) AS hoTen, TRIM(nd.taiKhoan) AS taiKhoan, TRIM(nd.email) AS email, " +
+                    "nd.gioiTinh, CASE WHEN nd.trangThai != -1 THEN N'Đang làm việc' ELSE N'Đã nghỉ làm' END AS trangThai, " +
+                    "TRIM(nd.diaChi) AS diaChi, nd.ngaySinh, nd.ngayTao, TRIM(cn.chiNhanh) AS chiNhanh FROM TV_NguoiDung AS nd " +
+                    "INNER JOIN TV_chiNhanh AS cn ON nd.maChiNhanh = cn.id WHERE nd.quyen = 1 ORDER BY nd.id DESC;";
+                return Database.read(sql);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public DataTable getDsNhanVienTheoChiNhanh(DTO_QuanLyNguoiDung quanLyNguoiDungDTO)
+        {
+            try
+            {
+                string sql = "SELECT * FROM TV_NguoiDung WHERE maChiNhanh = '" + quanLyNguoiDungDTO.maChiNhanh + "'";
                 return Database.read(sql);
             }
             catch (Exception ex)
@@ -38,6 +53,7 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
                     { "matKhau", quanLyNhanVienDTO.matKhau },
                     { "hoTen", quanLyNhanVienDTO.hoTen },
                     { "quyen", quanLyNhanVienDTO.quyen },
+                    { "maChiNhanh", quanLyNhanVienDTO.maChiNhanh },
                     { "trangThai", quanLyNhanVienDTO.trangThai },
                     { "email", quanLyNhanVienDTO.email },
                     { "gioiTinh", quanLyNhanVienDTO.gioiTinh },
@@ -62,6 +78,7 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
                 {
                     { "hoTen", quanLyNhanVienDTO.hoTen },
                     { "quyen", quanLyNhanVienDTO.quyen },
+                    { "maChiNhanh", quanLyNhanVienDTO.maChiNhanh },
                     { "trangThai", quanLyNhanVienDTO.trangThai },
                     { "gioiTinh", quanLyNhanVienDTO.gioiTinh },
                     { "diaChi", quanLyNhanVienDTO.diaChi },
