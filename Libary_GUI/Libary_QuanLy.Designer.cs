@@ -301,6 +301,7 @@
             // TbDiaChi
             // 
             this.TbDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbDiaChi.Animated = true;
             this.TbDiaChi.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbDiaChi.BorderRadius = 6;
             this.TbDiaChi.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -352,6 +353,7 @@
             // TbChiNhanh
             // 
             this.TbChiNhanh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbChiNhanh.Animated = true;
             this.TbChiNhanh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbChiNhanh.BorderRadius = 6;
             this.TbChiNhanh.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -415,6 +417,7 @@
             // TbNhapLaiMatKhau
             // 
             this.TbNhapLaiMatKhau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbNhapLaiMatKhau.Animated = true;
             this.TbNhapLaiMatKhau.AutoRoundedCorners = true;
             this.TbNhapLaiMatKhau.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbNhapLaiMatKhau.BorderRadius = 39;
@@ -441,10 +444,12 @@
             this.TbNhapLaiMatKhau.SelectedText = "";
             this.TbNhapLaiMatKhau.Size = new System.Drawing.Size(628, 80);
             this.TbNhapLaiMatKhau.TabIndex = 1;
+            this.TbNhapLaiMatKhau.TextOffset = new System.Drawing.Point(8, 0);
             // 
             // TbMatKhauMoi
             // 
             this.TbMatKhauMoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbMatKhauMoi.Animated = true;
             this.TbMatKhauMoi.AutoRoundedCorners = true;
             this.TbMatKhauMoi.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbMatKhauMoi.BorderRadius = 39;
@@ -470,6 +475,7 @@
             this.TbMatKhauMoi.SelectedText = "";
             this.TbMatKhauMoi.Size = new System.Drawing.Size(628, 80);
             this.TbMatKhauMoi.TabIndex = 0;
+            this.TbMatKhauMoi.TextOffset = new System.Drawing.Point(8, 0);
             // 
             // tabPage1
             // 
@@ -806,7 +812,7 @@
             this.gioiTinh.ReadOnly = true;
             this.gioiTinh.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.gioiTinh.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.gioiTinh.Width = 120;
+            this.gioiTinh.Width = 140;
             // 
             // ngaySinh
             // 
@@ -905,6 +911,7 @@
             // 
             // DtpNgaySinh
             // 
+            this.DtpNgaySinh.Animated = true;
             this.DtpNgaySinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.DtpNgaySinh.BorderRadius = 4;
             this.DtpNgaySinh.Checked = true;
@@ -989,6 +996,7 @@
             // TbEmail
             // 
             this.TbEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbEmail.Animated = true;
             this.TbEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbEmail.BorderRadius = 4;
             this.TbEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1016,6 +1024,7 @@
             // TbTaiKhoan
             // 
             this.TbTaiKhoan.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbTaiKhoan.Animated = true;
             this.TbTaiKhoan.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbTaiKhoan.BorderRadius = 4;
             this.TbTaiKhoan.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1043,6 +1052,7 @@
             // TbHoTen
             // 
             this.TbHoTen.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TbHoTen.Animated = true;
             this.TbHoTen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.TbHoTen.BorderRadius = 4;
             this.TbHoTen.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1346,13 +1356,13 @@
             this.GrThu7.Controls.Add(this.CbSTThu7);
             this.GrThu7.CustomBorderColor = System.Drawing.Color.White;
             this.GrThu7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrThu7.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrThu7.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrThu7.ForeColor = System.Drawing.Color.Black;
             this.GrThu7.Location = new System.Drawing.Point(460, 385);
             this.GrThu7.Name = "GrThu7";
             this.GrThu7.Size = new System.Drawing.Size(276, 315);
             this.GrThu7.TabIndex = 5;
-            this.GrThu7.Text = "LỊCH THỨ 7";
+            this.GrThu7.Text = "Lịch Thứ 7";
             this.GrThu7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrThu7.Click += new System.EventHandler(this.GrThu7_Click);
             // 
@@ -1361,9 +1371,9 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label9.Location = new System.Drawing.Point(10, 187);
+            this.label9.Location = new System.Drawing.Point(10, 194);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(131, 24);
+            this.label9.Size = new System.Drawing.Size(131, 23);
             this.label9.TabIndex = 3;
             this.label9.Text = "Trưa, Chiều";
             // 
@@ -1372,9 +1382,9 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label10.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label10.Location = new System.Drawing.Point(10, 75);
+            this.label10.Location = new System.Drawing.Point(10, 82);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 24);
+            this.label10.Size = new System.Drawing.Size(120, 23);
             this.label10.TabIndex = 2;
             this.label10.Text = "Sáng, Trưa";
             // 
@@ -1390,7 +1400,7 @@
             this.CbTCThu7.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThu7.ForeColor = System.Drawing.Color.White;
             this.CbTCThu7.ItemHeight = 30;
-            this.CbTCThu7.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThu7.Location = new System.Drawing.Point(0, 230);
             this.CbTCThu7.Name = "CbTCThu7";
             this.CbTCThu7.Size = new System.Drawing.Size(279, 36);
             this.CbTCThu7.TabIndex = 1;
@@ -1407,7 +1417,7 @@
             this.CbSTThu7.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThu7.ForeColor = System.Drawing.Color.White;
             this.CbSTThu7.ItemHeight = 30;
-            this.CbSTThu7.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThu7.Location = new System.Drawing.Point(0, 118);
             this.CbSTThu7.Name = "CbSTThu7";
             this.CbSTThu7.Size = new System.Drawing.Size(279, 36);
             this.CbSTThu7.TabIndex = 0;
@@ -1425,13 +1435,13 @@
             this.GrChuNhat.Controls.Add(this.CbSTThuCN);
             this.GrChuNhat.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.GrChuNhat.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrChuNhat.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrChuNhat.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrChuNhat.ForeColor = System.Drawing.Color.White;
             this.GrChuNhat.Location = new System.Drawing.Point(860, 385);
             this.GrChuNhat.Name = "GrChuNhat";
             this.GrChuNhat.Size = new System.Drawing.Size(276, 315);
             this.GrChuNhat.TabIndex = 5;
-            this.GrChuNhat.Text = "LỊCH CHỦ NHẬT";
+            this.GrChuNhat.Text = "Lịch Chủ Nhật";
             this.GrChuNhat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrChuNhat.Click += new System.EventHandler(this.GrChuNhat_Click);
             // 
@@ -1440,9 +1450,9 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label13.Location = new System.Drawing.Point(10, 187);
+            this.label13.Location = new System.Drawing.Point(10, 194);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(131, 24);
+            this.label13.Size = new System.Drawing.Size(131, 23);
             this.label13.TabIndex = 3;
             this.label13.Text = "Trưa, Chiều";
             // 
@@ -1451,9 +1461,9 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label14.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label14.Location = new System.Drawing.Point(10, 75);
+            this.label14.Location = new System.Drawing.Point(10, 82);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 24);
+            this.label14.Size = new System.Drawing.Size(120, 23);
             this.label14.TabIndex = 2;
             this.label14.Text = "Sáng, Trưa";
             // 
@@ -1469,7 +1479,7 @@
             this.CbTCThuCN.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThuCN.ForeColor = System.Drawing.Color.White;
             this.CbTCThuCN.ItemHeight = 30;
-            this.CbTCThuCN.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThuCN.Location = new System.Drawing.Point(0, 230);
             this.CbTCThuCN.Name = "CbTCThuCN";
             this.CbTCThuCN.Size = new System.Drawing.Size(279, 36);
             this.CbTCThuCN.TabIndex = 1;
@@ -1486,7 +1496,7 @@
             this.CbSTThuCN.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThuCN.ForeColor = System.Drawing.Color.White;
             this.CbSTThuCN.ItemHeight = 30;
-            this.CbSTThuCN.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThuCN.Location = new System.Drawing.Point(0, 118);
             this.CbSTThuCN.Name = "CbSTThuCN";
             this.CbSTThuCN.Size = new System.Drawing.Size(279, 36);
             this.CbSTThuCN.TabIndex = 0;
@@ -1504,13 +1514,13 @@
             this.GrThu6.Controls.Add(this.CbSTThu6);
             this.GrThu6.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.GrThu6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrThu6.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrThu6.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrThu6.ForeColor = System.Drawing.Color.White;
             this.GrThu6.Location = new System.Drawing.Point(63, 385);
             this.GrThu6.Name = "GrThu6";
             this.GrThu6.Size = new System.Drawing.Size(276, 315);
             this.GrThu6.TabIndex = 6;
-            this.GrThu6.Text = "LỊCH THỨ 6";
+            this.GrThu6.Text = "Lịch Thứ 6";
             this.GrThu6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrThu6.Click += new System.EventHandler(this.GrThu6_Click);
             // 
@@ -1519,9 +1529,9 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label11.Location = new System.Drawing.Point(10, 187);
+            this.label11.Location = new System.Drawing.Point(10, 194);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(131, 24);
+            this.label11.Size = new System.Drawing.Size(131, 23);
             this.label11.TabIndex = 3;
             this.label11.Text = "Trưa, Chiều";
             // 
@@ -1530,9 +1540,9 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label12.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label12.Location = new System.Drawing.Point(10, 75);
+            this.label12.Location = new System.Drawing.Point(10, 82);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 24);
+            this.label12.Size = new System.Drawing.Size(120, 23);
             this.label12.TabIndex = 2;
             this.label12.Text = "Sáng, Trưa";
             // 
@@ -1548,7 +1558,7 @@
             this.CbTCThu6.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThu6.ForeColor = System.Drawing.Color.White;
             this.CbTCThu6.ItemHeight = 30;
-            this.CbTCThu6.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThu6.Location = new System.Drawing.Point(0, 230);
             this.CbTCThu6.Name = "CbTCThu6";
             this.CbTCThu6.Size = new System.Drawing.Size(279, 36);
             this.CbTCThu6.TabIndex = 1;
@@ -1565,7 +1575,7 @@
             this.CbSTThu6.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThu6.ForeColor = System.Drawing.Color.White;
             this.CbSTThu6.ItemHeight = 30;
-            this.CbSTThu6.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThu6.Location = new System.Drawing.Point(0, 118);
             this.CbSTThu6.Name = "CbSTThu6";
             this.CbSTThu6.Size = new System.Drawing.Size(279, 36);
             this.CbSTThu6.TabIndex = 0;
@@ -1583,13 +1593,13 @@
             this.GrThu5.Controls.Add(this.CbSTThu5);
             this.GrThu5.CustomBorderColor = System.Drawing.Color.White;
             this.GrThu5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrThu5.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrThu5.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrThu5.ForeColor = System.Drawing.Color.Black;
             this.GrThu5.Location = new System.Drawing.Point(1253, 33);
             this.GrThu5.Name = "GrThu5";
             this.GrThu5.Size = new System.Drawing.Size(276, 315);
             this.GrThu5.TabIndex = 5;
-            this.GrThu5.Text = "LỊCH THỨ 5";
+            this.GrThu5.Text = "Lịch Thứ 5";
             this.GrThu5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrThu5.Click += new System.EventHandler(this.GrThu5_Click);
             // 
@@ -1598,9 +1608,9 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label7.Location = new System.Drawing.Point(10, 187);
+            this.label7.Location = new System.Drawing.Point(10, 194);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(131, 24);
+            this.label7.Size = new System.Drawing.Size(131, 23);
             this.label7.TabIndex = 3;
             this.label7.Text = "Trưa, Chiều";
             // 
@@ -1609,9 +1619,9 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label8.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label8.Location = new System.Drawing.Point(10, 75);
+            this.label8.Location = new System.Drawing.Point(10, 82);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 24);
+            this.label8.Size = new System.Drawing.Size(120, 23);
             this.label8.TabIndex = 2;
             this.label8.Text = "Sáng, Trưa";
             // 
@@ -1627,7 +1637,7 @@
             this.CbTCThu5.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThu5.ForeColor = System.Drawing.Color.White;
             this.CbTCThu5.ItemHeight = 30;
-            this.CbTCThu5.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThu5.Location = new System.Drawing.Point(0, 230);
             this.CbTCThu5.Name = "CbTCThu5";
             this.CbTCThu5.Size = new System.Drawing.Size(279, 36);
             this.CbTCThu5.TabIndex = 1;
@@ -1644,7 +1654,7 @@
             this.CbSTThu5.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThu5.ForeColor = System.Drawing.Color.White;
             this.CbSTThu5.ItemHeight = 30;
-            this.CbSTThu5.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThu5.Location = new System.Drawing.Point(0, 118);
             this.CbSTThu5.Name = "CbSTThu5";
             this.CbSTThu5.Size = new System.Drawing.Size(279, 36);
             this.CbSTThu5.TabIndex = 0;
@@ -1662,13 +1672,13 @@
             this.GrThu4.Controls.Add(this.CbSTThu4);
             this.GrThu4.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.GrThu4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrThu4.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrThu4.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrThu4.ForeColor = System.Drawing.Color.White;
             this.GrThu4.Location = new System.Drawing.Point(860, 33);
             this.GrThu4.Name = "GrThu4";
             this.GrThu4.Size = new System.Drawing.Size(276, 315);
             this.GrThu4.TabIndex = 4;
-            this.GrThu4.Text = "LỊCH THỨ 4";
+            this.GrThu4.Text = "Lịch Thứ 4";
             this.GrThu4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrThu4.Click += new System.EventHandler(this.GrThu4_Click);
             // 
@@ -1677,9 +1687,9 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label5.Location = new System.Drawing.Point(10, 187);
+            this.label5.Location = new System.Drawing.Point(10, 194);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 24);
+            this.label5.Size = new System.Drawing.Size(131, 23);
             this.label5.TabIndex = 3;
             this.label5.Text = "Trưa, Chiều";
             // 
@@ -1688,9 +1698,9 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label6.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label6.Location = new System.Drawing.Point(10, 75);
+            this.label6.Location = new System.Drawing.Point(10, 82);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 24);
+            this.label6.Size = new System.Drawing.Size(120, 23);
             this.label6.TabIndex = 2;
             this.label6.Text = "Sáng, Trưa";
             // 
@@ -1706,7 +1716,7 @@
             this.CbTCThu4.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThu4.ForeColor = System.Drawing.Color.White;
             this.CbTCThu4.ItemHeight = 30;
-            this.CbTCThu4.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThu4.Location = new System.Drawing.Point(0, 230);
             this.CbTCThu4.Name = "CbTCThu4";
             this.CbTCThu4.Size = new System.Drawing.Size(279, 36);
             this.CbTCThu4.TabIndex = 1;
@@ -1723,7 +1733,7 @@
             this.CbSTThu4.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThu4.ForeColor = System.Drawing.Color.White;
             this.CbSTThu4.ItemHeight = 30;
-            this.CbSTThu4.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThu4.Location = new System.Drawing.Point(0, 118);
             this.CbSTThu4.Name = "CbSTThu4";
             this.CbSTThu4.Size = new System.Drawing.Size(279, 36);
             this.CbSTThu4.TabIndex = 0;
@@ -1741,13 +1751,13 @@
             this.GrThu3.Controls.Add(this.CbSTThu3);
             this.GrThu3.CustomBorderColor = System.Drawing.Color.White;
             this.GrThu3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrThu3.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrThu3.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrThu3.ForeColor = System.Drawing.Color.Black;
             this.GrThu3.Location = new System.Drawing.Point(460, 33);
             this.GrThu3.Name = "GrThu3";
             this.GrThu3.Size = new System.Drawing.Size(276, 315);
             this.GrThu3.TabIndex = 4;
-            this.GrThu3.Text = "LỊCH THỨ 3";
+            this.GrThu3.Text = "Lịch Thứ 3";
             this.GrThu3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrThu3.Click += new System.EventHandler(this.GrThu3_Click);
             // 
@@ -1756,9 +1766,9 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label3.Location = new System.Drawing.Point(10, 187);
+            this.label3.Location = new System.Drawing.Point(10, 194);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 24);
+            this.label3.Size = new System.Drawing.Size(131, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "Trưa, Chiều";
             // 
@@ -1767,9 +1777,9 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label4.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label4.Location = new System.Drawing.Point(10, 75);
+            this.label4.Location = new System.Drawing.Point(10, 82);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 24);
+            this.label4.Size = new System.Drawing.Size(120, 23);
             this.label4.TabIndex = 2;
             this.label4.Text = "Sáng, Trưa";
             // 
@@ -1785,7 +1795,7 @@
             this.CbTCThu3.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThu3.ForeColor = System.Drawing.Color.White;
             this.CbTCThu3.ItemHeight = 30;
-            this.CbTCThu3.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThu3.Location = new System.Drawing.Point(0, 230);
             this.CbTCThu3.Name = "CbTCThu3";
             this.CbTCThu3.Size = new System.Drawing.Size(279, 36);
             this.CbTCThu3.TabIndex = 1;
@@ -1802,7 +1812,7 @@
             this.CbSTThu3.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThu3.ForeColor = System.Drawing.Color.White;
             this.CbSTThu3.ItemHeight = 30;
-            this.CbSTThu3.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThu3.Location = new System.Drawing.Point(0, 118);
             this.CbSTThu3.Name = "CbSTThu3";
             this.CbSTThu3.Size = new System.Drawing.Size(279, 36);
             this.CbSTThu3.TabIndex = 0;
@@ -1820,13 +1830,13 @@
             this.GrThu2.Controls.Add(this.CbSTThu2);
             this.GrThu2.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.GrThu2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
-            this.GrThu2.Font = new System.Drawing.Font("Cascadia Mono", 9F, System.Drawing.FontStyle.Bold);
+            this.GrThu2.Font = new System.Drawing.Font("JetBrains Mono", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrThu2.ForeColor = System.Drawing.Color.White;
             this.GrThu2.Location = new System.Drawing.Point(60, 33);
             this.GrThu2.Name = "GrThu2";
             this.GrThu2.Size = new System.Drawing.Size(276, 315);
             this.GrThu2.TabIndex = 0;
-            this.GrThu2.Text = "LỊCH THỨ 2";
+            this.GrThu2.Text = "Lịch Thứ 2";
             this.GrThu2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GrThu2.Click += new System.EventHandler(this.GrThu2_Click);
             // 
@@ -1835,9 +1845,9 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.label2.Location = new System.Drawing.Point(10, 187);
+            this.label2.Location = new System.Drawing.Point(10, 194);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 24);
+            this.label2.Size = new System.Drawing.Size(131, 23);
             this.label2.TabIndex = 3;
             this.label2.Text = "Trưa, Chiều";
             // 
@@ -1846,9 +1856,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(25)))), ((int)(((byte)(26)))));
             this.label1.ForeColor = System.Drawing.Color.NavajoWhite;
-            this.label1.Location = new System.Drawing.Point(10, 75);
+            this.label1.Location = new System.Drawing.Point(10, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 24);
+            this.label1.Size = new System.Drawing.Size(120, 23);
             this.label1.TabIndex = 2;
             this.label1.Text = "Sáng, Trưa";
             // 
@@ -1864,7 +1874,7 @@
             this.CbTCThu2.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbTCThu2.ForeColor = System.Drawing.Color.White;
             this.CbTCThu2.ItemHeight = 30;
-            this.CbTCThu2.Location = new System.Drawing.Point(0, 223);
+            this.CbTCThu2.Location = new System.Drawing.Point(0, 230);
             this.CbTCThu2.Name = "CbTCThu2";
             this.CbTCThu2.Size = new System.Drawing.Size(279, 36);
             this.CbTCThu2.TabIndex = 1;
@@ -1882,7 +1892,7 @@
             this.CbSTThu2.Font = new System.Drawing.Font("Ebrima", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbSTThu2.ForeColor = System.Drawing.Color.White;
             this.CbSTThu2.ItemHeight = 30;
-            this.CbSTThu2.Location = new System.Drawing.Point(0, 111);
+            this.CbSTThu2.Location = new System.Drawing.Point(0, 118);
             this.CbSTThu2.Name = "CbSTThu2";
             this.CbSTThu2.Size = new System.Drawing.Size(279, 36);
             this.CbSTThu2.TabIndex = 0;

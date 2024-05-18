@@ -223,6 +223,7 @@
             this.Name = "Libary_DangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DangNhap";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Libary_DangNhap_FormClosed);
             this.Load += new System.EventHandler(this.Libary_DangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

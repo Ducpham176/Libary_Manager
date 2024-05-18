@@ -19,11 +19,50 @@ namespace Libary_Manager.Libary_BUS.BUS_NhanVien
             this.chamCongDAO = new DAO_ChamCong();
         }
 
+        public DataTable getDsLichTrucTrongTuan()
+        {
+            try
+            {
+                return chamCongDAO.getDsLichTrucTrongTuan();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể lấy danh sách chấm công trong tuần: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public DataTable getDsChamCong(DTO_ChamCong chamCongDTO, DateTime presentTime)
+        {
+            try
+            {
+                return chamCongDAO.getDsChamCong(chamCongDTO, presentTime);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể lấy danh sách chấm công: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }    
+
+        private DataTable getLichTrucTrongTuan(DTO_ChamCong chamCongDTO, DateTime presentTime)
+        {
+            try
+            {
+                return chamCongDAO.getLichTrucTrongTuan(chamCongDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể lấy lịch trực: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
         public bool checkChamCongBuoiHomNay(DTO_ChamCong chamCongDTO)
         {
             try
             {
-                DataTable dsNhanVienToday = chamCongDAO.getDanhSachNhanVienTruc(chamCongDTO);
+                DataTable dsNhanVienToday = chamCongDAO.getDanhSachNhanVienTruc();
                 if (dsNhanVienToday.Rows.Count > 0)
                 {
                     string[] pathIDNhanViens = dsNhanVienToday.Rows[0][0].ToString().Split('|');
@@ -49,7 +88,7 @@ namespace Libary_Manager.Libary_BUS.BUS_NhanVien
                         }
                     }
                 }
-                return true;
+                return false;
             }
             catch (Exception ex)
             {

@@ -57,30 +57,41 @@ namespace Libary_Manager.Libary_BUS
             return phieuMuonDAO.getInfoPhieuSach(condition, orderby);
         }
 
-        private bool checkEmptyPhieuMuon(DTO_PhieuMuon phieuMuonDTO)
-        {
-            return (Controller.isAllEmpty(phieuMuonDTO.idNguoiMuon.ToString(), phieuMuonDTO.idNhanVien.ToString(),
-                phieuMuonDTO.maSach, phieuMuonDTO.tinhTrang));
-        }
-
         public bool insertPhieuMuon(DTO_PhieuMuon phieuMuonDTO)
         {
             try
             {
-                if (checkEmptyPhieuMuon(phieuMuonDTO))
-                {
-                    if (!phieuMuonDAO.insertPhieuMuon(phieuMuonDTO)) { return false; };
-                    return true;
-                }    
-                else
-                {
-                    return false;
-                }
+                return phieuMuonDAO.insertPhieuMuon(phieuMuonDTO);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Không thể gửi yêu cầu phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            };
+        }
+
+        public DataTable getDsYeuCauMuonSach()
+        {
+            try
+            {
+                return phieuMuonDAO.getDsYeuCauMuonSach();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể lấy yêu cầu phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            };
+        }
+
+        public void chapNhanYeuCauMuon(DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                phieuMuonDAO.chapNhanYeuCauMuon(phieuMuonDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể chấp nhận phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             };
         }
     }

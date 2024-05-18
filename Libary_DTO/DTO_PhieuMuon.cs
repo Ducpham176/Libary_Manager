@@ -19,6 +19,7 @@ namespace Libary_Manager.Libary_DTO
         public float tienViPham { get; set; }
         public DateTime ngayMuon { get; set; }
         public DateTime ngayTra { get; set; }
+        public DateTime ngayBatDauMuon { get; set; }
 
     }
 }

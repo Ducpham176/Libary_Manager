@@ -67,6 +67,8 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         private void Libary_ChiTietSach_Load(object sender, EventArgs e)
         {
+            this.phieuMuonDTO = new DTO_PhieuMuon();
+
             LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
         }
 
@@ -160,13 +162,19 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         private void BtnMuonNgay_Click(object sender, EventArgs e)
         {
-            this.phieuMuonDTO = new DTO_PhieuMuon();
-            phieuMuonDTO.idNguoiMuon = 1;
-            phieuMuonDTO.idNhanVien = 1;
-            phieuMuonDTO.maSach = "SDTA0";
+            phieuMuonDTO.idNguoiMuon = DTO_DangNhap.id;
+            phieuMuonDTO.maSach = LbMaSach.Text;
+            phieuMuonDTO.soLuong = NeSoLuong.Value.ToString();
             phieuMuonDTO.tinhTrang = "Phê duyệt";
 
-            phieuMuonBUS.insertPhieuMuon(phieuMuonDTO);
+            if (phieuMuonBUS.insertPhieuMuon(phieuMuonDTO))
+            {
+                Controller.isAlert(MdChiTietSach, "Xác nhận thành công", "Phiếu mượn của bạn đã được ghi nhận", MessageDialogIcon.None);
+            } 
+            else
+            {
+                Controller.isAlert(MdChiTietSach, "Xảy ra lỗi", "Bạn đang mượn sách khác, hảy trả hết trước!", MessageDialogIcon.Error);
+            }
         }
 
         private void loadTabPhieuMuon()
@@ -202,7 +210,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
             int totalSach = int.Parse(NeSoLuong.Value.ToString());
             BUS_PhieuMuon.totalPresent += totalSach;
 
-            if (totalSach == 3)
+            if (BUS_PhieuMuon.totalPresent == 0 && totalSach == 3)
             {
                 checkExistSachToPhieuMuon(maSach, totalSach);
                 loadTabPhieuMuon();

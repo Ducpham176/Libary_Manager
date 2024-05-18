@@ -1,4 +1,5 @@
-﻿using Guna.UI2.AnimatorNS;
+﻿using CLR;
+using Guna.UI2.AnimatorNS;
 using Libary_Manager.Libary_DTO;
 using System;
 using System.Collections.Generic;
@@ -35,24 +36,64 @@ namespace Libary_Manager.Libary_DAO
         {
             try
             {
-                var data = new Dictionary<string, object>()
+                string sqlCheck = "SELECT * FROM TV_PhieuMuon " +
+                    "WHERE idNguoiMuon = '" + phieuMuonDTO.idNguoiMuon + "' AND tinhTrang != N'Đã trả sách'";
+                if (Database.read(sqlCheck).Rows.Count > 0)
                 {
-                    { "idNguoiMuon", phieuMuonDTO.idNguoiMuon },
-                    { "maSach", phieuMuonDTO.maSach },
-                    { "tinhTrang", phieuMuonDTO.tinhTrang },
-                    { "ngayMuon", DateTime.Now },
-                };
-                if (phieuMuonDTO.ghiChuDocGia != null)
-                {
-                    data.Add("ghiChuDocGia", phieuMuonDTO.ghiChuDocGia);
+                    return false;
                 }    
- 
-                Database.insert("TV_PhieuMuon", data); return true;
+                else
+                {
+                    var data = new Dictionary<string, object>()
+                    {
+                        { "idNguoiMuon", phieuMuonDTO.idNguoiMuon },
+                        { "maSach", phieuMuonDTO.maSach },
+                        { "soLuong", phieuMuonDTO.soLuong },
+                        { "tinhTrang", phieuMuonDTO.tinhTrang },
+                        { "ngayMuon", DateTime.Now },
+                    };
+                    return Database.insert("TV_PhieuMuon", data);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+        public DataTable getDsYeuCauMuonSach()
+        {
+            try
+            {
+                string sql = "WITH OrderedBooks AS (\r\n    SELECT \r\n\t\tpm.id,\r\n        nd.hoTen,\r\n        s.tuaSach,\r\n\t\tREPLACE(pm.maSach, '|', '\n') as maSach,\r\n\t\tREPLACE(pm.soLuong, '|', '\n') as soLuong,\r\n        pm.ngayMuon,\r\n        pm.tinhTrang,\r\n        CHARINDEX(s.maSach, pm.maSach) AS OrderIndex\r\n    FROM TV_PhieuMuon pm\r\n    JOIN TV_NguoiDung nd ON nd.id = pm.idNguoiMuon\r\n    JOIN TV_Sach s ON pm.maSach COLLATE Latin1_General_CI_AI LIKE '%' + s.maSach + '%'\r\n    WHERE pm.tinhTrang = N'Phê duyệt'\r\n)\r\nSELECT \r\n    id,\r\n    hoTen,\r\n    STRING_AGG(tuaSach, '\n') WITHIN GROUP (ORDER BY OrderIndex) AS tuaSach,\r\n    REPLACE(maSach, '|', '\n') AS maSach,\r\n    REPLACE(soLuong, '|', '\n') AS soLuong,\r\n    ngayMuon\r\nFROM OrderedBooks\r\nGROUP BY id, hoTen, maSach, soLuong, ngayMuon;\r\n";
+                return Database.read(sql);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public void chapNhanYeuCauMuon(DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                var data = new Dictionary<string, object>()
+                {
+                    { "idNhanVien", phieuMuonDTO.idNhanVien },
+                    { "tinhTrang", phieuMuonDTO.tinhTrang },
+                    { "ngayBatDauMuon", phieuMuonDTO.ngayBatDauMuon },
+                    { "ngayTra", phieuMuonDTO.ngayTra },
+                };
+                string condition = " id = '" + phieuMuonDTO.id + "'";
+
+                Database.update("TV_PhieuMuon", data, condition);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

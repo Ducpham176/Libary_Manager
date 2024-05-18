@@ -20,10 +20,11 @@ namespace Libary_Manager.Libary_GUI
 {
     public partial class Libary_QuanLy : Form
     {
-        private string codeTinh, codeHuyen; 
+        private string codeTinh, codeHuyen;
 
         // ................................................
 
+        private BUS_DoiMatKhau doiMatKhauBUS;
         private BUS_ChiNhanh chiNhanhBUS;
         private BUS_QuanLyNguoiDung quanLyNguoiDungBUS;
         private BUS_QuanLyNhanVien quanLyNhanVienBUS;
@@ -61,6 +62,8 @@ namespace Libary_Manager.Libary_GUI
         private void TabDoiMatKhauAction()
         {
             TbTaiKhoan.Focus();
+            this.doiMatKhauBUS = new BUS_DoiMatKhau();
+            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
         }
 
         // Chọn quản lý chi nhánh 
@@ -195,22 +198,10 @@ namespace Libary_Manager.Libary_GUI
 
             this.setValueNhanVienOnCbb();
 
-            DateTime today = DateTime.Now;
+            LbValueThu2.Text = "Thứ 2: " + Controller.GetThu2AndChuNhat()[0].ToString();
+            LbValueCn.Text = "Chủ nhật: " + Controller.GetThu2AndChuNhat()[1].ToString();
 
-            DateTime startOfWeek;
-            if (today.DayOfWeek == DayOfWeek.Sunday)
-            {
-                startOfWeek = today.AddDays(-6);
-            }
-            else
-            {
-                startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
-            }
-            DateTime endOfWeek = startOfWeek.AddDays(6);
-
-            LbValueThu2.Text = "Thứ 2: " + startOfWeek.ToString("dd/MM/yyyy");
-            LbValueCn.Text = "Chủ nhật: " + endOfWeek.ToString("dd/MM/yyyy");
-
+            phanCongNhanVienDTO.maChiNhanh = int.Parse(CbChiNhanh.SelectedValue.ToString());
             // Load dữ liệu nếu đã tồn tại 
             DataTable dataPhanCong = phanCongNhanVienBUS.dataPhieuPhanCongNhanVien(phanCongNhanVienDTO);
             this.loadPhanCongExists(dataPhanCong);
@@ -338,17 +329,12 @@ namespace Libary_Manager.Libary_GUI
             }
         }
 
-        private bool isEmptys()
-        {
-            return Controller.isAllEmpty(TbTaiKhoan.Text, TbHoTen.Text, CbTrangThai.Text, TbEmail.Text, TbEmail.Text, CbGioiTinh.Text, CbGioiTinh.Text,
-                CbHuyen.Text, CbXa.Text, DtpNgaySinh.Text);
-        }
 
         private bool checkTaiKhoanTonTai()
         {
             if (Controller.isEmpty(TbTaiKhoan.Text))
             {
-                if (quanLyNguoiDungBUS.checkAccountExists(TbTaiKhoan.Text))
+                if (quanLyNguoiDungBUS.checkTypeValueExists("taiKhoan", TbTaiKhoan.Text))
                 {
                     Controller.isAlert(MdQuanLy, "Xảy ra lỗi", "Tài khoản đã tồn tại trên hệ thống", MessageDialogIcon.Error);
                     TbTaiKhoan.Text = ""; return false;
@@ -369,7 +355,7 @@ namespace Libary_Manager.Libary_GUI
                 }
                 else
                 {
-                    if (quanLyNguoiDungBUS.checkEmailExists(TbEmail.Text))
+                    if (quanLyNguoiDungBUS.checkTypeValueExists("email", TbEmail.Text))
                     {
                         Controller.isAlert(MdQuanLy, "Xảy ra lỗi", "Email đã tồn tại trên hệ thống", MessageDialogIcon.Error);
                         TbEmail.Text = ""; return false;
@@ -380,17 +366,30 @@ namespace Libary_Manager.Libary_GUI
             return false;
         }
 
+        private bool isEmptysNV()
+        {
+            return Controller.isAllEmpty(TbTaiKhoan.Text, TbHoTen.Text, CbTrangThai.Text, TbEmail.Text, CbGioiTinh.Text,
+                CbHuyen.Text, CbXa.Text, DtpNgaySinh.Text);
+        }
+
+        private void resetValueControl()
+        {
+            Controller.isResetTb(TbHoTen, TbTaiKhoan, TbEmail);
+            CbTinh.SelectedIndex = 0;
+            CbGioiTinh.SelectedIndex = 0;
+            DtpNgaySinh.Value = DateTime.Now;
+        }    
 
         private void BtnThemNhanVien_Click(object sender, EventArgs e)
-        {
+        { 
             string[] toEmail = { TbEmail.Text };
             string randomMatKhau = quanLyNguoiDungBUS.GenerateRandomPassword(13);
             string hashMatKhau = Controller.MD5Hash(randomMatKhau);
 
-            if (isEmptys() && Controller.isEmpty(hashMatKhau) && checkEmailTonTai() && checkTaiKhoanTonTai())
+            if (this.isEmptysNV() && Controller.isEmpty(hashMatKhau) && checkEmailTonTai() && checkTaiKhoanTonTai())
             {
-                Controller.isSendToEmails(toEmail, "eBook Gửi thông tin tài khoản nhân viên của bạn\U0001f970", ContentEmail.ctCreateNhanVien(TbHoTen.Text, TbTaiKhoan.Text, randomMatKhau));
-                Controller.isAlert(MdQuanLy, "Vui lòng kiểm tra email", "Thông tin tài khoản đã gưi tới bạn\U0001f970", MessageDialogIcon.None);
+                Controller.isSendToEmails(toEmail, "📢eBook Gửi thông tin tài khoản nhân viên của bạn", ContentEmail.ctCreateNhanVien(TbHoTen.Text, TbTaiKhoan.Text, randomMatKhau));
+                Controller.isAlert(MdQuanLy, "Cấp thành công tài khoản", "Thông tin tài khoản đã gưi tới nhân viên", MessageDialogIcon.None);
                 string diaChi = CbTinh.Text + "|" + CbHuyen.Text + "|" + CbXa.Text;
                 int trangThai = (CbTrangThai.SelectedIndex == 0) ? 1 : -1;
                 quanLyNguoiDungDTO.taiKhoan = TbTaiKhoan.Text;
@@ -406,7 +405,7 @@ namespace Libary_Manager.Libary_GUI
 
                 // Thêm nhân viên
                 quanLyNhanVienBUS.insertNhanVien(quanLyNguoiDungDTO);
-
+                this.resetValueControl();
                 DgvNhanVien.DataSource = quanLyNhanVienBUS.getDsNhanVien();
             }
             else
@@ -485,10 +484,7 @@ namespace Libary_Manager.Libary_GUI
 
         private void BtnHuyChon_Click(object sender, EventArgs e)
         {
-            Controller.isResetTb(TbHoTen, TbTaiKhoan, TbEmail);
-            CbTinh.SelectedIndex = 0;
-            CbGioiTinh.SelectedIndex = 0;
-            DtpNgaySinh.Value = DateTime.Now;
+            this.resetValueControl();
         }
 
         private void DgvNhanVien_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -625,6 +621,7 @@ namespace Libary_Manager.Libary_GUI
             DataTable dataPhanCong = phanCongNhanVienBUS.dataPhieuPhanCongNhanVien(phanCongNhanVienDTO);
             this.loadPhanCongExists(dataPhanCong);
         }
+
 
         private void BtnDoiMatKhau_Click(object sender, EventArgs e)
         {

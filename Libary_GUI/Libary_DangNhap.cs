@@ -135,6 +135,9 @@ namespace Libary_Manager.Libary_GUI
             }
         }
 
-
+        private void Libary_DangNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Controller.isDeletePhotos();
+        }
     }
 }

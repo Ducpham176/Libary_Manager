@@ -204,7 +204,7 @@ namespace Libary_Manager.Libary_DAO
                 string sql = "SELECT maSach, tuaSach, photo, tacGia, nhaXuatBan, namXuatBan, " +
                     "TRIM(cn.chiNhanh) as chiNhanh, loiGioiThieu, soLuong, TV_Sach.ngayThem " +
                     "FROM TV_ChiNhanh cn " +
-                    "RIGHT JOIN TV_Sach ON TV_Sach.maChiNhanh = cn.id WHERE tuaSach LIKE N'%" + keyWord + "%' " +
+                    "RIGHT JOIN TV_Sach ON TV_Sach.maChiNhanh = cn.id WHERE tuaSach COLLATE Latin1_General_CI_AI LIKE N'%" + keyWord + "%' " +
                     "ORDER BY TV_Sach.id DESC ";
                 return Database.read(sql);
             }

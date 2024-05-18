@@ -80,32 +80,11 @@ namespace Libary_Manager.Libary_BUS
             };
         }
 
-        public bool checkEmailExists(string email)
+        public bool checkTypeValueExists(string value, string type)
         {
             try
             {
-                if (quanLyNguoiDungDAO.checkEmailExists(email) > 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi xảy ra khi kiểm tra email: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            };
-        }
-
-        public bool checkAccountExists(string account)
-        {
-            try
-            {
-                if (quanLyNguoiDungDAO.checkAccountExists(account) > 0)
-                {
-                    return true;
-                }
-                return false;
+                return quanLyNguoiDungDAO.checkTypeValueExists(value, type) > 0;
             }
             catch (Exception ex)
             {

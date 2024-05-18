@@ -52,25 +52,11 @@ namespace Libary_Manager.Libary_DAO
             }
         }
 
-        public int checkEmailExists(string email)
+        public int checkTypeValueExists(string type, string value)
         {
             try
             {
-                string sql = "SELECT id FROM TV_NguoiDung WHERE email = '" + email + "'";
-                return Database.read(sql).Rows.Count;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
-            }
-        }
-
-        public int checkAccountExists(string account)
-        {
-            try
-            {
-                string sql = "SELECT id FROM TV_NguoiDung WHERE taiKhoan = '" + account + "'";
+                string sql = "SELECT id FROM TV_NguoiDung WHERE " + type + " = '" + value + "'";
                 return Database.read(sql).Rows.Count;
             }
             catch (Exception ex)

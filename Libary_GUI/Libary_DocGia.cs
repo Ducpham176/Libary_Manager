@@ -27,14 +27,14 @@ namespace Libary_Manager
         private ArrayList objectSavedTabName = new ArrayList();
 
         private BUS_Sach sachBUS;
-
         private BUS_PhieuMuon phieuMuonBUS;
+        private BUS_DoiMatKhau doiMatKhauBUS;
 
         // ................................................
 
         private DTO_Sach sachDTO;
-
         private DTO_PhieuMuon phieuMuonDTO;
+        private DTO_QuanLyNguoiDung quanLyNguoiDungDTO;
 
         // ................................................
 
@@ -48,14 +48,14 @@ namespace Libary_Manager
         // Chọn sách thư viện
         void TabSachThuVienAction()
         {
-            this.sachBUS = new BUS_Sach();
-            this.sachDTO = new DTO_Sach();
-
             sachBUS.setTabControl(TcLibary);
 
             // Load toàn bộ danh sách Sách
-            DataTable data = sachBUS.dataPagination(_PAGE);
-            Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+            if (!Controller.isEmpty(TbTuKhoa.Text))
+            {
+                DataTable data = sachBUS.dataPagination(_PAGE);
+                Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
+            }    
         }
 
         // Chọn đổi mật khẩu 
@@ -74,9 +74,6 @@ namespace Libary_Manager
                 LbAlertNoData.Visible = false;
                 DgvPhieuMuon.Visible = true;
                 BtnGuiPhieuMuon.Visible = true;
-
-                this.phieuMuonBUS = new BUS_PhieuMuon();
-                this.phieuMuonDTO = new DTO_PhieuMuon();
 
                 DataTable data = phieuMuonBUS.getInfoPhieuSach();
                 Controller.isLoadDataPhoto(data, DgvPhieuMuon, "pmPhoto");
@@ -107,7 +104,13 @@ namespace Libary_Manager
         // Load form TrangChu
         private void Libary_TrangChu_Load(object sender, EventArgs e)
         {
+            this.sachDTO = new DTO_Sach();
+            this.phieuMuonDTO = new DTO_PhieuMuon();
+            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung(); 
 
+            this.sachBUS = new BUS_Sach();
+            this.doiMatKhauBUS = new BUS_DoiMatKhau();
+            this.phieuMuonBUS = new BUS_PhieuMuon();
         }
 
         // ................................................
@@ -123,14 +126,19 @@ namespace Libary_Manager
                 TabSachThuVienAction();
             }
 
-            else if (selectedTabPage == TabDoiMatKhau)
+            if (selectedTabPage == TabDoiMatKhau)
             {
                 TabDoiMatKhauAction();
             }
 
-            else if (selectedTabPage == TabPhieuMuon)
+            if (selectedTabPage == TabPhieuMuon)
             {
                 TabPhieuMuonAction();
+            }    
+
+            if (selectedTabPage == TabDangXuat)
+            {
+                this.Close();
             }    
         }
 
@@ -248,49 +256,85 @@ namespace Libary_Manager
 
         private string strConcatInfo(string type = "value")
         {
-            string maSach = "";
+            var sb = new StringBuilder();
             foreach (var item in BUS_PhieuMuon.dictioLoanSlip)
             {
+                if (sb.Length > 0)
+                {
+                    sb.Append('|');
+                }
+
                 if (type == "key")
                 {
-                    maSach += (item.Key + "|");
-                } else
+                    sb.Append(item.Key);
+                }
+                else
                 {
-                    maSach += (item.Value + "|");
+                    sb.Append(item.Value);
                 }
             }
-            return maSach;
-        }    
+            return sb.ToString();
+        }
 
         private void BtnGuiPhieuMuon_Click(object sender, EventArgs e)
         {
-            phieuMuonDTO.idNguoiMuon = 1;
+            phieuMuonDTO.idNguoiMuon = DTO_DangNhap.id;
             // nối các mã sách lại
             phieuMuonDTO.maSach = strConcatInfo("key");
             // nối các số lượng lại 
             phieuMuonDTO.soLuong = strConcatInfo();
-            phieuMuonBUS.insertPhieuMuon(phieuMuonDTO);
+            phieuMuonDTO.tinhTrang = "Phê duyệt";
+
+            if (phieuMuonBUS.insertPhieuMuon(phieuMuonDTO))
+            {
+                Controller.isAlert(MdDocGia, "Xác nhận thành công", "Phiếu mượn của bạn đã được ghi nhận", MessageDialogIcon.None);
+                BUS_PhieuMuon.dictioLoanSlip.Clear();
+            }
+            else
+            {
+                Controller.isAlert(MdDocGia, "Xảy ra lỗi", "Bạn đang mượn sách khác, hảy trả hết trước!", MessageDialogIcon.Error);
+            }
         }
 
         private void BtnTim_Click(object sender, EventArgs e)
-        { 
-       /*     if (Controller.isEmpty(TbTuKhoa.Text))
+        {
+            if (Controller.isEmpty(TbTuKhoa.Text))
             {
                 string keyWord = TbTuKhoa.Text;
 
                 DataTable data = sachBUS.dataSearchBooks(keyWord);
                 Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
-            } 
+            }
             else
             {
                 Controller.isAlert(MdDocGia, "Không hợp lệ", "Vui lòng nhập từ khóa!", MessageDialogIcon.Error);
-            }*/
+            }
         }
 
-        private void guna2GradientButton2_Click(object sender, EventArgs e)
+        private void BtnDoiMatKhau_Click(object sender, EventArgs e)
         {
-
+            if (Controller.isAllEmpty(TbMatKhauMoi.Text, TbNhapLaiMatKhau.Text))
+            {
+                if (TbMatKhauMoi.Text != TbNhapLaiMatKhau.Text)
+                {
+                    Controller.isAlert(MdDocGia, "Không hợp lệ", "Mật khẩu không khớp", MessageDialogIcon.Warning);
+                }
+                else
+                {
+                    quanLyNguoiDungDTO.matKhau = Controller.MD5Hash(TbMatKhauMoi.Text);
+                    if (doiMatKhauBUS.updateMatKhau(quanLyNguoiDungDTO))
+                    {
+                        Controller.isAlert(MdDocGia, "Thành công", "Đổi mật khẩu thành công", MessageDialogIcon.None);
+                        Controller.isResetTb(TbMatKhauMoi, TbNhapLaiMatKhau);
+                    }
+                }
+            }
+            else
+            {
+                Controller.isAlert(MdDocGia, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
+            }
         }
+
 
         // ................................................
 

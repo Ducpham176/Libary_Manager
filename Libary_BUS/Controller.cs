@@ -33,9 +33,10 @@ namespace Libary_Manager.Libary_BUS
         public static string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
         public static string _PATH_PHOTO_BOOK = projectDirectory + @"\Photos\Books\";
         public static string _PATH_PHOTO_ITEM = projectDirectory + @"\Photos\Items\";
+        private static string _PATH_PHOTOS_DELETED = projectDirectory + @"\PhotoDeleteds.txt";
 
         // Thêm các ảnh muốn xóa vào 
-        public static ArrayList DeletedPhotos = new ArrayList();
+        public static string DeletedPhotos;
 
         // Số lượng bản ghi mỗi page
         public static int _MAX_PAGE = 6;
@@ -46,13 +47,11 @@ namespace Libary_Manager.Libary_BUS
             return (value.Trim() != "");
         }
 
-
         // kiểm tra độ dài có đủ
         public static bool isLength(string value, int length)
         {
-            return value.Trim().Length > length;
+            return value.Trim().Length >= length;
         }
-
 
         // Alert thông báo 
         public static void isAlert(Guna2MessageDialog alert, string caption, string text, MessageDialogIcon icon)
@@ -64,7 +63,6 @@ namespace Libary_Manager.Libary_BUS
             alert.Style = MessageDialogStyle.Dark;
             alert.Show();
         }
-
 
         // Đặt câu hỏi cho người dùng
         public static bool isQuestion(string content, string title)
@@ -83,7 +81,6 @@ namespace Libary_Manager.Libary_BUS
             }
             return null;
         }
-
 
         // Kiểm tra dữ liệu trống sll
         public static bool isAllEmpty(params string[] values)
@@ -108,7 +105,6 @@ namespace Libary_Manager.Libary_BUS
             }
             return true;
         }
-
 
         // Lưu file vào folder  
         public static string isSavedFile(string fileName, string type)
@@ -136,7 +132,6 @@ namespace Libary_Manager.Libary_BUS
                 return null;
             }
         }
-
 
         // Load dữ liệu 
         public static void isLoadDataPhoto(DataTable dataTable, DataGridView dataGridView, string namePhoto)
@@ -172,7 +167,6 @@ namespace Libary_Manager.Libary_BUS
             }
         }
 
-
         // Reset dữ liệu 
         public static void isResetTb(params Guna2TextBox[] textBoxes)
         {
@@ -182,22 +176,38 @@ namespace Libary_Manager.Libary_BUS
             }
         }
 
-
         // Xóa bỏ khi chương trình tắt
         public static void isDeletePhotos()
         {
-            if (DeletedPhotos.Count > 0)
-            foreach (var image in DeletedPhotos)
+            if (File.Exists(_PATH_PHOTOS_DELETED))
             {
-                string imagePath = image.ToString();
-                if (File.Exists(imagePath))
+                using (StreamWriter writer = new StreamWriter(_PATH_PHOTOS_DELETED))
                 {
-                        MessageBox.Show(imagePath);
-                    // File.Delete(imagePath);
+                    writer.Write(DeletedPhotos);
+                }
+            }    
+        }
+
+        // Tiến hành xóa bỏ file 
+        public static void proceedDeletePhotos()
+        {
+            if (File.Exists(_PATH_PHOTOS_DELETED))
+            {
+                using (StreamReader reader = new StreamReader(_PATH_PHOTOS_DELETED))
+                {
+                    string content = reader.ReadToEnd();
+                    string[] separationFileName = content.Split(';');
+                
+                    foreach (string file in separationFileName)
+                    {
+                        if (File.Exists(file))
+                        {
+                            File.Delete(file);
+                        }    
+                    }
                 }
             }
         }
-
 
         // Trả về câu lệnh lấy số bản ghi phân trang
         public static string isHandlePagination(int page, int total)
@@ -206,7 +216,6 @@ namespace Libary_Manager.Libary_BUS
             Offset = (page - 1) * total;
             return " OFFSET " + Offset + " ROWS FETCH NEXT " + total + " ROWS ONLY" ?? "";
         }
-
 
         // Gửi nhiều email 1 lúc 
         public static void isSendToEmails(string[] toEmails, string Title, string Content)
@@ -239,6 +248,7 @@ namespace Libary_Manager.Libary_BUS
             }
         }
 
+
         // MD5 Mã hóa 
         public static string MD5Hash(string input)
         {
@@ -252,5 +262,32 @@ namespace Libary_Manager.Libary_BUS
             }
             return hash.ToString();
         }
+
+
+        public static ArrayList GetThu2AndChuNhat()
+        {
+            ArrayList Thu2AndCn = new ArrayList();
+            DateTime today = DateTime.Now;
+
+            DateTime startOfWeek;
+            if (today.DayOfWeek == DayOfWeek.Sunday)
+            {
+                startOfWeek = today.AddDays(-6);
+            }
+            else
+            {
+                startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            }
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            // Chỉ lấy ngày tháng năm, không lấy giờ
+            string startDate = startOfWeek.ToString("dd/MM/yyyy");
+            string endDate = endOfWeek.ToString("dd/MM/yyyy");
+
+            Thu2AndCn.Add(startDate);
+            Thu2AndCn.Add(endDate);
+            return Thu2AndCn;
+        }
+
     }
 }

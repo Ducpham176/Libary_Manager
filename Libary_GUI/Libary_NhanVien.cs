@@ -1,14 +1,22 @@
-﻿using Guna.UI2.WinForms;
+﻿using DevExpress.Drawing.Internal.Fonts;
+using DevExpress.Utils.DirectXPaint.Svg;
+using DevExpress.Utils.Extensions;
+using DevExpress.XtraEditors.ViewInfo;
+using Guna.UI2.WinForms;
 using Libary_Manager.Libary_BUS;
 using Libary_Manager.Libary_BUS.BUS_NhanVien;
+using Libary_Manager.Libary_BUS.BUS_QuanLy;
+using Libary_Manager.Libary_BUS.Content;
 using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
@@ -20,6 +28,8 @@ namespace Libary_Manager.Libary_GUI
 {
     public partial class Libary_NhanVien : Form
     {
+        private string codeTinh, codeHuyen;
+
         int _PAGE = 1;
 
         // Lưu tạm tên ảnh 
@@ -30,13 +40,17 @@ namespace Libary_Manager.Libary_GUI
         // ................................................
 
         private BUS_Sach sachBUS;
+        private BUS_PhieuMuon phieuMuonBUS;
         private BUS_ChiNhanh chiNhanhBUS;
         private BUS_DoiMatKhau doiMatKhauBUS;
         private BUS_ChamCong chamCongBUS;
+        private BUS_QuanLyDocGia quanLyDocGiaBUS;
+        private BUS_QuanLyNguoiDung quanLyNguoiDungBUS;
 
         // ................................................
 
         private DTO_Sach sachDTO;
+        private DTO_PhieuMuon phieuMuonDTO;
         private DTO_QuanLyNguoiDung quanLyNguoiDungDTO;
         private DTO_ChamCong chamCongDTO;
 
@@ -49,11 +63,8 @@ namespace Libary_Manager.Libary_GUI
 
         // ................................................
 
-        private void Libary_NhanVien_Load(object sender, EventArgs e)
+        private void checkChamCongToday()
         {
-            this.chamCongBUS = new BUS_ChamCong();
-            this.chamCongDTO = new DTO_ChamCong();
-
             int hourRealTime = DateTime.Now.Hour;
             string caTruc = (hourRealTime < 11) ? "Sáng" : "Chiều";
             chamCongDTO.idNhanVien = DTO_DangNhap.id;
@@ -65,20 +76,35 @@ namespace Libary_Manager.Libary_GUI
 
             if (chamCongBUS.checkChamCongBuoiHomNay(chamCongDTO))
             {
-
-            }    
+                Controller.isAlert(MdNhanVien, "Đã chấm công", "Bạn đã chấm công ngày hôm nay", MessageDialogIcon.None);
+            }
         }
 
+        private void Libary_NhanVien_Load(object sender, EventArgs e)
+        {
+            this.sachDTO = new DTO_Sach();
+            this.phieuMuonDTO = new DTO_PhieuMuon();
+            this.chamCongDTO = new DTO_ChamCong();
+            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
+
+            this.sachBUS = new BUS_Sach();
+            this.phieuMuonBUS = new BUS_PhieuMuon();
+            this.chiNhanhBUS = new BUS_ChiNhanh();
+            this.chamCongBUS = new BUS_ChamCong();
+            this.quanLyDocGiaBUS = new BUS_QuanLyDocGia();
+            this.quanLyNguoiDungBUS = new BUS_QuanLyNguoiDung();
+
+            // Kiểm tra chấm công hôm nay 
+            checkChamCongToday();
+
+            // Xóa các file
+            Controller.proceedDeletePhotos();
+        }
 
         // Chọn quản lý sách sách
         private void TabSachThuVienAction()
         {
-            // Sách 
-            this.sachBUS = new BUS_Sach();
-            this.sachDTO = new DTO_Sach();
-
-            this.chiNhanhBUS = new BUS_ChiNhanh();
-
+            TbTuaSach.Focus();
             // Load toàn bộ danh sách Sách
             DataTable data = sachBUS.dataFullPagination(_PAGE);
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
@@ -91,17 +117,146 @@ namespace Libary_Manager.Libary_GUI
 
         // ................................................
 
-        // Chọn quản lý nhân viên 
-        private void TabQuanLyNhanVienAction()
+        // Chọn quản lý độc giả
+        private void TabQuanLyDocGiaAction()
         {
+            TbHoTen.Focus();
 
+            // Giới tính
+            CbGioiTinh.SelectedIndex = 0;
+
+            DataTable dataTinh = quanLyNguoiDungBUS.getDsTinh();
+            if (dataTinh != null)
+            {
+                CbTinh.DataSource = dataTinh;
+                CbTinh.DisplayMember = "full_name";
+                CbTinh.ValueMember = "code";
+            }
+
+            DgvDocGia.DataSource = quanLyDocGiaBUS.getDsDocGia();
         }
 
         // Chọn đổi mật khẩu 
         private void TabDoiMatKhauAction()
         {
+            TbTaiKhoan.Focus();
             this.doiMatKhauBUS = new BUS_DoiMatKhau();
-            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
+
+        }
+
+        // Chọn chấm công 
+        private void loadDsLichTrucTrongTuan(ArrayList data)
+        {
+            FlpLichTrucTuan.Controls.Clear();
+            foreach (ArrayList array in data)
+            {
+                for (int i = 0; i < array.Count; i += 2)
+                {
+                    Label labelThu = new Label();
+                    Label labelCaTruc = new Label();
+
+                    labelThu.Text = array[i].ToString();
+                    labelThu.Location = new Point(10, 10);
+                    labelThu.BackColor = Color.Transparent;
+
+                    labelCaTruc.Text = array[i + 1].ToString();
+                    labelCaTruc.Location = new Point(10, 45);
+                    labelCaTruc.BackColor = Color.Transparent;
+
+                    Guna2GradientPanel panel = new Guna2GradientPanel();
+                    panel.BorderRadius = 4;
+                    panel.Size = new Size(100, 80);
+
+                    labelThu.ForeColor = Color.White;
+                    labelCaTruc.ForeColor = Color.White;
+
+                    string soThu = new string(labelThu.Text.Where(char.IsDigit).ToArray());
+                    int soThuInt;
+                    if (int.TryParse(soThu, out soThuInt))
+                    {
+                        soThuInt = int.Parse(soThu);
+                    }
+                    else
+                    {
+                        soThuInt = 0;
+                    }
+
+                    if (soThuInt < DTO_ChamCong.thuMay && soThuInt != 0)
+                    {
+                        panel.FillColor = Color.Transparent;
+                        panel.FillColor2 = Color.Transparent;
+                        panel.BorderColor = Color.White;
+                        panel.BorderThickness = 1;
+                    }
+                    else
+                    {
+                        panel.FillColor = Color.FromArgb(59, 130, 246);
+                        panel.FillColor2 = Color.FromArgb(129, 140, 248);
+                    }
+
+                    panel.Controls.Add(labelThu);
+                    panel.Controls.Add(labelCaTruc);
+
+                    FlpLichTrucTuan.Controls.Add(panel);
+                }
+            }
+        }
+
+        private void TabChamCongAction()
+        {
+            ArrayList dataLichLam = new ArrayList();
+            DataTable dataTuan = chamCongBUS.getDsLichTrucTrongTuan();
+
+            foreach (DataRow row in dataTuan.Rows)
+            {
+                for (int i = 0; i < dataTuan.Columns.Count; i++)
+                {
+                    string[] separaThu = (row[i].ToString()).Split('|');
+
+                    if (separaThu.Length > 1)
+                    {
+                        ArrayList array = new ArrayList();
+                        for (int index = 0; index < separaThu.Length; ++index)
+                        {
+                            if (separaThu[index] != ""
+                                && separaThu[index] != "-1"
+                                && separaThu[index] == (DTO_DangNhap.id.ToString()))
+                            {
+                                string[] nameTable = dataTuan.Columns[i].ColumnName.Split('_');
+                                if (nameTable.Length > 1)
+                                {
+                                    array.Add("Thứ " + nameTable[1]);
+                                }
+                                else
+                                {
+                                    array.Add("Chủ nhật");
+                                }
+                                if (index == 0) { array.Add("Sáng"); };
+                                if (index == 1) { array.Add("Trưa"); };
+                            }
+                        }
+                        dataLichLam.Add(array);
+                    }
+                }
+            }
+
+            loadDsLichTrucTrongTuan(dataLichLam);
+
+            LbThu2.Text = "Thứ 2: " + Controller.GetThu2AndChuNhat()[0].ToString();
+            LbChuNhat.Text = "Chủ nhật: " + Controller.GetThu2AndChuNhat()[1].ToString();
+
+            // Load danh sách đã chấm công 
+            DateTime dateTime = DateTime.Now;
+            DataTable historyCcong = chamCongBUS.getDsChamCong(chamCongDTO, dateTime);
+            DgvLsChamCong.DataSource = historyCcong;
+        }
+
+        // Chọn quản lý yêu cầu phiếu mượn 
+        private void TabYeuCauMuonSachAction()
+        {
+            DataTable data = phieuMuonBUS.getDsYeuCauMuonSach();
+            DgvYeuCauPhieuMuon.DataSource = data;
+            DgvYeuCauPhieuMuon.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }    
 
         // Load form tương thích
@@ -112,12 +267,27 @@ namespace Libary_Manager.Libary_GUI
 
             if (selectedTabPage == TabSachThuVien)
             {
-                TabSachThuVienAction();
+                this.TabSachThuVienAction();
             }
 
             if (selectedTabPage == TabDoiMatKhau)
             {
-                TabDoiMatKhauAction();
+                this.TabDoiMatKhauAction();
+            }    
+
+            if (selectedTabPage == TabQuanLyDocGia)
+            {
+                this.TabQuanLyDocGiaAction();
+            }
+
+            if (selectedTabPage == TabChamCong)
+            {
+                this.TabChamCongAction();
+            }
+
+            if (selectedTabPage == TabYeuCauMuonSach)
+            {
+                this.TabYeuCauMuonSachAction();
             }    
         }
 
@@ -125,7 +295,9 @@ namespace Libary_Manager.Libary_GUI
         {
             if (e.KeyCode == Keys.Delete)
             {
-                if (sachBUS.deleteSach(sachDTO)) { };
+                if (sachBUS.deleteSach(sachDTO)) 
+                {
+                };
             }
         }
 
@@ -252,8 +424,8 @@ namespace Libary_Manager.Libary_GUI
                     sachDTO.loiGioiThieu = TbLoiGioiThieu.Text;
                     if (namePhotoPresent != null)
                     {
-                        string pathImage = sachBUS.prepareDeletePhoto(sachDTO);
-                        Controller.DeletedPhotos.Add(pathImage);
+                        string pathImage = sachBUS.prepareDeletePhoto(sachDTO) + ";";
+                        Controller.DeletedPhotos += pathImage;
                         sachDTO.photo = Controller.isSavedFile(namePhotoPresent, "book");
                     }
                     sachDTO.soLuong = int.Parse(TbSoLuong.Text);
@@ -274,11 +446,6 @@ namespace Libary_Manager.Libary_GUI
             {
                 Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng chọn 1 hàng thông tin!", MessageDialogIcon.Error);
             }
-        }
-
-        private void Libary_NhanVien_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Controller.isDeletePhotos();
         }
 
         private void BtnQuayLai_Click(object sender, EventArgs e)
@@ -410,9 +577,188 @@ namespace Libary_Manager.Libary_GUI
             Controller.isLoadDataPhoto(data, DgvSachThuVien, "photo");
         }
 
+        private bool checkTaiKhoanTonTai()
+        {
+            if (Controller.isEmpty(TbTaiKhoan.Text))
+            {
+                if (quanLyNguoiDungBUS.checkTypeValueExists("taiKhoan", TbTaiKhoan.Text))
+                {
+                    Controller.isAlert(MdNhanVien, "Xảy ra lỗi", "Tài khoản đã tồn tại trên hệ thống", MessageDialogIcon.Error);
+                    TbTaiKhoan.Text = ""; return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private bool checkEmailTonTai()
+        {
+            if (Controller.isEmpty(TbEmail.Text))
+            {
+                if (!TbEmail.Text.Contains("@gmail.com") || TbEmail.Text.Length < "@gmail.com".Length)
+                {
+                    Controller.isAlert(MdNhanVien, "Không hợp lệ", "Email phải chứa '@gmail.com' và có từ 11 kí tự", MessageDialogIcon.Error);
+                    TbEmail.Text = ""; return false;
+                }
+                else
+                {
+                    if (quanLyNguoiDungBUS.checkTypeValueExists("email", TbEmail.Text))
+                    {
+                        Controller.isAlert(MdNhanVien, "Xảy ra lỗi", "Email đã tồn tại trên hệ thống", MessageDialogIcon.Error);
+                        TbEmail.Text = ""; return false;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool checkMssvTonTai()
+        {
+            if (Controller.isEmpty(TbMaSinhVien.Text))
+            {
+                if (quanLyNguoiDungBUS.checkTypeValueExists("mssv", TbTaiKhoan.Text))
+                {
+                    Controller.isAlert(MdNhanVien, "Xảy ra lỗi", "Mã số sinh viên đã tồn tại trên hệ thống", MessageDialogIcon.Error);
+                    TbMaSinhVien.Text = ""; return false;
+                }
+                else if (!Controller.isLength(TbMaSinhVien.Text, 13))
+                {
+                    Controller.isAlert(MdNhanVien, "Xảy ra lỗi", "Mã số sinh viên phải đủ 11 kí tự", MessageDialogIcon.Error);
+                    TbMaSinhVien.Text = ""; return false;
+                }    
+                return true;
+            }
+            return false;
+        }
+
+        private void TbTaiKhoan_Leave(object sender, EventArgs e)
+        {
+            this.checkTaiKhoanTonTai();
+        }
+
+        private void TbEmail_Leave(object sender, EventArgs e)
+        {
+            this.checkEmailTonTai();
+        }
+
+        private void TbMaSinhVien_Leave(object sender, EventArgs e)
+        {
+            this.checkMssvTonTai();
+        }
+
+        private bool isEmptysDg()
+        {
+            return Controller.isAllEmpty(TbTaiKhoan.Text, TbHoTen.Text, TbEmail.Text, CbGioiTinh.Text, CbGioiTinh.Text,
+                CbHuyen.Text, CbXa.Text, DtpNgaySinh.Text);
+        }
+
+        private void resetValueControl()
+        {
+            Controller.isResetTb(TbHoTen, TbTaiKhoan, TbEmail, TbMaSinhVien);
+            CbTinh.SelectedIndex = 0;
+            CbGioiTinh.SelectedIndex = 0;
+            DtpNgaySinh.Value = DateTime.Now;
+        }
+
         private void BtnThemDocGia_Click(object sender, EventArgs e)
         {
+            string[] toEmail = { TbEmail.Text };
+            string randomMatKhau = quanLyNguoiDungBUS.GenerateRandomPassword(13);
+            string hashMatKhau = Controller.MD5Hash(randomMatKhau);
 
+            if (this.isEmptysDg() && Controller.isEmpty(hashMatKhau) && 
+                checkEmailTonTai() && checkTaiKhoanTonTai() && checkMssvTonTai()) 
+            {
+                Controller.isSendToEmails(toEmail, "📢eBook Gửi thông tin tài khoản độc giả của bạn", ContentEmail.ctCreatenDocGia(TbHoTen.Text, TbTaiKhoan.Text, randomMatKhau));
+                Controller.isAlert(MdNhanVien, "Cấp thành công tài khoản", "Thông tin tài khoản đã gưi tới độc giả", MessageDialogIcon.None);
+                string diaChi = CbTinh.Text + "|" + CbHuyen.Text + "|" + CbXa.Text;
+                quanLyNguoiDungDTO.taiKhoan = TbTaiKhoan.Text;
+                quanLyNguoiDungDTO.matKhau = hashMatKhau;
+                quanLyNguoiDungDTO.hoTen = TbHoTen.Text;
+                quanLyNguoiDungDTO.quyen = 2;
+                quanLyNguoiDungDTO.email = TbEmail.Text;
+                quanLyNguoiDungDTO.mssv = TbMaSinhVien.Text;
+                quanLyNguoiDungDTO.gioiTinh = CbGioiTinh.Text;
+                quanLyNguoiDungDTO.diaChi = diaChi;
+                quanLyNguoiDungDTO.ngaySinh = DtpNgaySinh.Value;
+
+                // Thêm độc giả
+                quanLyDocGiaBUS.insertDocGia(quanLyNguoiDungDTO);
+                this.resetValueControl();
+                DgvDocGia.DataSource = quanLyDocGiaBUS.getDsDocGia();
+            }
+            else
+            {
+                Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
+            }
+        }
+
+        private void CbTinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            codeTinh = CbTinh.SelectedValue.ToString();
+
+            DataTable dataHuyen = quanLyNguoiDungBUS.getDsHuyen(codeTinh);
+            if (dataHuyen != null)
+            {
+                CbHuyen.DataSource = dataHuyen;
+                CbHuyen.DisplayMember = "full_name";
+                CbHuyen.ValueMember = "code";
+            }
+        }
+
+        private void CbHuyen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            codeHuyen = CbHuyen.SelectedValue.ToString();
+
+            DataTable dataXa = quanLyNguoiDungBUS.getDsXa(codeHuyen);
+            if (dataXa != null)
+            {
+                CbXa.DataSource = dataXa;
+                CbXa.DisplayMember = "full_name";
+                CbXa.ValueMember = "full_name";
+            }
+        }
+
+        private void chapNhanYeuCauMuon(int id)
+        {
+            phieuMuonDTO.id = id;
+            phieuMuonDTO.idNhanVien = DTO_DangNhap.id;
+            phieuMuonDTO.tinhTrang = "Đang mượn";
+            phieuMuonDTO.ngayBatDauMuon = DateTime.Now;
+            phieuMuonDTO.ngayTra = phieuMuonDTO.ngayBatDauMuon.AddDays(30);
+
+            phieuMuonBUS.chapNhanYeuCauMuon(phieuMuonDTO);
+            DataTable data = phieuMuonBUS.getDsYeuCauMuonSach();
+            DgvYeuCauPhieuMuon.DataSource = data;
+        }    
+
+        // Xử lí yêu cầu mượn sách của độc giả 
+        private void DgvYeuCauPhieuMuon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) 
+            {
+                DataGridViewCell cell = DgvYeuCauPhieuMuon.Rows[e.RowIndex].Cells["pmId"];
+                // Chấp nhận 
+                if (e.ColumnIndex == 0)
+                {
+                    if (cell != null && cell.Value != null)
+                    {
+                        int id = (int)cell.Value;
+                        this.chapNhanYeuCauMuon(id);
+                    }
+                }
+
+                // Xóa bỏ 
+                if (e.ColumnIndex == 1)
+                {
+                    if (cell != null && cell.Value != null)
+                    {
+                        int id = (int)cell.Value;
+                        MessageBox.Show("ID xóa: " + id.ToString());
+                    }
+                }    
+            }
         }
     }
 }
