@@ -9,17 +9,17 @@ namespace Libary_Manager.Libary_DTO
     class DTO_DangNhap
     {
         public static int id { get; set; }
-        public string taiKhoan { get; set; }
+        public static string taiKhoan { get; set; }
         public string matKhau { get; set; }
-        public string hoTen { get; set; }
-        public int trangThai { get; set; }
-        public int quyen { get; set; }
+        public static string hoTen { get; set; }
+        public static int trangThai { get; set; }
+        public static int quyen { get; set; }
         public static int maChiNhanh { get; set; }
-        public string email { get; set; }
-        public string mssv { get; set; }
-        public string gioiTinh { get; set; }
-        public string diaChi { get; set; }
-        public DateTime ngaySinh { get; set; }
-        public DateTime ngayTao { get; set; }
+        public static string email { get; set; }
+        public static string mssv { get; set; }
+        public static string gioiTinh { get; set; }
+        public static string diaChi { get; set; }
+        public static DateTime ngaySinh { get; set; }
+        public static DateTime ngayTao { get; set; }
     }
 }

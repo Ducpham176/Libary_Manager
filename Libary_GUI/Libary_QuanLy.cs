@@ -20,6 +20,12 @@ namespace Libary_Manager.Libary_GUI
 {
     public partial class Libary_QuanLy : Form
     {
+        public Libary_QuanLy()
+        {
+            InitializeComponent();
+        }
+
+
         private string codeTinh, codeHuyen;
 
         // ................................................
@@ -37,11 +43,6 @@ namespace Libary_Manager.Libary_GUI
         private DTO_PhanCongNhanVien phanCongNhanVienDTO;
 
         // ................................................
-
-        public Libary_QuanLy()
-        {
-            InitializeComponent();
-        }
 
         private void Libary_QuanLy_Load(object sender, EventArgs e)
         {
@@ -411,6 +412,7 @@ namespace Libary_Manager.Libary_GUI
             else
             {
                 Controller.isAlert(MdQuanLy, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
+                return;
             }
         }
 
@@ -630,6 +632,15 @@ namespace Libary_Manager.Libary_GUI
                 if (TbMatKhauMoi.Text != TbNhapLaiMatKhau.Text)
                 {
                     Controller.isAlert(MdQuanLy, "Không hợp lệ", "Mật khẩu không khớp", MessageDialogIcon.Warning);
+                }
+                else
+                {
+                    quanLyNguoiDungDTO.matKhau = Controller.MD5Hash(TbMatKhauMoi.Text);
+                    if (doiMatKhauBUS.updateMatKhau(quanLyNguoiDungDTO))
+                    {
+                        Controller.isAlert(MdQuanLy, "Thành công", "Đổi mật khẩu thành công", MessageDialogIcon.None);
+                        Controller.isResetTb(TbMatKhauMoi, TbNhapLaiMatKhau);
+                    }
                 }
             }
             else

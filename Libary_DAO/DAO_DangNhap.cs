@@ -16,7 +16,7 @@ namespace Libary_Manager.Libary_DAO
             try
             {
                 string sql = "SELECT * FROM TV_NguoiDung " +
-                    "WHERE taiKhoan ='" + dangNhapDTO.taiKhoan + "' AND " +
+                    "WHERE taiKhoan ='" + DTO_DangNhap.taiKhoan + "' AND " +
                     "matKhau = '" + dangNhapDTO.matKhau + "'";
                 return Database.read(sql);
             }
@@ -27,12 +27,12 @@ namespace Libary_Manager.Libary_DAO
             }
         }
 
-        public bool checkTrangThaiNhanVien(DTO_DangNhap dangNhapDTO)
+        public bool checkTrangThaiNhanVien()
         {
             try
             {
                 string sql = "SELECT * FROM TV_NguoiDung " +
-                    "WHERE taiKhoan ='" + dangNhapDTO.taiKhoan + "' AND trangThai != -1";
+                    "WHERE taiKhoan ='" + DTO_DangNhap.id + "' AND trangThai != -1";
                 return Database.read(sql).Rows.Count > 0;
             }
             catch (Exception ex)

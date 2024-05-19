@@ -18,17 +18,18 @@ using Guna.UI2.WinForms;
 using DevExpress.XtraBars.Docking2010.Base;
 using DevExpress.Utils.VisualEffects;
 using System.Text.RegularExpressions;
+using DevExpress.Utils.CodedUISupport;
 
 namespace Libary_Manager.Libary_GUI.DoGia
 {
     public partial class Libary_ChiTietSach : Form
     {
         private BUS_Sach sachBUS;
-
         private BUS_PhieuMuon phieuMuonBUS;
+        private BUS_ChiTietPhieuMuon chiTietPhieuMuonBUS;
 
         private DTO_PhieuMuon phieuMuonDTO;
-
+        private DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO;
         // Đánh giá sách
 
         private int starSelected = 0;
@@ -48,6 +49,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
                 LbMaSach.Text = data.Rows[0]["maSach"].ToString();
                 LbTuaSach.Text = data.Rows[0]["tuaSach"].ToString();
                 LbSoLuong.Text = data.Rows[0]["soLuong"].ToString();
+                LbIdChiNhanh.Text = data.Rows[0]["id"].ToString();
                 LbChiNhanh.Text = data.Rows[0]["chiNhanh"].ToString();
                 LbDiaChi.Text = data.Rows[0]["diaChi"].ToString();
                 LbNhaXuatBan.Text = data.Rows[0]["nhaXuatBan"].ToString();
@@ -65,11 +67,29 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         // ................................................
 
+        private void checkStatusComment()
+        {
+/*            if (phieuMuonBUS.checkStatusMuonSach(phieuMuonDTO))
+            {
+                // kiểm tra và load dữ liệu commect 
+            }
+            else
+            {
+                PtAlertBinhLuan.Visible = true;
+            }*/
+        }
+
         private void Libary_ChiTietSach_Load(object sender, EventArgs e)
         {
+            this.chiTietPhieuMuonBUS = new BUS_ChiTietPhieuMuon();
+
             this.phieuMuonDTO = new DTO_PhieuMuon();
+            this.chiTietPhieuMuonDTO = new DTO_ChiTietPhieuMuon();
 
             LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
+            this.checkStatusComment();
+
+            NeSoLuong.Maximum = (DTO_DangNhap.quyen == 2) ? 3 : 5;
         }
 
         private void setFillImageRadio(params Guna2ImageRadioButton[] radios)
@@ -162,18 +182,35 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         private void BtnMuonNgay_Click(object sender, EventArgs e)
         {
-            phieuMuonDTO.idNguoiMuon = DTO_DangNhap.id;
-            phieuMuonDTO.maSach = LbMaSach.Text;
-            phieuMuonDTO.soLuong = NeSoLuong.Value.ToString();
-            phieuMuonDTO.tinhTrang = "Phê duyệt";
-
-            if (phieuMuonBUS.insertPhieuMuon(phieuMuonDTO))
+            if (phieuMuonBUS.phieuMuonQuaHan() > 0)
             {
-                Controller.isAlert(MdChiTietSach, "Xác nhận thành công", "Phiếu mượn của bạn đã được ghi nhận", MessageDialogIcon.None);
-            } 
+                Controller.isAlert(MdChiTietSach, "Xảy ra lỗi", "Bạn đang có phiếu sách bị hết hạn", MessageDialogIcon.Error);
+            }
             else
             {
-                Controller.isAlert(MdChiTietSach, "Xảy ra lỗi", "Bạn đang mượn sách khác, hảy trả hết trước!", MessageDialogIcon.Error);
+                int phieuDaMuon = phieuMuonBUS.soLuongPhieuMuon();
+                int phieuDuocMuon = phieuMuonBUS.soLuongPhieuDuocMuon();
+                if ((phieuDaMuon + 1) > phieuDuocMuon)
+                {
+                    Controller.isAlert(MdChiTietSach, "Xảy ra lỗi", "Số sách được phép mượn, vượt quá hạn mức", MessageDialogIcon.Error);
+                }
+                else
+                {
+                    phieuMuonDTO.idNguoiMuon = DTO_DangNhap.id;
+                    phieuMuonDTO.idChiNhanh = int.Parse(LbIdChiNhanh.Text);
+                    phieuMuonDTO.ngayLapPhieu = DateTime.Now;
+                    phieuMuonBUS.createPhieuMuon(phieuMuonDTO);
+
+                    // Lưu chi tiết phiếu mượn
+                    chiTietPhieuMuonDTO.idPhieuMuon = phieuMuonBUS.getIdPhieuMuon();
+                    chiTietPhieuMuonDTO.maSach = LbMaSach.Text;
+                    chiTietPhieuMuonDTO.soLuong = 1;
+                    chiTietPhieuMuonDTO.tinhTrang = "Phê duyệt";
+                    if (chiTietPhieuMuonBUS.insertChiTietPhieuMuon(chiTietPhieuMuonDTO))
+                    {
+                        Controller.isAlert(MdChiTietSach, "Thành công", "Phiếu mượn đã được gửi tới nhân viên", MessageDialogIcon.None);
+                    }    
+                }
             }
         }
 
@@ -206,30 +243,53 @@ namespace Libary_Manager.Libary_GUI.DoGia
 
         private void BtnThemVaoPhieu_Click(object sender, EventArgs e)
         {
-            string maSach = LbMaSach.Text;
-            int totalSach = int.Parse(NeSoLuong.Value.ToString());
-            BUS_PhieuMuon.totalPresent += totalSach;
-
-            if (BUS_PhieuMuon.totalPresent == 0 && totalSach == 3)
+            if (phieuMuonBUS.phieuMuonQuaHan() > 0)
             {
-                checkExistSachToPhieuMuon(maSach, totalSach);
-                loadTabPhieuMuon();
+                Controller.isAlert(MdChiTietSach, "Xảy ra lỗi", "Bạn đang có phiếu sách bị hết hạn", MessageDialogIcon.Error);
             }
-            else if (BUS_PhieuMuon.totalPresent > 3)
-            {
-                BUS_PhieuMuon.totalPresent -= totalSach;
-                Controller.isAlert(MdChiTietSach, "Chú ý", "Số sách mượn trong 1 lần không được vượt quá 3 quyển", MessageDialogIcon.Warning);
-            }    
             else
             {
-                checkExistSachToPhieuMuon(maSach, totalSach);
-                if (BUS_PhieuMuon.totalPresent == 3)
-                {
-                    loadTabPhieuMuon();
-                }    
-            }
-            LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
-        }
+                int phieuDaMuon = phieuMuonBUS.soLuongPhieuMuon();
+                int phieuDuocMuon = phieuMuonBUS.soLuongPhieuDuocMuon();
 
+                string maSach = LbMaSach.Text;
+                int totalSach = int.Parse(NeSoLuong.Value.ToString());
+                int maxSach = (DTO_DangNhap.quyen == 2) ? 3 : 5;
+
+                if (BUS_PhieuMuon.totalPresent == 0)
+                {
+                    BUS_PhieuMuon.totalPresent = phieuDaMuon;
+                }    
+
+                if ((BUS_PhieuMuon.totalPresent + totalSach) > phieuDuocMuon)
+                {
+                    Controller.isAlert(MdChiTietSach, "Xảy ra lỗi", "Số sách được phép mượn, vượt quá hạn mức", MessageDialogIcon.Error);
+                }
+                else
+                {
+                    BUS_PhieuMuon.totalPresent += totalSach;
+
+                    if (BUS_PhieuMuon.totalPresent == 0 && totalSach == maxSach)
+                    {
+                        checkExistSachToPhieuMuon(maSach, totalSach);
+                        loadTabPhieuMuon();
+                    }
+                    else if (BUS_PhieuMuon.totalPresent > maxSach)
+                    {
+                        BUS_PhieuMuon.totalPresent -= totalSach;
+                    }
+                    else
+                    {
+                        checkExistSachToPhieuMuon(maSach, totalSach);
+                        if (BUS_PhieuMuon.totalPresent == maxSach)
+                        {
+                            loadTabPhieuMuon();
+                        }
+                    }
+                }
+               
+                LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
+            }
+        }
     }
 }

@@ -65,10 +65,15 @@ namespace Libary_Manager.Libary_BUS
         }
 
         // Đặt câu hỏi cho người dùng
-        public static bool isQuestion(string content, string title)
+        public static bool isQuestion(Guna.UI2.WinForms.Guna2MessageDialog dialog, string caption, string text)
         {
-            DialogResult result = MessageBox.Show(content, title, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            return (result == DialogResult.Yes);
+            dialog.Text = text;
+            dialog.Caption = caption;
+            dialog.Buttons = Guna.UI2.WinForms.MessageDialogButtons.YesNo;
+            dialog.Icon = Guna.UI2.WinForms.MessageDialogIcon.Question;
+            dialog.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark;
+            DialogResult result = dialog.Show();
+            return result == DialogResult.Yes;
         }
 
 

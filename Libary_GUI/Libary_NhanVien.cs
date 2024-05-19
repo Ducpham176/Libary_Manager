@@ -28,6 +28,12 @@ namespace Libary_Manager.Libary_GUI
 {
     public partial class Libary_NhanVien : Form
     {
+        public Libary_NhanVien()
+        {
+            InitializeComponent();
+        }
+
+
         private string codeTinh, codeHuyen;
 
         int _PAGE = 1;
@@ -46,6 +52,7 @@ namespace Libary_Manager.Libary_GUI
         private BUS_ChamCong chamCongBUS;
         private BUS_QuanLyDocGia quanLyDocGiaBUS;
         private BUS_QuanLyNguoiDung quanLyNguoiDungBUS;
+        private BUS_ChiTietPhieuMuon chiTietPhieuMuonBUS;
 
         // ................................................
 
@@ -53,12 +60,31 @@ namespace Libary_Manager.Libary_GUI
         private DTO_PhieuMuon phieuMuonDTO;
         private DTO_QuanLyNguoiDung quanLyNguoiDungDTO;
         private DTO_ChamCong chamCongDTO;
+        private DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO;
 
         // ................................................
 
-        public Libary_NhanVien()
+        private void Libary_NhanVien_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
+            this.sachDTO = new DTO_Sach();
+            this.phieuMuonDTO = new DTO_PhieuMuon();
+            this.chamCongDTO = new DTO_ChamCong();
+            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
+            this.chiTietPhieuMuonBUS = new BUS_ChiTietPhieuMuon();
+
+            this.sachBUS = new BUS_Sach();
+            this.phieuMuonBUS = new BUS_PhieuMuon();
+            this.chiNhanhBUS = new BUS_ChiNhanh();
+            this.chamCongBUS = new BUS_ChamCong();
+            this.quanLyDocGiaBUS = new BUS_QuanLyDocGia();
+            this.quanLyNguoiDungBUS = new BUS_QuanLyNguoiDung();
+            this.chiTietPhieuMuonDTO = new DTO_ChiTietPhieuMuon();
+
+            // Kiểm tra chấm công hôm nay 
+            checkChamCongToday();
+
+            // Xóa các file
+            Controller.proceedDeletePhotos();
         }
 
         // ................................................
@@ -76,29 +102,8 @@ namespace Libary_Manager.Libary_GUI
 
             if (chamCongBUS.checkChamCongBuoiHomNay(chamCongDTO))
             {
-                Controller.isAlert(MdNhanVien, "Đã chấm công", "Bạn đã chấm công ngày hôm nay", MessageDialogIcon.None);
+                Controller.isAlert(MdNhanVien, "Thực hiện thành công", "Bạn đã chấm công, " + caTruc + " hôm nay", MessageDialogIcon.None);
             }
-        }
-
-        private void Libary_NhanVien_Load(object sender, EventArgs e)
-        {
-            this.sachDTO = new DTO_Sach();
-            this.phieuMuonDTO = new DTO_PhieuMuon();
-            this.chamCongDTO = new DTO_ChamCong();
-            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
-
-            this.sachBUS = new BUS_Sach();
-            this.phieuMuonBUS = new BUS_PhieuMuon();
-            this.chiNhanhBUS = new BUS_ChiNhanh();
-            this.chamCongBUS = new BUS_ChamCong();
-            this.quanLyDocGiaBUS = new BUS_QuanLyDocGia();
-            this.quanLyNguoiDungBUS = new BUS_QuanLyNguoiDung();
-
-            // Kiểm tra chấm công hôm nay 
-            checkChamCongToday();
-
-            // Xóa các file
-            Controller.proceedDeletePhotos();
         }
 
         // Chọn quản lý sách sách
@@ -172,16 +177,17 @@ namespace Libary_Manager.Libary_GUI
 
                     string soThu = new string(labelThu.Text.Where(char.IsDigit).ToArray());
                     int soThuInt;
+                    int thuToday = (DTO_ChamCong.thuMay == 1) ? 8 : DTO_ChamCong.thuMay;
                     if (int.TryParse(soThu, out soThuInt))
                     {
                         soThuInt = int.Parse(soThu);
                     }
                     else
                     {
-                        soThuInt = 0;
+                        soThuInt = 8;
                     }
 
-                    if (soThuInt < DTO_ChamCong.thuMay && soThuInt != 0)
+                    if (soThuInt < thuToday)
                     {
                         panel.FillColor = Color.Transparent;
                         panel.FillColor2 = Color.Transparent;
@@ -254,9 +260,8 @@ namespace Libary_Manager.Libary_GUI
         // Chọn quản lý yêu cầu phiếu mượn 
         private void TabYeuCauMuonSachAction()
         {
-            DataTable data = phieuMuonBUS.getDsYeuCauMuonSach();
+            DataTable data = phieuMuonBUS.getYeuCauPhieuMuon();
             DgvYeuCauPhieuMuon.DataSource = data;
-            DgvYeuCauPhieuMuon.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }    
 
         // Load form tương thích
@@ -272,6 +277,7 @@ namespace Libary_Manager.Libary_GUI
 
             if (selectedTabPage == TabDoiMatKhau)
             {
+                TbMatKhauMoi.Focus();
                 this.TabDoiMatKhauAction();
             }    
 
@@ -691,6 +697,7 @@ namespace Libary_Manager.Libary_GUI
             else
             {
                 Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
+                return;
             }
         }
 
@@ -722,23 +729,59 @@ namespace Libary_Manager.Libary_GUI
 
         private void chapNhanYeuCauMuon(int id)
         {
-            phieuMuonDTO.id = id;
+            // edit phiếu mượn
             phieuMuonDTO.idNhanVien = DTO_DangNhap.id;
-            phieuMuonDTO.tinhTrang = "Đang mượn";
-            phieuMuonDTO.ngayBatDauMuon = DateTime.Now;
-            phieuMuonDTO.ngayTra = phieuMuonDTO.ngayBatDauMuon.AddDays(30);
+            phieuMuonDTO.idChiNhanh = DTO_DangNhap.maChiNhanh;
+
+            // edit chi tiết chi nhánh
+            chiTietPhieuMuonDTO.idPhieuMuon = id;
+            chiTietPhieuMuonDTO.tinhTrang = "Đang mượn";
+            chiTietPhieuMuonDTO.ngayMuon = DateTime.Now;
+            chiTietPhieuMuonDTO.ngayTra = chiTietPhieuMuonDTO.ngayMuon.AddDays(30);
 
             phieuMuonBUS.chapNhanYeuCauMuon(phieuMuonDTO);
+
             DataTable data = phieuMuonBUS.getDsYeuCauMuonSach();
             DgvYeuCauPhieuMuon.DataSource = data;
         }    
 
-        // Xử lí yêu cầu mượn sách của độc giả 
-        private void DgvYeuCauPhieuMuon_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void huyBoYeuCauMuon(int id)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) 
+            // edit phiếu mượn
+            phieuMuonDTO.idNhanVien = DTO_DangNhap.id;
+            phieuMuonDTO.idChiNhanh = DTO_DangNhap.maChiNhanh;
+
+            // edit chi tiết mượn sách 
+            chiTietPhieuMuonDTO.idPhieuMuon = id;
+            chiTietPhieuMuonDTO.tinhTrang = "Từ chối";
+
+            phieuMuonBUS.huyBoYeuCauMuon(phieuMuonDTO);
+            DataTable data = phieuMuonBUS.getDsYeuCauMuonSach();
+            DgvYeuCauPhieuMuon.DataSource = data;
+        }
+
+        private void TbNhapMaSinhVien_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                DataGridViewCell cell = DgvYeuCauPhieuMuon.Rows[e.RowIndex].Cells["pmId"];
+                if (Controller.isEmpty(TbNhapMaSinhVien.Text))
+                {
+                    phieuMuonDTO.id = phieuMuonDTO.id;
+                }    
+                else
+                {
+                    Controller.isAlert(MdNhanVien, "Không hợp lệ", "Vui lòng nhập vào mã sinh viên", MessageDialogIcon.Error);
+                }
+            }    
+        }
+
+        // Yêu cầu mượn sách
+        private void DgvYeuCauPhieuMuon_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewCell cell = DgvYeuCauPhieuMuon.Rows[e.RowIndex].Cells["ycId"];
+
                 // Chấp nhận 
                 if (e.ColumnIndex == 0)
                 {
@@ -755,9 +798,9 @@ namespace Libary_Manager.Libary_GUI
                     if (cell != null && cell.Value != null)
                     {
                         int id = (int)cell.Value;
-                        MessageBox.Show("ID xóa: " + id.ToString());
+                        this.huyBoYeuCauMuon(id);
                     }
-                }    
+                }
             }
         }
     }

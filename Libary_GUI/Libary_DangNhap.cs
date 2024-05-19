@@ -22,9 +22,15 @@ namespace Libary_Manager.Libary_GUI
         public Libary_DangNhap()
         {
             InitializeComponent();
+        }
+
+        private void Libary_DangNhap_Load(object sender, EventArgs e)
+        {
 
             this.dangNhapBUS = new BUS_DangNhap();
             this.dangNhapDTO = new DTO_DangNhap();
+
+            TbTaiKhoan.Focus();
         }
 
         private void BtnDong_Click(object sender, EventArgs e)
@@ -32,34 +38,29 @@ namespace Libary_Manager.Libary_GUI
             this.Close();
         }
 
-        private void Libary_DangNhap_Load(object sender, EventArgs e)
-        {
-            TbTaiKhoan.Focus();
-        }
-
         private void setInfomation(DataTable data)
         {
             DTO_QuanLyNguoiDung.id = int.Parse(data.Rows[0]["id"].ToString());
             DTO_DangNhap.id = DTO_QuanLyNguoiDung.id;
-            dangNhapDTO.hoTen = data.Rows[0]["hoTen"].ToString();
-            dangNhapDTO.quyen = int.Parse(data.Rows[0]["quyen"].ToString());
-            dangNhapDTO.email = data.Rows[0]["email"].ToString();
+            DTO_DangNhap.hoTen = data.Rows[0]["hoTen"].ToString();
+            DTO_DangNhap.quyen = int.Parse(data.Rows[0]["quyen"].ToString());
+            DTO_DangNhap.email = data.Rows[0]["email"].ToString();
             if (data.Rows[0]["mssv"].ToString() != "")
             {
-                dangNhapDTO.mssv = data.Rows[0]["mssv"].ToString();
+                DTO_DangNhap.mssv = data.Rows[0]["mssv"].ToString();
             }
             if (data.Rows[0]["maChiNhanh"].ToString() != "")
             {
                 DTO_DangNhap.maChiNhanh = int.Parse(data.Rows[0]["maChiNhanh"].ToString());
             }
-            dangNhapDTO.gioiTinh = data.Rows[0]["gioiTinh"].ToString();
-            dangNhapDTO.diaChi = data.Rows[0]["diaChi"].ToString();
+            DTO_DangNhap.gioiTinh = data.Rows[0]["gioiTinh"].ToString();
+            DTO_DangNhap.diaChi = data.Rows[0]["diaChi"].ToString();
             if (DateTime.TryParse(data.Rows[0]["ngaySinh"].ToString(), out DateTime parsedDate))
             {
-                dangNhapDTO.ngaySinh = parsedDate;
+                DTO_DangNhap.ngaySinh = parsedDate;
             }
-
-            switch (dangNhapDTO.quyen)
+      
+            switch (DTO_DangNhap.quyen)
             {
                 case 0:
                     Libary_QuanLy formQL = new Libary_QuanLy();
@@ -72,8 +73,13 @@ namespace Libary_Manager.Libary_GUI
                     break;
 
                 case 2:
-                    Libary_DocGia formDG = new Libary_DocGia();
-                    formDG.Show();
+                    Libary_DocGia formSV = new Libary_DocGia();
+                    formSV.Show();
+                    break;
+
+                case 3:
+                    Libary_DocGia formGV = new Libary_DocGia();
+                    formGV.Show();
                     break;
 
                 default: break;
@@ -85,7 +91,7 @@ namespace Libary_Manager.Libary_GUI
         private void BtnDangNhap_Click_1(object sender, EventArgs e)
         {
             PtLoadDing.Visible = true;
-            dangNhapDTO.taiKhoan = TbTaiKhoan.Text;
+            DTO_DangNhap.taiKhoan = TbTaiKhoan.Text;
             dangNhapDTO.matKhau = Controller.MD5Hash(TbMatKhau.Text);
 
             DataTable data = dangNhapBUS.checkDangNhap(dangNhapDTO);
@@ -96,7 +102,7 @@ namespace Libary_Manager.Libary_GUI
       
                 if (quyen == 1)
                 {
-                    if (!dangNhapBUS.checkTrangThaiNhanVien(dangNhapDTO))
+                    if (dangNhapBUS.checkTrangThaiNhanVien())
                     {
                         Controller.isAlert(MdDangNhap, "Không hợp lệ", "Phiên hết hạn, tài khoàn đã bị loại bỏ!", MessageDialogIcon.Error);
                         return;

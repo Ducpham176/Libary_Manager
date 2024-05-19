@@ -67,7 +67,7 @@ namespace Libary_Manager.Libary_DAO.DAO_NhanVien
                 string sql = "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS stt, " +
                     "TRIM(cc.caTruc) as caTruc, cc.moTaSuco, cc.viPham, cc.tgBatDau, cn.chiNhanh, cn.diaChi " +
                     "FROM TV_ChamCong cc JOIN TV_ChiNhanh cn ON cc.maChiNhanh = cn.id " +
-                    "WHERE cc.idNhanVien = '" + chamCongDTO.idNhanVien + "' AND MONTH(tgBatDau) = MONTH(GETDATE())";
+                    "WHERE cc.idNhanVien = '" + chamCongDTO.idNhanVien + "' AND MONTH(tgBatDau) = MONTH(GETDATE()) ORDER BY cc.id DESC";
                 
                 return Database.read(sql);
             }
@@ -120,16 +120,16 @@ namespace Libary_Manager.Libary_DAO.DAO_NhanVien
         }   
         
 
-        public bool checkTrangThaiChamCong(DTO_ChamCong chamCongDTO, int idCaTruc)
+        public bool checkTrangThaiChamCong(DTO_ChamCong chamCongDTO, int idCaTruc, string caTruc)
         {
             try
             {
                 if (DTO_DangNhap.id == idCaTruc)
                 {
                     string sql = "SELECT tgBatDau FROM TV_ChamCong WHERE idNhanVien = '" + DTO_DangNhap.id + "' " +
-                        "AND DATEPART(DAY, GETDATE()) = DATEPART(DAY, tgBatDau);";
-
+                        "AND DATEPART(DAY, GETDATE()) = DATEPART(DAY, tgBatDau) AND caTruc = N'" + caTruc + "'";
                     DataTable data = Database.read(sql);
+
                     if (data.Rows.Count > 0)
                     {
                         // Đã tồn tại

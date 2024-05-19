@@ -11,15 +11,7 @@ namespace Libary_Manager.Libary_DTO
         public int id { get; set; }
         public int idNguoiMuon { get; set; }
         public int idNhanVien { get; set; }
-        public string maSach { get; set; }
-        public string soLuong { get; set; }
-        public string tinhTrang { get; set; }
-        public string ghiChuDocGia { get; set; }
-        public string ghiChuNhanVien { get; set; }
-        public float tienViPham { get; set; }
-        public DateTime ngayMuon { get; set; }
-        public DateTime ngayTra { get; set; }
-        public DateTime ngayBatDauMuon { get; set; }
-
+        public int idChiNhanh { get; set; }
+        public DateTime ngayLapPhieu { get; set; }
     }
 }

@@ -33,11 +33,11 @@ namespace Libary_Manager.Libary_BUS
             }
         }
 
-        public bool checkTrangThaiNhanVien(DTO_DangNhap dangNhapDTO)
+        public bool checkTrangThaiNhanVien()
         {
             try
             {
-                return dangNhapDAO.checkTrangThaiNhanVien(dangNhapDTO);
+                return dangNhapDAO.checkTrangThaiNhanVien();
             }
             catch (Exception ex)
             {

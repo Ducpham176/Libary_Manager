@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Libary_BUS\BUS_ChiNhanh.cs" />
+    <Compile Include="Libary_BUS\BUS_ChiTietPhieuMuon.cs" />
     <Compile Include="Libary_BUS\BUS_DangNhap.cs" />
     <Compile Include="Libary_BUS\BUS_DoiMatKhau.cs" />
     <Compile Include="Libary_BUS\BUS_NhanVien\BUS_ChamCong.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Libary_BUS\Controller.cs" />
     <Compile Include="Libary_DAO\Connect.cs" />
     <Compile Include="Libary_DAO\DAO_ChiNhanh.cs" />
+    <Compile Include="Libary_DAO\DAO_ChiTietPhieuMuon.cs.cs" />
     <Compile Include="Libary_DAO\DAO_DangNhap.cs" />
     <Compile Include="Libary_DAO\DAO_DoiMatKhau.cs" />
     <Compile Include="Libary_DAO\DAO_NhanVien\DAO_ChamCong.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Libary_DAO\Database.cs" />
     <Compile Include="Libary_DTO\DTO_ChamCong.cs" />
     <Compile Include="Libary_DTO\DTO_ChiNhanh.cs" />
+    <Compile Include="Libary_DTO\DTO_ChiTietPhieuMuon.cs" />
     <Compile Include="Libary_DTO\DTO_DangNhap.cs" />
     <Compile Include="Libary_DTO\DTO_PhanCongNhanVien.cs" />
     <Compile Include="Libary_DTO\DTO_PhieuMuon.cs" />

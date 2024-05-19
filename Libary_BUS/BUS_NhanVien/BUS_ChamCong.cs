@@ -74,7 +74,7 @@ namespace Libary_Manager.Libary_BUS.BUS_NhanVien
                         if (!string.IsNullOrEmpty(pathIDNhanViens[0]))
                         {
                             int idCaTrucST = int.Parse(pathIDNhanViens[0]);
-                            return chamCongDAO.checkTrangThaiChamCong(chamCongDTO, idCaTrucST);
+                            return chamCongDAO.checkTrangThaiChamCong(chamCongDTO, idCaTrucST, "Sáng");
                         }
                     }
 
@@ -84,7 +84,7 @@ namespace Libary_Manager.Libary_BUS.BUS_NhanVien
                         if (!string.IsNullOrEmpty(pathIDNhanViens[1]))
                         {
                             int idCaTrucTC = int.Parse(pathIDNhanViens[1].ToString());
-                            return chamCongDAO.checkTrangThaiChamCong(chamCongDTO, idCaTrucTC);
+                            return chamCongDAO.checkTrangThaiChamCong(chamCongDTO, idCaTrucTC, "Chiều");
                         }
                     }
                 }

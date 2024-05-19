@@ -34,7 +34,7 @@ namespace Libary_Manager.Libary_DAO
         {
             try
             {
-                string sql = "SELECT maSach, tuaSach, photo, tacGia, nhaXuatBan, namXuatBan, " +
+                string sql = "SELECT maSach, tuaSach, photo, tacGia, nhaXuatBan, namXuatBan, cn.id, " +
                     "TRIM(cn.chiNhanh) as chiNhanh, TRIM(cn.diaChi) as diaChi, loiGioiThieu, soLuong, TV_Sach.ngayThem " +
                     "FROM TV_ChiNhanh cn " +
                     "INNER JOIN TV_Sach ON TV_Sach.maChiNhanh = cn.id " +

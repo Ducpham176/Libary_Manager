@@ -90,7 +90,7 @@
             this.TbMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TbMatKhau.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.TbMatKhau.IconLeft = ((System.Drawing.Image)(resources.GetObject("TbMatKhau.IconLeft")));
-            this.TbMatKhau.IconLeftOffset = new System.Drawing.Point(4, 1);
+            this.TbMatKhau.IconLeftOffset = new System.Drawing.Point(6, 1);
             this.TbMatKhau.IconLeftSize = new System.Drawing.Size(16, 16);
             this.TbMatKhau.Location = new System.Drawing.Point(514, 350);
             this.TbMatKhau.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -101,6 +101,7 @@
             this.TbMatKhau.SelectedText = "";
             this.TbMatKhau.Size = new System.Drawing.Size(452, 67);
             this.TbMatKhau.TabIndex = 12;
+            this.TbMatKhau.TextOffset = new System.Drawing.Point(3, 0);
             this.TbMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbMatKhau_KeyPress);
             // 
             // TbTaiKhoan
@@ -121,7 +122,7 @@
             this.TbTaiKhoan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TbTaiKhoan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.TbTaiKhoan.IconLeft = ((System.Drawing.Image)(resources.GetObject("TbTaiKhoan.IconLeft")));
-            this.TbTaiKhoan.IconLeftOffset = new System.Drawing.Point(4, 1);
+            this.TbTaiKhoan.IconLeftOffset = new System.Drawing.Point(6, 1);
             this.TbTaiKhoan.IconLeftSize = new System.Drawing.Size(16, 16);
             this.TbTaiKhoan.Location = new System.Drawing.Point(514, 248);
             this.TbTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -132,6 +133,7 @@
             this.TbTaiKhoan.SelectedText = "";
             this.TbTaiKhoan.Size = new System.Drawing.Size(452, 67);
             this.TbTaiKhoan.TabIndex = 11;
+            this.TbTaiKhoan.TextOffset = new System.Drawing.Point(3, 0);
             this.TbTaiKhoan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbTaiKhoan_KeyPress);
             // 
             // guna2PictureBox1

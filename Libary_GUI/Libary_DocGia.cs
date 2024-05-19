@@ -22,25 +22,42 @@ namespace Libary_Manager
 {
     public partial class Libary_DocGia : Form
     {
-        private int _PAGE = 1;
+        public Libary_DocGia()
+        {
+            InitializeComponent();
+        }
 
+
+        private int _PAGE = 1;
         private ArrayList objectSavedTabName = new ArrayList();
 
         private BUS_Sach sachBUS;
         private BUS_PhieuMuon phieuMuonBUS;
         private BUS_DoiMatKhau doiMatKhauBUS;
+        private BUS_ChiTietPhieuMuon chiTietPhieuMuonBUS;
 
         // ................................................
 
         private DTO_Sach sachDTO;
         private DTO_PhieuMuon phieuMuonDTO;
+        private DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO;
         private DTO_QuanLyNguoiDung quanLyNguoiDungDTO;
 
         // ................................................
 
-        public Libary_DocGia()
+        private void Libary_TrangChu_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
+            this.sachDTO = new DTO_Sach();
+            this.phieuMuonDTO = new DTO_PhieuMuon();
+            this.chiTietPhieuMuonDTO = new DTO_ChiTietPhieuMuon();
+            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung();
+
+            this.sachBUS = new BUS_Sach();
+            this.doiMatKhauBUS = new BUS_DoiMatKhau();
+            this.phieuMuonBUS = new BUS_PhieuMuon();
+            this.chiTietPhieuMuonBUS = new BUS_ChiTietPhieuMuon();
+
+            this.TabThongTinAction();
         }
 
         // ................................................
@@ -64,9 +81,16 @@ namespace Libary_Manager
 
         }
 
+        // Chọn tab thông tin 
+        void TabThongTinAction()
+        {
+            DataTable data = phieuMuonBUS.getThongTinPhieuMuon();
+            DgvLichSuPhieuMuon.DataSource = data;
+        }
+
         // ................................................
 
-        // Chọn phiếu mượn của tôi
+        // Chọn chuẩn bị phiếu mượn
         void TabPhieuMuonAction()
         {
             if (BUS_PhieuMuon.dictioLoanSlip.Count > 0)
@@ -75,7 +99,7 @@ namespace Libary_Manager
                 DgvPhieuMuon.Visible = true;
                 BtnGuiPhieuMuon.Visible = true;
 
-                DataTable data = phieuMuonBUS.getInfoPhieuSach();
+                DataTable data = phieuMuonBUS.getThongTinChuanBiPhieuSach();
                 Controller.isLoadDataPhoto(data, DgvPhieuMuon, "pmPhoto");
 
                 int rowIndex = 0;
@@ -87,7 +111,6 @@ namespace Libary_Manager
                     }
                     rowIndex++;
                 }
-
                 int desiredHeight = (BUS_PhieuMuon.dictioLoanSlip.Count + 1) * 100;
                 DgvPhieuMuon.Height = desiredHeight;
             }
@@ -99,18 +122,14 @@ namespace Libary_Manager
             }
         }
 
-        // ................................................
-
-        // Load form TrangChu
-        private void Libary_TrangChu_Load(object sender, EventArgs e)
+        // Chọn đăng xuất 
+        private void TabDangXuatAction()
         {
-            this.sachDTO = new DTO_Sach();
-            this.phieuMuonDTO = new DTO_PhieuMuon();
-            this.quanLyNguoiDungDTO = new DTO_QuanLyNguoiDung(); 
-
-            this.sachBUS = new BUS_Sach();
-            this.doiMatKhauBUS = new BUS_DoiMatKhau();
-            this.phieuMuonBUS = new BUS_PhieuMuon();
+            bool userConfirmed = Controller.isQuestion(MdDocGia, "Xác nhận hành động", "Bạn có chắc chắn muốn đăng xuất?");
+            if (userConfirmed)
+                this.Close();
+            else
+                TcLibary.SelectedTab = TabThongTin;
         }
 
         // ................................................
@@ -121,25 +140,30 @@ namespace Libary_Manager
             TabControl tabControl = (TabControl)sender;
             TabPage selectedTabPage = tabControl.SelectedTab;
 
+            if (selectedTabPage == TabThongTin)
+            {
+                this.TabThongTinAction();
+            }    
+
             if (selectedTabPage == TabSachThuVien)
             {
-                TabSachThuVienAction();
+                this.TabSachThuVienAction();
             }
 
             if (selectedTabPage == TabDoiMatKhau)
             {
-                TabDoiMatKhauAction();
+                this.TabDoiMatKhauAction();
             }
 
             if (selectedTabPage == TabPhieuMuon)
             {
-                TabPhieuMuonAction();
-            }    
+                this.TabPhieuMuonAction();
+            }
 
             if (selectedTabPage == TabDangXuat)
             {
-                this.Close();
-            }    
+                this.TabDangXuatAction();
+            }
         }
 
         // Load form sách vào tabPage 
@@ -254,46 +278,35 @@ namespace Libary_Manager
             }
         }
 
-        private string strConcatInfo(string type = "value")
-        {
-            var sb = new StringBuilder();
-            foreach (var item in BUS_PhieuMuon.dictioLoanSlip)
-            {
-                if (sb.Length > 0)
-                {
-                    sb.Append('|');
-                }
-
-                if (type == "key")
-                {
-                    sb.Append(item.Key);
-                }
-                else
-                {
-                    sb.Append(item.Value);
-                }
-            }
-            return sb.ToString();
-        }
-
         private void BtnGuiPhieuMuon_Click(object sender, EventArgs e)
         {
-            phieuMuonDTO.idNguoiMuon = DTO_DangNhap.id;
-            // nối các mã sách lại
-            phieuMuonDTO.maSach = strConcatInfo("key");
-            // nối các số lượng lại 
-            phieuMuonDTO.soLuong = strConcatInfo();
-            phieuMuonDTO.tinhTrang = "Phê duyệt";
+            if (BUS_PhieuMuon.dictioLoanSlip.Count > 0)
+            {
+                if (BUS_PhieuMuon.valueIdPhieuMuon == -1)
+                {
+                    BUS_PhieuMuon.valueIdPhieuMuon = phieuMuonBUS.getIdPhieuMuon();
+                }    
+                phieuMuonDTO.idNguoiMuon = DTO_DangNhap.id;
+                phieuMuonDTO.idChiNhanh = int.Parse(DgvPhieuMuon.Rows[0].Cells["pmId"].Value.ToString());
+                phieuMuonDTO.ngayLapPhieu = DateTime.Now;
+                phieuMuonBUS.createPhieuMuon(phieuMuonDTO);
 
-            if (phieuMuonBUS.insertPhieuMuon(phieuMuonDTO))
-            {
-                Controller.isAlert(MdDocGia, "Xác nhận thành công", "Phiếu mượn của bạn đã được ghi nhận", MessageDialogIcon.None);
+                foreach (var item in BUS_PhieuMuon.dictioLoanSlip)
+                {
+                    // Lưu chi tiết phiếu mượn
+                    chiTietPhieuMuonDTO.idPhieuMuon = phieuMuonBUS.getIdPhieuMuon();
+                    chiTietPhieuMuonDTO.maSach = item.Key.ToString();
+                    chiTietPhieuMuonDTO.soLuong = int.Parse(item.Value.ToString());
+                    chiTietPhieuMuonDTO.tinhTrang = "Phê duyệt";
+                    if (chiTietPhieuMuonBUS.insertChiTietPhieuMuon(chiTietPhieuMuonDTO))
+                    {
+                        Controller.isAlert(MdDocGia, "Thành công", "Phiếu mượn đã được gửi tới nhân viên", MessageDialogIcon.None);
+                    }
+                }
+
                 BUS_PhieuMuon.dictioLoanSlip.Clear();
-            }
-            else
-            {
-                Controller.isAlert(MdDocGia, "Xảy ra lỗi", "Bạn đang mượn sách khác, hảy trả hết trước!", MessageDialogIcon.Error);
-            }
+                DgvPhieuMuon.Rows.Clear();
+            }    
         }
 
         private void BtnTim_Click(object sender, EventArgs e)
@@ -333,6 +346,11 @@ namespace Libary_Manager
             {
                 Controller.isAlert(MdDocGia, "Không hợp lệ", "Vui lòng nhập đầy đủ thông tin", MessageDialogIcon.Error);
             }
+        }
+
+        private void DgvLichSuPhieuMuon_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
         }
 
 
