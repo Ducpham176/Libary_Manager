@@ -213,6 +213,27 @@ namespace Libary_Manager.Libary_DAO
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }    
+        }
+
+        public void updateSoLuong(DTO_Sach sachDTO)
+        {
+            try
+            {
+                string sql = "SELECT soLuong FROM TV_Sach WHERE maSach = '" + sachDTO.maSach + "'";
+                int soLuongHienTai = int.Parse(Database.read(sql).Rows[0][0].ToString());
+
+                int soLuongCapNhat = (soLuongHienTai - sachDTO.soLuong);
+                var data = new Dictionary<string, object>()
+                {
+                    { "soLuong", soLuongCapNhat },
+                };
+                string condition = "maSach = '" + sachDTO.maSach + "'";
+                Database.update("TV_Sach", data, condition);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

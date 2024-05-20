@@ -39,7 +39,13 @@ namespace Libary_Manager.Libary_GUI.DoGia
         public Libary_ChiTietSach()
         {
             InitializeComponent();
+            DoubleBuffered = true;
 
+            this.loadChuanBiPhieuMuon();
+        }
+
+        private void loadChuanBiPhieuMuon()
+        {
             this.sachBUS = new BUS_Sach();
             this.phieuMuonBUS = new BUS_PhieuMuon();
 
@@ -61,8 +67,8 @@ namespace Libary_Manager.Libary_GUI.DoGia
                 if (File.Exists(pathImage))
                 {
                     PtAnhSach.Image = Image.FromFile(pathImage);
-                }    
-            }    
+                }
+            }
         }
 
         // ................................................
@@ -86,7 +92,9 @@ namespace Libary_Manager.Libary_GUI.DoGia
             this.phieuMuonDTO = new DTO_PhieuMuon();
             this.chiTietPhieuMuonDTO = new DTO_ChiTietPhieuMuon();
 
-            LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
+            int phieuDaMuon = phieuMuonBUS.soLuongPhieuMuon();
+
+            LbTotalSach.Text = phieuDaMuon.ToString();
             this.checkStatusComment();
 
             NeSoLuong.Maximum = (DTO_DangNhap.quyen == 2) ? 3 : 5;
@@ -206,6 +214,7 @@ namespace Libary_Manager.Libary_GUI.DoGia
                     chiTietPhieuMuonDTO.maSach = LbMaSach.Text;
                     chiTietPhieuMuonDTO.soLuong = 1;
                     chiTietPhieuMuonDTO.tinhTrang = "Phê duyệt";
+
                     if (chiTietPhieuMuonBUS.insertChiTietPhieuMuon(chiTietPhieuMuonDTO))
                     {
                         Controller.isAlert(MdChiTietSach, "Thành công", "Phiếu mượn đã được gửi tới nhân viên", MessageDialogIcon.None);
@@ -287,8 +296,6 @@ namespace Libary_Manager.Libary_GUI.DoGia
                         }
                     }
                 }
-               
-                LbTotalSach.Text = BUS_PhieuMuon.totalPresent.ToString();
             }
         }
     }

@@ -53,7 +53,20 @@ namespace Libary_Manager.Libary_BUS.BUS_QuanLy
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không thể thêm độc giả: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không thể sửa độc giả: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool deleteDocGia(DTO_QuanLyNguoiDung quanLyDocGiaDTO)
+        {
+            try
+            {
+                return quanLyDocGiaDAO.deleteDocGia(quanLyDocGiaDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể xóa độc giả: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

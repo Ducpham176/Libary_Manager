@@ -268,7 +268,6 @@ namespace Libary_Manager.Libary_BUS
             return hash.ToString();
         }
 
-
         public static ArrayList GetThu2AndChuNhat()
         {
             ArrayList Thu2AndCn = new ArrayList();
@@ -294,5 +293,24 @@ namespace Libary_Manager.Libary_BUS
             return Thu2AndCn;
         }
 
+        public static string isRevertTypeQuyen()
+        {
+            switch (DTO_DangNhap.quyen)
+            {
+                case 0:
+                    return "Quản lý";
+
+                case 1:
+                    return "Nhân viên";
+
+                case 2:
+                    return "Sinh viên";
+
+                case 3:
+                    return "Giảng viên";
+
+                default: return "Không có dữ liệu";
+            }
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Libary_Manager.Libary_BUS
         public static Dictionary<string, int> dictioLoanSlip = new Dictionary<string, int>();
 
         public static int totalPresent = 0;
+
         public static int valueIdPhieuMuon = -1;
 
         public BUS_PhieuMuon()
@@ -83,8 +84,6 @@ namespace Libary_Manager.Libary_BUS
                 return null;
             };
         }
-
-
 
         public int phieuMuonQuaHan()
         {
@@ -164,11 +163,11 @@ namespace Libary_Manager.Libary_BUS
             };
         }
 
-        public void chapNhanYeuCauMuon(DTO_PhieuMuon phieuMuonDTO)
+        public void capNhatPhieuMuon(DTO_PhieuMuon phieuMuonDTO)
         {
             try
             {
-                phieuMuonDAO.chapNhanYeuCauMuon(phieuMuonDTO);
+                phieuMuonDAO.capNhatPhieuMuon(phieuMuonDTO);
             }
             catch (Exception ex)
             {
@@ -176,30 +175,17 @@ namespace Libary_Manager.Libary_BUS
             };
         }
 
-        public void huyBoYeuCauMuon(DTO_PhieuMuon phieuMuonDTO)
+        public DataTable getAllDsDaMuon()
         {
             try
             {
-                phieuMuonDAO.huyBoYeuCauMuon(phieuMuonDTO);
+                return phieuMuonDAO.getAllDsDaMuon();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không thể hủy bỏ phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không thể lấy danh sách đã mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             };
         }
-
-
-/*        public bool checkStatusMuonSach(DTO_PhieuMuon phieuMuonDTO)
-        {
-            try
-            {
-                return phieuMuonDAO.checkStatusMuonSach(phieuMuonDTO);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Không thể hủy bỏ phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            };
-        }*/
     }
 }

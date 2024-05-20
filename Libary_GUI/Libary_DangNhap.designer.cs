@@ -62,9 +62,9 @@
             this.BtnDangNhap.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.BtnDangNhap.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.BtnDangNhap.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
-            this.BtnDangNhap.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Bold);
+            this.BtnDangNhap.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDangNhap.ForeColor = System.Drawing.Color.White;
-            this.BtnDangNhap.Location = new System.Drawing.Point(514, 480);
+            this.BtnDangNhap.Location = new System.Drawing.Point(514, 457);
             this.BtnDangNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnDangNhap.Name = "BtnDangNhap";
             this.BtnDangNhap.Size = new System.Drawing.Size(459, 67);
@@ -77,7 +77,7 @@
             this.TbMatKhau.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TbMatKhau.AutoRoundedCorners = true;
-            this.TbMatKhau.BorderRadius = 32;
+            this.TbMatKhau.BorderRadius = 31;
             this.TbMatKhau.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TbMatKhau.DefaultText = "";
             this.TbMatKhau.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -92,14 +92,14 @@
             this.TbMatKhau.IconLeft = ((System.Drawing.Image)(resources.GetObject("TbMatKhau.IconLeft")));
             this.TbMatKhau.IconLeftOffset = new System.Drawing.Point(6, 1);
             this.TbMatKhau.IconLeftSize = new System.Drawing.Size(16, 16);
-            this.TbMatKhau.Location = new System.Drawing.Point(514, 350);
-            this.TbMatKhau.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.TbMatKhau.Location = new System.Drawing.Point(514, 355);
+            this.TbMatKhau.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.TbMatKhau.Name = "TbMatKhau";
             this.TbMatKhau.PasswordChar = '•';
             this.TbMatKhau.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.TbMatKhau.PlaceholderText = "Mật Khẩu";
             this.TbMatKhau.SelectedText = "";
-            this.TbMatKhau.Size = new System.Drawing.Size(452, 67);
+            this.TbMatKhau.Size = new System.Drawing.Size(459, 64);
             this.TbMatKhau.TabIndex = 12;
             this.TbMatKhau.TextOffset = new System.Drawing.Point(3, 0);
             this.TbMatKhau.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbMatKhau_KeyPress);
@@ -109,7 +109,7 @@
             this.TbTaiKhoan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TbTaiKhoan.AutoRoundedCorners = true;
-            this.TbTaiKhoan.BorderRadius = 32;
+            this.TbTaiKhoan.BorderRadius = 31;
             this.TbTaiKhoan.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TbTaiKhoan.DefaultText = "";
             this.TbTaiKhoan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -124,14 +124,14 @@
             this.TbTaiKhoan.IconLeft = ((System.Drawing.Image)(resources.GetObject("TbTaiKhoan.IconLeft")));
             this.TbTaiKhoan.IconLeftOffset = new System.Drawing.Point(6, 1);
             this.TbTaiKhoan.IconLeftSize = new System.Drawing.Size(16, 16);
-            this.TbTaiKhoan.Location = new System.Drawing.Point(514, 248);
-            this.TbTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.TbTaiKhoan.Location = new System.Drawing.Point(514, 255);
+            this.TbTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.TbTaiKhoan.Name = "TbTaiKhoan";
             this.TbTaiKhoan.PasswordChar = '\0';
             this.TbTaiKhoan.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.TbTaiKhoan.PlaceholderText = "Tài khoản";
             this.TbTaiKhoan.SelectedText = "";
-            this.TbTaiKhoan.Size = new System.Drawing.Size(452, 67);
+            this.TbTaiKhoan.Size = new System.Drawing.Size(459, 64);
             this.TbTaiKhoan.TabIndex = 11;
             this.TbTaiKhoan.TextOffset = new System.Drawing.Point(3, 0);
             this.TbTaiKhoan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbTaiKhoan_KeyPress);
@@ -174,7 +174,7 @@
             this.BtnDong.DisabledState.ForeColor = System.Drawing.Color.White;
             this.BtnDong.FillColor = System.Drawing.Color.White;
             this.BtnDong.FocusedColor = System.Drawing.Color.White;
-            this.BtnDong.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F);
+            this.BtnDong.Font = new System.Drawing.Font("JetBrains Mono", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.BtnDong.HoverState.FillColor = System.Drawing.Color.White;
             this.BtnDong.Location = new System.Drawing.Point(972, 12);

@@ -32,5 +32,29 @@ namespace Libary_Manager.Libary_BUS
                 return false;
             }
         }
+
+        public void chapNhanYeuCauMuon(DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO, DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                chiTietPhieuMuonDAO.chapNhanYeuCauMuon(chiTietPhieuMuonDTO, phieuMuonDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể chấp nhận phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+        }
+
+        public void tuChoiYeuCauMuon(DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO, DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                chiTietPhieuMuonDAO.tuChoiYeuCauMuon(chiTietPhieuMuonDTO, phieuMuonDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể từ chối phiếu mượn: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+        }
     }
 }

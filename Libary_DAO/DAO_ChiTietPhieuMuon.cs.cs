@@ -30,5 +30,43 @@ namespace Libary_Manager.Libary_DAO
                 return false;
             }
         }
+
+        public void chapNhanYeuCauMuon(DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO, DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                var data = new Dictionary<string, object>()
+                {
+                    { "tinhTrang", chiTietPhieuMuonDTO.tinhTrang },
+                    { "ngayMuon", chiTietPhieuMuonDTO.ngayMuon },
+                    { "ngayTra", chiTietPhieuMuonDTO.ngayTra },
+                };
+                string condition = " idPhieuMuon = '" + phieuMuonDTO.id + "'";
+
+                Database.update("TV_ChiTietPhieuMuon", data, condition);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void tuChoiYeuCauMuon(DTO_ChiTietPhieuMuon chiTietPhieuMuonDTO, DTO_PhieuMuon phieuMuonDTO)
+        {
+            try
+            {
+                var data = new Dictionary<string, object>()
+                {
+                    { "tinhTrang", chiTietPhieuMuonDTO.tinhTrang },
+                };
+                string condition = " idPhieuMuon = '" + phieuMuonDTO.id + "'";
+
+                Database.update("TV_ChiTietPhieuMuon", data, condition);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

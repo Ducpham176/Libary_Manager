@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Libary_Manager.Libary_BUS
 {
@@ -209,6 +210,19 @@ namespace Libary_Manager.Libary_BUS
             {
                 MessageBox.Show("Lỗi xảy ra trong tìm kiếm sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+            };
+        }
+
+
+        public void updateSoLuong(DTO_Sach sachDTO)
+        {
+            try
+            {
+                sachDAO.updateSoLuong(sachDTO);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xảy ra khi cập nhật số lượng sách: " + ex.Message, "Lỗi rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             };
         }
     }

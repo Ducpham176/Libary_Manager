@@ -4,6 +4,7 @@ using Guna.UI2.WinForms;
 using Libary_Manager.Libary_BUS;
 using Libary_Manager.Libary_DAO;
 using Libary_Manager.Libary_DTO;
+using Libary_Manager.Libary_GUI;
 using Libary_Manager.Libary_GUI.DoGia;
 using System;
 using System.Collections;
@@ -12,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
@@ -22,9 +24,24 @@ namespace Libary_Manager
 {
     public partial class Libary_DocGia : Form
     {
+        private void activedDoubleBuffered(Guna2DataGridView data)
+        {
+            typeof(DataGridView).InvokeMember(
+            "DoubleBuffered",
+            BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+            null,
+            data,
+            new object[] { true });
+        }
+
         public Libary_DocGia()
         {
             InitializeComponent();
+            DoubleBuffered = true;
+
+            this.activedDoubleBuffered(DgvSachThuVien);
+            this.activedDoubleBuffered(DgvPhieuMuon);
+            this.activedDoubleBuffered(DgvLichSuPhieuMuon);
         }
 
 
@@ -62,6 +79,17 @@ namespace Libary_Manager
 
         // ................................................
 
+        // Chọn tab thông tin 
+        void TabThongTinAction()
+        {
+            LbQuyen.Text = Controller.isRevertTypeQuyen();
+            LbHoTen.Text = DTO_DangNhap.hoTen;
+            LbGioiTinh.Text = DTO_DangNhap.gioiTinh;
+            LbNgaySinh.Text = DTO_DangNhap.ngaySinh.ToString();
+            LbNgayThamGia.Text = DTO_DangNhap.ngayTao.ToString();
+            LbDiaChi.Text = DTO_DangNhap.diaChi;
+        }
+
         // Chọn sách thư viện
         void TabSachThuVienAction()
         {
@@ -79,13 +107,6 @@ namespace Libary_Manager
         void TabDoiMatKhauAction()
         {
 
-        }
-
-        // Chọn tab thông tin 
-        void TabThongTinAction()
-        {
-            DataTable data = phieuMuonBUS.getThongTinPhieuMuon();
-            DgvLichSuPhieuMuon.DataSource = data;
         }
 
         // ................................................
@@ -127,9 +148,13 @@ namespace Libary_Manager
         {
             bool userConfirmed = Controller.isQuestion(MdDocGia, "Xác nhận hành động", "Bạn có chắc chắn muốn đăng xuất?");
             if (userConfirmed)
+            {
                 this.Close();
+            }
             else
-                TcLibary.SelectedTab = TabThongTin;
+            {
+                TcLibary.SelectedTab = TabPhieuDaMuon;
+            }    
         }
 
         // ................................................
@@ -140,7 +165,7 @@ namespace Libary_Manager
             TabControl tabControl = (TabControl)sender;
             TabPage selectedTabPage = tabControl.SelectedTab;
 
-            if (selectedTabPage == TabThongTin)
+            if (selectedTabPage == TabPhieuDaMuon)
             {
                 this.TabThongTinAction();
             }    
@@ -291,6 +316,7 @@ namespace Libary_Manager
                 phieuMuonDTO.ngayLapPhieu = DateTime.Now;
                 phieuMuonBUS.createPhieuMuon(phieuMuonDTO);
 
+                bool isCheck = false;
                 foreach (var item in BUS_PhieuMuon.dictioLoanSlip)
                 {
                     // Lưu chi tiết phiếu mượn
@@ -300,9 +326,13 @@ namespace Libary_Manager
                     chiTietPhieuMuonDTO.tinhTrang = "Phê duyệt";
                     if (chiTietPhieuMuonBUS.insertChiTietPhieuMuon(chiTietPhieuMuonDTO))
                     {
-                        Controller.isAlert(MdDocGia, "Thành công", "Phiếu mượn đã được gửi tới nhân viên", MessageDialogIcon.None);
+                        isCheck = true;
                     }
                 }
+                if (isCheck)
+                {
+                    Controller.isAlert(MdDocGia, "Thành công", "Phiếu mượn đã được gửi tới nhân viên", MessageDialogIcon.None);
+                }    
 
                 BUS_PhieuMuon.dictioLoanSlip.Clear();
                 DgvPhieuMuon.Rows.Clear();
@@ -352,7 +382,6 @@ namespace Libary_Manager
         {
 
         }
-
 
         // ................................................
 

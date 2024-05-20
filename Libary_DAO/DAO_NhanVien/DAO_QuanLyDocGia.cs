@@ -15,9 +15,9 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
         {
             try
             {
-                string sql = "SELECT dg.id, TRIM(dg.hoTen) AS hoTen, TRIM(dg.taiKhoan) AS taiKhoan, TRIM(dg.email) AS email, " +
-                    "TRIM(dg.mssv) AS mssv, dg.gioiTinh, TRIM(dg.diaChi) AS diaChi, dg.ngaySinh, dg.ngayTao " +
-                    "FROM TV_NguoiDung AS dg WHERE quyen = 2 ORDER BY dg.id DESC";
+                string sql = "SELECT id, hoTen, taiKhoan, email, CASE WHEN quyen = 2 THEN N'Sinh viên' " +
+                    "WHEN quyen = 3 THEN N'Giảng viên' END AS quyen, mssv, gioiTinh, diaChi, ngaySinh, ngayTao " +
+                    "FROM TV_NguoiDung WHERE quyen = 2 OR quyen = 3 ORDER BY id DESC";
                 return Database.read(sql);
             }
             catch (Exception ex)
@@ -74,5 +74,19 @@ namespace Libary_Manager.Libary_DAO.DAO_QuanLy
                 return false;
             }
         }
+
+        public bool deleteDocGia(DTO_QuanLyNguoiDung quanLyDocGiaDTO)
+        {
+            try
+            {
+                string condition = " taiKhoan = '" + quanLyDocGiaDTO.taiKhoan + "'";
+                Database.delete("TV_NguoiDung", condition); return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }                                                     
     }
 }

@@ -62,7 +62,7 @@ namespace Libary_Manager.Libary_DAO
         {
             try
             {
-                string sql = "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS stt,\r\n       pm.id,\r\n       nd.hoTen,\r\n       STRING_AGG(s.maSach, '\n') AS maSach, \r\n       STRING_AGG(s.tuaSach, '\n') AS tuaSach, \r\n       STRING_AGG(CAST(ctpm.soLuong AS VARCHAR), '\n') as soLuong,\r\n       pm.ngayLapPhieu,\r\n       STRING_AGG(CAST(ctpm.ngayTra AS VARCHAR), '\n') as ngayTra\r\nFROM TV_NguoiDung nd\r\nJOIN TV_PhieuMuon pm ON pm.idNguoiMuon = nd.id\r\nJOIN TV_ChiTietPhieuMuon ctpm ON ctpm.idPhieuMuon = pm.id\r\nJOIN TV_Sach s ON s.maSach = ctpm.maSach\r\nWHERE pm.idChiNhanh = '" + DTO_DangNhap.maChiNhanh + "' GROUP BY pm.id, nd.hoTen, pm.ngayLapPhieu, ctpm.tinhTrang\r\n";
+                string sql = "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS stt,\r\n       pm.id,\r\n       nd.hoTen,\r\n       STRING_AGG(s.maSach, '\n') AS maSach, \r\n       STRING_AGG(s.tuaSach, '\n') AS tuaSach, \r\n       STRING_AGG(CAST(ctpm.soLuong AS VARCHAR), '\n') as soLuong,\r\n       pm.ngayLapPhieu,\r\n       STRING_AGG(CAST(ctpm.ngayTra AS VARCHAR), '\n') as ngayTra\r\nFROM TV_NguoiDung nd\r\nJOIN TV_PhieuMuon pm ON pm.idNguoiMuon = nd.id\r\nJOIN TV_ChiTietPhieuMuon ctpm ON ctpm.idPhieuMuon = pm.id\r\nJOIN TV_Sach s ON s.maSach = ctpm.maSach\r\nWHERE pm.idChiNhanh = '" + DTO_DangNhap.maChiNhanh + "' AND ctpm.tinhTrang = N'Phê duyệt' GROUP BY pm.id, nd.hoTen, pm.ngayLapPhieu, ctpm.tinhTrang\r\n";
                 return Database.read(sql);
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace Libary_Manager.Libary_DAO
         {
             try
             {
-                string sql = "WITH OrderedBooks AS (\r\n    SELECT \r\n\t\tpm.id,\r\n        nd.hoTen,\r\n        s.tuaSach,\r\n\t\tREPLACE(pm.maSach, '|', '\n') as maSach,\r\n\t\tREPLACE(pm.soLuong, '|', '\n') as soLuong,\r\n        pm.ngayMuon,\r\n        pm.tinhTrang,\r\n        CHARINDEX(s.maSach, pm.maSach) AS OrderIndex\r\n    FROM TV_PhieuMuon pm\r\n    JOIN TV_NguoiDung nd ON nd.id = pm.idNguoiMuon\r\n    JOIN TV_Sach s ON pm.maSach COLLATE Latin1_General_CI_AI LIKE '%' + s.maSach + '%'\r\n    WHERE pm.tinhTrang = N'Phê duyệt'\r\n)\r\nSELECT \r\n    id,\r\n    hoTen,\r\n    STRING_AGG(tuaSach, '\n') WITHIN GROUP (ORDER BY OrderIndex) AS tuaSach,\r\n    REPLACE(maSach, '|', '\n') AS maSach,\r\n    REPLACE(soLuong, '|', '\n') AS soLuong,\r\n    ngayMuon\r\nFROM OrderedBooks\r\nGROUP BY id, hoTen, maSach, soLuong, ngayMuon;\r\n";
+                string sql = "SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS stt, nd.hoTen,\r\nSTRING_AGG(s.maSach, '\n') AS maSach, STRING_AGG(ctpm.tinhTrang, '\n') as tinhTrang, \r\nSTRING_AGG(s.tuaSach, '\n') AS tuaSach, STRING_AGG(ctpm.soLuong, '\n') as soLuong, \r\nctpm.ngayMuon, STRING_AGG(ctpm.ngayTra, '\n') as soLuong \r\nFROM TV_NguoiDung nd JOIN TV_PhieuMuon pm ON pm.idNguoiMuon = nd.id \r\nJOIN TV_ChiTietPhieuMuon ctpm ON ctpm.idPhieuMuon = pm.id \r\nJOIN TV_Sach s ON s.maSach = ctpm.maSach\r\nWHERE pm.idChiNhanh = '" + DTO_DangNhap.maChiNhanh + "' AND ctpm.tinhTrang = N'Phê duyệt' \r\nGROUP BY nd.hoTen, ctpm.ngayMuon, ctpm.tinhTrang\r\n";
                 return Database.read(sql);
             }
             catch (Exception ex)
@@ -146,34 +146,13 @@ namespace Libary_Manager.Libary_DAO
             }
         }
 
-        public void chapNhanYeuCauMuon(DTO_PhieuMuon phieuMuonDTO)
-        {
-            try
-            {
-            /*    var data = new Dictionary<string, object>()
-                {
-                    { "idNhanVien", phieuMuonDTO.idNhanVien },
-                    { "tinhTrang", phieuMuonDTO.tinhTrang },
-                    { "ngayBatDauMuon", phieuMuonDTO.ngayBatDauMuon },
-                    { "ngayTra", phieuMuonDTO.ngayTra },
-                };
-                string condition = " id = '" + phieuMuonDTO.id + "'";
-
-                Database.update("TV_PhieuMuon", data, condition);*/
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void huyBoYeuCauMuon(DTO_PhieuMuon phieuMuonDTO)
+        public void capNhatPhieuMuon(DTO_PhieuMuon phieuMuonDTO)
         {
             try
             {
                 var data = new Dictionary<string, object>()
                 {
-                    /*{ "tinhTrang", phieuMuonDTO.tinhTrang },*/
+                    { "idNhanVien", phieuMuonDTO.idNhanVien },
                 };
                 string condition = " id = '" + phieuMuonDTO.id + "'";
 
@@ -185,20 +164,18 @@ namespace Libary_Manager.Libary_DAO
             }
         }
 
-       /* public bool checkStatusMuonSach(DTO_PhieuMuon phieuMuonDTO)
+        public DataTable getAllDsDaMuon()
         {
             try
             {
-                string sql = "SELECT TOP 1 pm.*, nd.*, s.*\r\nFROM TV_PhieuMuon pm\r\nJOIN TV_NguoiDung nd ON pm.idNguoiMuon = nd.id " +
-                    "JOIN TV_Sach s ON pm.maSach LIKE N'%" + phieuMuonDTO.maSach + "%' " +
-                    "WHERE nd.id = '" + DTO_DangNhap.id + "' AND (tinhTrang = N'Đang mượn' OR tinhTrang = N'Đã trả sách')\r\n";
-                return Database.read(sql).Rows.Count > 0;
+                string sql = "SELECT nd.hoTen, STRING_AGG(s.maSach, '\n') AS maSach, \r\nSTRING_AGG(ctpm.tinhTrang, '\n') as tinhTrang, STRING_AGG(s.tuaSach, '\n') AS tuaSach, \r\nSTRING_AGG(ctpm.soLuong, '\n') as soLuong, ctpm.ngayMuon, STRING_AGG(ctpm.ngayTra, '\n') as ngayPhaiTra \r\nFROM TV_NguoiDung nd JOIN TV_PhieuMuon pm ON pm.idNguoiMuon = nd.id \r\nJOIN TV_ChiTietPhieuMuon ctpm ON ctpm.idPhieuMuon = pm.id JOIN TV_Sach s \r\nON s.maSach = ctpm.maSach WHERE pm.idChiNhanh = '" + DTO_DangNhap.maChiNhanh + "' AND (ctpm.tinhTrang = N'Đang mượn' OR ctpm.tinhTrang = 'Quá hạn')\r\nGROUP BY nd.hoTen, ctpm.ngayMuon, ctpm.tinhTrang";
+                return Database.read(sql);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi databse " + ex.Message, "Lỗi xảy ra", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return null;
             }
-        }*/
+        }    
     }
 }
