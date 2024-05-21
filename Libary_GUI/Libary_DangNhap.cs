@@ -84,43 +84,6 @@ namespace Libary_Manager.Libary_GUI
 
                 default: break;
             }
-
-            PtLoadDing.Visible = false;
-        }
-
-        private void BtnDangNhap_Click_1(object sender, EventArgs e)
-        {
-            PtLoadDing.Visible = true;
-            DTO_DangNhap.taiKhoan = TbTaiKhoan.Text;
-            dangNhapDTO.matKhau = Controller.MD5Hash(TbMatKhau.Text);
-
-            DataTable data = dangNhapBUS.checkDangNhap(dangNhapDTO);
-
-            if (data.Rows.Count > 0)
-            {
-                int quyen = int.Parse(data.Rows[0]["quyen"].ToString());
-      
-                if (quyen == 1)
-                {
-                    if (dangNhapBUS.checkTrangThaiNhanVien())
-                    {
-                        Controller.isAlert(MdDangNhap, "Không hợp lệ", "Phiên hết hạn, tài khoàn đã bị loại bỏ!", MessageDialogIcon.Error);
-                        return;
-                    }
-                    else
-                    {
-                        DateTime today = DateTime.Today;
-                        DayOfWeek dayOfWeek = today.DayOfWeek;
-                        DTO_ChamCong.thuMay = (int)(dayOfWeek + 1);
-                    }
-                }
-                setInfomation(data);
-            }
-            else
-            {
-                Controller.isAlert(MdDangNhap, "Không hợp lệ", "Tài khoản hoặc mật khẩu sai", MessageDialogIcon.Error);
-                PtLoadDing.Visible = false;
-            }
         }
 
         private void TbTaiKhoan_KeyPress(object sender, KeyPressEventArgs e)
@@ -144,6 +107,39 @@ namespace Libary_Manager.Libary_GUI
         private void Libary_DangNhap_FormClosed(object sender, FormClosedEventArgs e)
         {
             Controller.isDeletePhotos();
+        }
+
+        private void BtnDangNhap_Click(object sender, EventArgs e)
+        {
+            DTO_DangNhap.taiKhoan = TbTaiKhoan.Text;
+            dangNhapDTO.matKhau = Controller.MD5Hash(TbMatKhau.Text);
+
+            DataTable data = dangNhapBUS.checkDangNhap(dangNhapDTO);
+
+            if (data.Rows.Count > 0)
+            {
+                int quyen = int.Parse(data.Rows[0]["quyen"].ToString());
+
+                if (quyen == 1)
+                {
+                    if (dangNhapBUS.checkTrangThaiNhanVien())
+                    {
+                        Controller.isAlert(MdDangNhap, "Không hợp lệ", "Phiên hết hạn, tài khoàn đã bị loại bỏ!", MessageDialogIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        DateTime today = DateTime.Today;
+                        DayOfWeek dayOfWeek = today.DayOfWeek;
+                        DTO_ChamCong.thuMay = (int)(dayOfWeek + 1);
+                    }
+                }
+                setInfomation(data);
+            }
+            else
+            {
+                Controller.isAlert(MdDangNhap, "Không hợp lệ", "Tài khoản hoặc mật khẩu sai", MessageDialogIcon.Error);
+            }
         }
     }
 }

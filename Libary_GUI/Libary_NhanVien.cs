@@ -212,8 +212,8 @@ namespace Libary_Manager.Libary_GUI
                     }
 
                     int hourRealTime = DateTime.Now.Hour;
-                    string caTrucSoSanh = (hourRealTime < 11) ? "Sáng" : "Trưa";
-                    bool isMorning = (caTrucSoSanh == "Trưa") ? labelCaTruc.Text == "Sáng" || labelCaTruc.Text == "Trưa" : labelCaTruc.Text == "Sáng";
+                    string caTrucSoSanh = (hourRealTime < 11) ? "Sáng" : "Chiều";
+                    bool isMorning = (caTrucSoSanh == "Chiều") ? labelCaTruc.Text == "Sáng" || labelCaTruc.Text == "Chiều" : labelCaTruc.Text == "Sáng";
                     if (soThuInt < thuToday)
                     {
                         panel.FillColor = Color.FromArgb(59, 130, 246);
@@ -270,7 +270,7 @@ namespace Libary_Manager.Libary_GUI
                                     array.Add("Chủ nhật");
                                 }
                                 if (index == 0) { array.Add("Sáng"); };
-                                if (index == 1) { array.Add("Trưa"); };
+                                if (index == 1) { array.Add("Chiều"); };
                             }
                         }
                         dataLichLam.Add(array);
@@ -859,6 +859,27 @@ namespace Libary_Manager.Libary_GUI
                     DtpNgaySinh.Value = ngaySinhRevert;
                 }
                 CbbGioiTinh.Text = gioiTinh;
+                CbbLoaiDocGia.Text = quyen;
+            }
+        }
+
+        private void DgvDocGia_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow row in DgvDocGia.Rows)
+            {
+                if (!row.IsNewRow && row.Cells["quyen"].Value != null)
+                {
+                    if (row.Cells["quyen"].Value.ToString() == "Giảng viên")
+                    {
+                        row.Cells["quyen"].Style.SelectionForeColor = Color.SandyBrown;
+                        row.Cells["quyen"].Style.ForeColor = Color.SandyBrown;
+                    }
+                    else
+                    {
+                        row.Cells["quyen"].Style.SelectionForeColor = Color.DeepSkyBlue;
+                        row.Cells["quyen"].Style.ForeColor = Color.DeepSkyBlue;
+                    }
+                }
             }
         }
 

@@ -202,7 +202,7 @@ namespace Libary_Manager
             tab.Controls.Add(form);
             tab.Text = "Sách | " + sachDTO.tuaSach;
             tab.Name = "Sach" + sachDTO.maSach;
-            tab.BackColor = Color.FromArgb(36, 37, 38);
+            tab.BackColor = Color.FromArgb(22, 24, 35);
             objectSavedTabName.Add(tab.Name);
             sachBUS.setObjectSavedTabName(objectSavedTabName);
 
